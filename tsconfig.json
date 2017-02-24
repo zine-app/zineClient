@@ -1,0 +1,31 @@
+{
+    "compilerOptions": {
+        "moduleResolution": "node",
+        "allowSyntheticDefaultImports": true,
+        "experimentalDecorators": true,
+        "target": "es6",
+        "sourceMap": true,
+        "outDir": "./bin",
+        "rootDir": "./src",
+        "jsx": "react",
+
+        "baseUrl": ".",
+        "paths": {
+            "*": [
+                "src/*",
+                "*",
+                "node_modules/*"
+            ]
+        }
+    },
+    "include": [
+        "node_modules/**/*.d.ts",
+        "typings/index.d.ts",
+        "src/lib/*.d.ts",
+        "**/*.ts",
+        "**/*.tsx"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
