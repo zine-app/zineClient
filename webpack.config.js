@@ -46,7 +46,7 @@ module.exports = function (env) {
                     use: env.production ? ExtractTextPlugin.extract({
                         fallback: 'style-loader',
                         use: ['css-loader', 'sass-loader', 'autoprefixer-loader']
-                    }) : ['css-loader', 'sass-loader', 'autoprefixer-loader']
+                    }) : ['style-loader', 'css-loader', 'sass-loader', 'autoprefixer-loader']
                 },
 
                 {
@@ -54,7 +54,7 @@ module.exports = function (env) {
                     use: env.production ? ExtractTextPlugin.extract({
                         fallback: 'style-loader',
                         use: ['css-loader', 'autoprefixer-loader']
-                    }) : ['css-loader', 'autoprefixer-loader']
+                    }) : ['style-loader', 'css-loader', 'autoprefixer-loader']
                 },
 
                 {test: /(\.js|\.jsx)$/, exclude: /node_modules/, loader: 'babel-loader'},
