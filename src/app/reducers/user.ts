@@ -5,7 +5,7 @@ import { pick } from 'lodash'
 const initialState = createUser()
 
 export const userReducer = handleActions({
-  "USER:SET": (state, action):User =>
+  "USER:SET": (state, action) =>
     state.merge(
       pick(action.payload,
         [

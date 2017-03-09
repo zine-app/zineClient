@@ -1,4 +1,3 @@
 import { createAction } from 'redux-actions'
 
-export const setUser = (params:Partial<User>) => createAction('USER:SET')(params)
-export type TsetUser = typeof setUser
+export const setUser:Action.TsetUser = (params) => createAction('USER:SET')(params)

@@ -1,10 +1,15 @@
+interface IAction {
+  type: string,
+  error?: boolean,
+  payload: any,
+  meta: any
+}
+
+interface IUserAction extends IAction {
+  payload:Partial<IUser>
+}
+
+
 declare namespace Action {
-  interface SetUserParams {
-    email: string,
-    name: string,
-    profileImageURL: string,
-    id: string,
-    facebookUserId:string,
-    facebookUserAccessToken:string
-  }
+  type TsetUser = (params:Partial<IUser>) => IUserAction;
 }

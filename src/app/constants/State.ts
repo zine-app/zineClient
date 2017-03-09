@@ -1,12 +1,13 @@
 import { Record } from 'immutable'
-import { createUser, UserRecord } from './User'
+import { createUser, User } from './User'
 
-const stateRecordDefaults:State = {
+
+const StateRecord = Record({
   user: createUser({ name: '' })
+})
+
+class State extends StateRecord {
+  user: User
 }
 
-class StateRecord extends Record(stateRecordDefaults) {
-  user: UserRecord
-}
-
-export const createState = (user ?: CreateStateParams):State => new StateRecord(user)
+export const createState = (state:Partial<IState>):State => new State(state)

@@ -1,12 +1,12 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-import { setUser, TsetUser } from 'app/actions/user'
+import { setUser } from 'app/actions/user'
 import HomePage from 'app/components/HomePage'
 import store from '../store'
 import facebook from 'app/utils/facebook'
 import { requestGetMe } from 'app/webAPI/user'
-import '../styles/home.scss'
 import { once, assign, pick } from 'lodash'
+import '../styles/home.scss'
 
 
 interface ILoadDependenciesResponse {
@@ -29,27 +29,27 @@ const loadDependencies = once(():Promise<ILoadDependenciesResponse> =>
     resolve({ me, facebookLoginStatus })
   }))
 
+
 type THomePageContainerProps = React.Props<any> & IDispatchProps & IStateProps
 
 const HomePageContainer = ({ setUser, isLoggedIn }:THomePageContainerProps) => {
   loadDependencies()
     .then(({ me, facebookLoginStatus }) => {
-      let setUserParams:any = assign(pick(me, ['name', 'email', 'profileImageURL']))
+      let setUserParams:Partial<IUser> = assign(pick(me, ['name', 'email', 'profileImageURL']))
 
       if(facebookLoginStatus.status === 'connected') {
           setUserParams.facebookUserId = facebookLoginStatus.authResponse.userID
           setUserParams.facebookUserAccessToken = facebookLoginStatus.authResponse.accessToken
       }
 
-      setUser({  })
+      setUser(setUserParams)
     })
 
     return <HomePage />
 }
 
-
 interface IDispatchProps {
-  setUser: TsetUser
+  setUser: Action.TsetUser
 }
 
 const mapDispatchToProps = (dispatch):IDispatchProps => ({
@@ -61,9 +61,8 @@ interface IStateProps {
   isLoggedIn: boolean
 }
 
-const mapStateToProps = (state:State):IStateProps => ({
+const mapStateToProps = (state):IStateProps => ({
   isLoggedIn: state.getIn(['user', 'name'])
 })
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePageContainer)
