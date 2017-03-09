@@ -1,10 +1,13 @@
-import * as React from 'react';
-import { View } from 'app/components/view';
+import * as React from 'react'
+import WebFont from 'webfontloader'
+import AppLoader from 'app/containers/AppLoader'
 
-export class AppContainer extends React.Component<{}, {}> {
-    render() {
-        return <div style={{height: '100vh'}}>
-            Hello World!
-        </div>
-    }
-}
+WebFont.load({ google: { families: ['Caveat'] } })
+
+const App = ({ children }) =>
+  <main className="zine-app--main">
+    <AppLoader />
+    { children }
+  </main>
+
+export default App

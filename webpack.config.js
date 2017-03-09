@@ -8,9 +8,12 @@ module.exports = function (env) {
 
     var config = {
         context: __dirname,
+
+        performance: { hints: "warning" },
+
         entry: {
-            app: "./src/app/index.tsx",
-            vendor: ['react', 'react-dom', 'lodash', 'react-router']
+            app: ["babel-polyfill", "./src/app/index.tsx"],
+            vendor: ['react', 'react-dom', 'lodash', 'react-router', 'immutable']
         },
 
         output: {
@@ -21,7 +24,7 @@ module.exports = function (env) {
         devtool: "source-map",
 
         resolve: {
-            extensions: ['.scss', '.css', '.js', ".jsx",  ".ts", ".tsx"],
+            extensions: ['.scss', '.css', '.js', ".jsx",  ".ts", ".tsx", '.svg'],
             modules: [
                 path.resolve(__dirname, './src'),
                 'node_modules',
@@ -29,10 +32,9 @@ module.exports = function (env) {
             ]
         },
 
-
         module: {
             loaders: [
-                { 
+                {
                     test: /\.tsx?$/,
                     exclude: [/node_modules/, /react-css-themr/],
                     loaders: [
@@ -70,29 +72,54 @@ module.exports = function (env) {
             }),
 
             new htmlPlugin({
-                title: 'Application',
+                title: 'zine',
                 template: './src/app/index_template.html'
+            }),
+
+            new webpack.DefinePlugin({
+              'process.env': {
+                'NODE_ENV': env.production ?
+                  JSON.stringify('production') :
+                  JSON.stringify('dev'),
+              },
+
+              'API_URL': env.production ?
+                JSON.stringify('https://zine-api.herokuapp.com') :
+                JSON.stringify('http://localhost:3001'),
+
+              'FACEBOOK_APP_ID': env.production ?
+                JSON.stringify('826483897470671') :
+                JSON.stringify('1177220292397028')
             })
         ]
-    };
+    }
 
     if (env.production) {
-        config.plugins.unshift(new ExtractTextPlugin('style.css'));
-        config.plugins.push(new webpack.optimize.UglifyJsPlugin({
+        config.devtool = ""
+        config.plugins.unshift(new ExtractTextPlugin('style.css'))
+
+        config.plugins.push(
+          new webpack.optimize.UglifyJsPlugin({
             mangle: true,
             compress: {
                 warnings: false,
                 sequences: true,
                 dead_code: true,
                 conditionals: true,
-                booleans: true, 
+                booleans: true,
                 unused: true,
                 if_return: true,
                 join_vars: true,
-                drop_console: false
+                drop_console: true
             }
-        }))
+        })
+      )
     }
 
+<<<<<<< Updated upstream
     return config;
 };
+=======
+    return config
+}
+>>>>>>> Stashed changes

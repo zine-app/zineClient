@@ -11,7 +11,7 @@ default:
 	${webpack}
 
 prod:
-	${webpack} --env.production
+	rm -rf dist && ${webpack} --env.production
 
 watch-tsc:
 	${tsc} -w

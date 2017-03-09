@@ -8,7 +8,6 @@
         "outDir": "./bin",
         "rootDir": "./src",
         "jsx": "react",
-
         "baseUrl": ".",
         "paths": {
             "*": [
@@ -18,14 +17,5 @@
             ]
         }
     },
-    "include": [
-        "node_modules/**/*.d.ts",
-        "typings/index.d.ts",
-        "src/lib/*.d.ts",
-        "**/*.ts",
-        "**/*.tsx"
-    ],
-    "exclude": [
-        "node_modules"
-    ]
+    "typeRoots": ["./node_modules/@types"]
 }
