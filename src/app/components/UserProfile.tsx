@@ -27,7 +27,7 @@ export default props => {
         component={renderField}
         type="text"
         placeholder="name"
-        validate={[ required, maxLength(15), minLength(1) ]}
+        validate={[ required, maxLength(25), minLength(1) ]}
       />
       <button disabled={!props.anyTouched || !props.valid} onClick={props.handleSubmit(user => props.saveUser(user.toJSON()))}>save</button>
     </form>
