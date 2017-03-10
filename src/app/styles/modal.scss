@@ -17,3 +17,13 @@
 .modal--container__red {
   background-color: rgba(250,50,0,0.9);
 }
+
+
+.fadein-leave {
+  opacity: 1;
+}
+
+.fadein-leave.fadein-leave-active {
+  opacity: 0;
+  transition: opacity 300ms ease-in;
+}

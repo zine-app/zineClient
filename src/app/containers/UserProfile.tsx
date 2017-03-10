@@ -1,9 +1,19 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import UserProfile from 'app/components/UserProfile'
+import { reduxForm } from 'redux-form/immutable'
+import saveUser from 'app/actions/user/saveUser'
 
-const UserProfileContainer = props => <UserProfile {...props} />
+const UserProfileForm = reduxForm({
+  form: 'userProfile'
+})(UserProfile)
 
-const mapStateToProps = state => state.get('user').toJSON()
+const mapStateToProps = state => ({
+  initialValues: state.get('user')
+})
 
-export default connect(mapStateToProps)(UserProfileContainer)
+const mapDispatchToProps = dispatch => ({
+  saveUser: user => dispatch(saveUser(user))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserProfileForm)

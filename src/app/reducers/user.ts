@@ -16,4 +16,15 @@ export const userReducer = handleActions({
           'facebookUserAccessToken'
         ]
     )),
+    "USER:SAVE": (state, action) =>
+      state.merge(
+        pick(action.payload,
+          [
+            'name',
+            'email',
+            'profileImageURL',
+            'facebookUserId',
+            'facebookUserAccessToken'
+          ]
+      ))
 }, initialState)

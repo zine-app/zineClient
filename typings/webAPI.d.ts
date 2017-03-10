@@ -23,10 +23,6 @@ declare namespace webAPI.Response {
     body: null
   }
 
-  interface GetMe extends IResponse {
-    body?: Constant.IUser
-  }
-
   interface ZineAuth extends IResponse {
     body?: Constant.IUser
   }
