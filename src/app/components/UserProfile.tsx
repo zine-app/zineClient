@@ -13,13 +13,14 @@ const renderField = ({ input, label, type, meta: { touched, error, warning, asyn
     <div>
       <input {...input} placeholder={label} type={type}/>
       {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
-      { asyncValidating && <span>validating</span> }
     </div>
   </div>
 )
 
-export default props =>
-  <div>
+export default props => {
+  console.log(props)
+  return (
+    <form>
       <Field
         name="name"
         label="name"
@@ -28,5 +29,7 @@ export default props =>
         placeholder="name"
         validate={[ required, maxLength(15), minLength(1) ]}
       />
-      <button onClick={props.handleSubmit(user => props.saveUser(user.toJSON()))}>save</button>
-  </div>
+      <button disabled={!props.anyTouched || !props.valid} onClick={props.handleSubmit(user => props.saveUser(user.toJSON()))}>save</button>
+    </form>
+  )
+}
