@@ -1,15 +1,17 @@
 interface IAction {
-  type: string,
-  error?: boolean,
-  payload: any,
-  meta: any
+  type: string
+  error?: boolean
+  payload?: any
+  meta?: IActionMeta
 }
 
-interface IUserAction extends IAction {
-  payload:Partial<IUser>
+interface IActionMeta {
+  status?:number
+  message?:string
+  origin?:string
 }
-
 
 declare namespace Action {
-  type TsetUser = (params:Partial<IUser>) => IUserAction;
+  type CreatorReturnTypes = Promise<IAction> | IAction | Action.Creator<any>
+  type Creator<Params> = (params?:Params) => CreatorReturnTypes
 }

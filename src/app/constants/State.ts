@@ -10,4 +10,4 @@ class State extends StateRecord {
   user: User
 }
 
-export const createState = (state:Partial<IState>):State => new State(state)
+export const createState = (state?:Partial<Constant.IState>):State => new State(state)

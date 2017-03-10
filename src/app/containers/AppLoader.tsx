@@ -1,11 +1,10 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-import AppLoader from 'app/components/AppLoader'
+import AppLoader, { AppLoaderProps } from 'app/components/AppLoader'
 
 
 const mapStateToProps = (state):AppLoaderProps => ({
-  shouldDisplay: state.getIn(['ui', 'appLoader', 'shouldDisplay']),
-  color: state.getIn(['ui', 'appLoader', 'color'])
+  shouldDisplay: state.getIn(['ui', 'appLoader', 'shouldDisplay'])
 })
 
 export default connect(mapStateToProps)(AppLoader)

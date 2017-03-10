@@ -1,13 +1,9 @@
-import { logout } from 'app/webAPI/auth'
-import { set as setUser } from 'app/actions/user'
+import { requestZineLogout } from 'app/webAPI/auth'
+import createFetchAction from 'app/utils/actions/createFetchAction'
+import { setUser } from 'app/actions/user'
 
-export default async () => {
 
-  await logout()
+export type TLogout = () => Action.CreatorReturnTypes
+const logout:TLogout = () => createFetchAction('AUTH:LOGOUT', requestZineLogout)()
 
-  return setUser({
-      name: '',
-      email: '',
-      profileImageURL: ''
-  })
-}
+export default logout

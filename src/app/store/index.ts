@@ -1,12 +1,10 @@
 import { createStore, applyMiddleware } from 'redux'
-import { combineReducers } from 'redux-immutablejs'
-import { userReducer } from 'app/reducers/user'
+import { rootReducer } from 'app/reducers'
 import reduxThunk from 'redux-thunk'
 import promiseMiddleware from 'redux-promise'
 import { createState } from '../constants/State'
 import createLogger from 'redux-logger'
 
-const rootReducer = combineReducers({ user: userReducer })
 const initialState = createState()
 const logger = createLogger({
   stateTransformer: state => state.toJS()

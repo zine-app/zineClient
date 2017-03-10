@@ -2,6 +2,7 @@ import { Record } from 'immutable'
 
 
 const UserRecord = Record({
+  id: '',
   name: '',
   email: '',
   profileImageURL: '',
@@ -17,4 +18,4 @@ export class User extends UserRecord {
   facebookUserAccessToken: string
 }
 
-export const createUser = (user ?: Partial<IUser>):User => new User(user)
+export const createUser = (user ?: Partial<Constant.IUser>):User => new User(user)

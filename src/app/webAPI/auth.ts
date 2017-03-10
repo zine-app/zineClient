@@ -1,7 +1,10 @@
 import fetch from 'isomorphic-fetch'
+import { checkStatus, parseJSON, handleError } from 'app/utils/fetch'
 import { pick } from 'lodash'
 
-export const login = (loginWithZineRequestBody: ZineLoginRequestParams):Promise<ZineLoginResponse> =>
+
+type TrequestZineSignUp = (params:webAPI.Request.ZineAuth) => Promise<webAPI.Response.ZineAuth>
+export const requestZineSignUp:TrequestZineSignUp = (params) =>
   fetch(`${API_URL}/auth/signup`, {
     method: 'POST',
     credentials: 'include',
@@ -9,25 +12,48 @@ export const login = (loginWithZineRequestBody: ZineLoginRequestParams):Promise<
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(loginWithZineRequestBody)
+    body: JSON.stringify(params)
   })
-  .then(response => {
-    return response.ok ?
-      response :
-      new Error(response.statusText)
-  })
-  .then(response => response.json())
-  .then(body => pick(body, ['name','email','profileImageURL']))
-  .catch(error => ({
-    error: true,
-    message: error.message
+  .then(checkStatus)
+  .then(parseJSON)
+  .then((body:any):webAPI.Response.ZineAuth => ({
+    error: false,
+    status: 200,
+    body: body
   }))
+  .catch(handleError)
 
-export const logout = () =>
+
+type TrequestZineLogin = (params:webAPI.Request.ZineAuth) => Promise<webAPI.Response.ZineAuth>
+export const requestZineLogin:TrequestZineLogin = (params) =>
+  fetch(`${API_URL}/auth/login`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(params)
+  })
+  .then(checkStatus)
+  .then(parseJSON)
+  .then((body:any):webAPI.Response.ZineAuth => ({
+    error: false,
+    status: 200,
+    body: body
+  }))
+  .catch(handleError)
+
+
+type TrequestZineLogout = () => Promise<webAPI.Response.ZineAuth>
+export const requestZineLogout:TrequestZineLogout = () =>
   fetch(`${API_URL}/auth/logout`, {
     credentials: 'include'
   })
-  .catch(error => ({
-    error: true,
-    message: error.message
+  .then(checkStatus)
+  .then(parseJSON)
+  .then((body:any):webAPI.Response.ZineAuth => ({
+    error: false,
+    status: 200
   }))
+  .catch(handleError)

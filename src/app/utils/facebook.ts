@@ -38,21 +38,3 @@ export const load = () => {
 
     return loader
 }
-
-export const login = () => new Promise((resolve, reject) => {
-  if(!(<any>window).FB) reject(new Error('facebook sdk not loaded'))
-
-  FB.login((response) => resolve(response), {scope: 'email'})
-})
-
-export const getLoginStatus = ():Promise<fb.AuthResponse> => new Promise((resolve, reject) => {
-  if(!(<any>window).FB) reject(new Error('facebook sdk not loaded'))
-
-  FB.getLoginStatus(res => resolve(res))
-})
-
-export default {
-  load,
-  login,
-  getLoginStatus
-}

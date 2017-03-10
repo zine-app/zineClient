@@ -1,13 +1,18 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import LogoutButton from 'app/components/LogoutButton'
-import logout from 'app/actions/auth/logout'
+import logout, { TLogout } from 'app/actions/auth/logout'
 
-const LogoutButtonContainer = ({ logout }) =>
+type LogoutButtonContainerProps = React.Props<any> & IDispatchProps
+const LogoutButtonContainer = ({ logout }:LogoutButtonContainerProps) =>
   <LogoutButton logout={logout} />
 
 
-const mapDispatchToProps = dispatch => ({
+interface IDispatchProps {
+  logout:TLogout
+}
+
+const mapDispatchToProps = (dispatch):IDispatchProps => ({
   logout: () => dispatch(logout())
 })
 

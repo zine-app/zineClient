@@ -116,10 +116,5 @@ module.exports = function (env) {
       )
     }
 
-<<<<<<< Updated upstream
     return config;
 };
-=======
-    return config
-}
->>>>>>> Stashed changes

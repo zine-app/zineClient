@@ -1,4 +1,4 @@
-import { createUser } from '../constants/User'
+import { createUser } from 'app/constants/User'
 import { handleActions } from 'redux-actions'
 import { pick } from 'lodash'
 

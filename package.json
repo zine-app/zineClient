@@ -30,8 +30,9 @@
   "dependencies": {
     "@types/facebook-js-sdk": "^2.8.0",
     "@types/history": "^2.0.39",
+    "@types/isomorphic-fetch": "0.0.33",
     "@types/lodash": "^4.14.54",
-    "@types/react": "15.0.12",
+    "@types/react": "^15.0.12",
     "@types/react-dom": "0.14.23",
     "@types/react-router": "2.0.48",
     "autoprefixer-loader": "3.2.0",

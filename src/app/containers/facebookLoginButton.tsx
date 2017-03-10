@@ -1,17 +1,18 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-import loginWithFacebook from 'app/actions/auth/loginWithFacebook'
+import signUpWithFacebook from 'app/actions/auth/signUpWithFacebook'
 
 
 const FacebookLoginButton = ({ login, theme }) =>
   <button
     className={`button__${theme}`}
+    onClick={login}
   >
     sign up with Facebook!
   </button>
 
 const mapDispatchToProps = dispatch => ({
-  login: () => dispatch(loginWithFacebook())
+  login: () => dispatch(signUpWithFacebook())
 })
 
 const mapStateToProps = (state, props:{ theme?:string }) => ({})
