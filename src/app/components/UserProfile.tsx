@@ -1,7 +1,7 @@
 import React from 'react'
 import { Field } from 'redux-form/immutable'
 import Dropzone from 'react-dropzone'
-import uploadImage from 'app/webapi/image'
+import uploadImage from 'app/webAPI/image'
 
 const required = value => value ? undefined : 'Required'
 const maxLength = max => value =>
