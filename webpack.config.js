@@ -89,7 +89,9 @@ module.exports = function (env) {
 
               'FACEBOOK_APP_ID': env.production ?
                 JSON.stringify('826483897470671') :
-                JSON.stringify('1177220292397028')
+                JSON.stringify('1177220292397028'),
+
+              'CLOUDINARY_URL': JSON.stringify("https://api.cloudinary.com/v1_1/quillapp/image/upload")
             })
         ]
     }

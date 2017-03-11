@@ -1,5 +1,7 @@
 import React from 'react'
 import { Field } from 'redux-form/immutable'
+import Dropzone from 'react-dropzone'
+import uploadImage from 'app/webapi/image'
 
 const required = value => value ? undefined : 'Required'
 const maxLength = max => value =>
@@ -17,10 +19,34 @@ const renderField = ({ input, label, type, meta: { touched, error, warning, asyn
   </div>
 )
 
+
 export default props => {
-  console.log(props)
   return (
     <form>
+      <div>
+        <Dropzone
+          accept="image/jpeg"
+          maxSize={200000}
+          multiple={false}
+          onDrop={(acceptedFiles, rejectedFiles) => {
+            if(acceptedFiles[0]) {
+              console.log('uploading...')
+              uploadImage(acceptedFiles[0])
+                .then(res => {
+                  res.json()
+                    .then(body => {
+                      props.saveUser({
+                        profileImageURL: body.url
+                      })
+                    })
+                })
+                .catch(err => console.log('upload failed', err))
+            }
+          }}
+        >
+          <img src={props.initialValues.get('profileImageURL')} />
+        </Dropzone>
+      </div>
       <Field
         name="name"
         label="name"
