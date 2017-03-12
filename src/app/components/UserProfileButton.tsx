@@ -2,8 +2,8 @@ import * as React from 'react'
 import 'app/styles/userProfileButton'
 import ProfileIcon from 'app/icons/profile'
 
-export default ({ src="" }) =>
-  <button className="user-profile-button">
+export default ({ src="", onClick }) =>
+  <button className="user-profile-button" onClick={onClick}>
     <div
       className="user-profile-button--image"
       style={{
