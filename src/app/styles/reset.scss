@@ -10,7 +10,7 @@ table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+time, mark, audio, video, button {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -20,7 +20,7 @@ time, mark, audio, video {
 }
 
 html {
-  font-size: 62.5% //makes 1(r)em 10px for a standard 16px em browser 
+  font-size: 62.5% //makes 1(r)em 10px for a standard 16px em browser
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -45,4 +45,13 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+
+
+button {
+	background-color: transparent;
+	cursor: pointer;
+}
+button:focus {
+	outline: none
 }
