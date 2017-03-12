@@ -1,0 +1,60 @@
+@import 'colors';
+
+.control--field {
+  box-sizing: border-box;
+  font-family: Hevetica, Arial, sans-serif;
+  font-weight: 200;
+  font-size: 1.2rem;
+  color: rgb(40,40,40);
+}
+
+.control--field-group {
+  box-sizing: border-box;
+}
+
+.control--field-group > label {
+  font-family: Hevetica, Arial, sans-serif;
+  font-size: 1.2rem;
+  color: rgb(80,80,80);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+input[type="text"].control--field {
+  box-sizing: border-box;
+  padding: 0.8rem 1.2rem;
+  color: rgb(100,100,100);
+  border: 1px solid rgb(200,200,200);
+  border-radius: 2px;
+  transition: color 200ms, border 400ms;
+  width: 100%;
+}
+
+input[type="text"]:focus.control--field {
+  color: rgb(40,40,40);
+  border-color: rgb(140,140,140);
+}
+
+button[class^="control--button"] {
+  font-family: Hevetica, Arial, sans-serif;
+  font-size: 1.2rem;
+  background-color: #FFF;
+  box-sizing: border-box;
+  padding: 0.8rem 2rem;
+  color: rgb(100,100,100);
+  border: 1px solid rgb(200,200,200);
+  border-radius: 2px;
+}
+
+button[class^="control--button"][class*="__blue"] {
+  border: none;
+  background-color: $blue;
+  color: #FFF
+}
+
+button[class^="control--button"]:disabled {
+  background-color: #FFF;
+  color: rgb(180,180,180);
+  border: 1px solid rgb(220,220,220);
+  cursor: not-allowed;
+}

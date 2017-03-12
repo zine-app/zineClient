@@ -2,6 +2,8 @@ import React from 'react'
 import { Field } from 'redux-form/immutable'
 import Dropzone from 'react-dropzone'
 import uploadImage from 'app/webAPI/image'
+import 'app/styles/control'
+import 'app/styles/userProfile'
 
 const required = value => value ? undefined : 'Required'
 const maxLength = max => value =>
@@ -11,11 +13,8 @@ const minLength = min => value =>
 
 const renderField = ({ input, label, type, meta: { touched, error, warning, asyncValidating } }) => (
   <div>
-    <label>{label}</label>
-    <div>
-      <input {...input} placeholder={label} type={type}/>
-      {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
-    </div>
+    <input {...input} placeholder={label} type={type} className="control--field"/>
+    {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
   </div>
 )
 
@@ -23,39 +22,55 @@ const renderField = ({ input, label, type, meta: { touched, error, warning, asyn
 export default props => {
   return (
     <form>
-      <div>
-        <Dropzone
-          accept="image/jpeg"
-          maxSize={200000}
-          multiple={false}
-          onDrop={(acceptedFiles, rejectedFiles) => {
-            if(acceptedFiles[0]) {
-              console.log('uploading...')
-              uploadImage(acceptedFiles[0])
-                .then(res => {
-                  res.json()
-                    .then(body => {
-                      props.saveUser({
-                        profileImageURL: body.url
-                      })
-                    })
-                })
-                .catch(err => console.log('upload failed', err))
-            }
-          }}
-        >
-          <img src={props.initialValues.get('profileImageURL')} />
-        </Dropzone>
+      <div className='user-profile--list-item'>
+        <div className='control--field-group'>
+          <label>name</label>
+          <Field
+            name="name"
+            label="name"
+            component={renderField}
+            type="text"
+            placeholder="name"
+            validate={[ required, maxLength(25), minLength(1) ]}
+          />
+        </div>
       </div>
-      <Field
-        name="name"
-        label="name"
-        component={renderField}
-        type="text"
-        placeholder="name"
-        validate={[ required, maxLength(25), minLength(1) ]}
-      />
-      <button disabled={!props.anyTouched || !props.valid} onClick={props.handleSubmit(user => props.saveUser(user.toJSON()))}>save</button>
+      <div className='user-profile--list-item'>
+        <div className='control--field-group'>
+          <label>profile picture</label>
+          <Dropzone
+            accept="image/jpeg"
+            maxSize={200000}
+            multiple={false}
+            onDrop={(acceptedFiles, rejectedFiles) => {
+              if(acceptedFiles[0]) {
+                console.log('uploading...')
+                uploadImage(acceptedFiles[0])
+                  .then(res => {
+                    res.json()
+                      .then(body => {
+                        props.saveUser({
+                          profileImageURL: body.url
+                        })
+                      })
+                  })
+                  .catch(err => console.log('upload failed', err))
+              }
+            }}
+          >
+            <img src={props.initialValues.get('profileImageURL')} />
+          </Dropzone>
+        </div>
+      </div>
+      <div className='user-profile--list-item'>
+        <button
+          className="control--button__blue"
+          disabled={!props.dirty || !props.valid}
+          onClick={props.handleSubmit(user => props.saveUser(user.toJSON()))}
+        >
+            save
+        </button>
+      </div>
     </form>
   )
 }
