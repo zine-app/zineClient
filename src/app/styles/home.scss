@@ -1,0 +1,15 @@
+.zine-sidebar--container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 5rem;
+  box-sizing: border-box;
+  border-right: 1px solid rgb(200,200,200)
+}
+
+.zine-main--container {
+  margin-left: 5rem;
+  box-sizing: border-box;
+  min-height: 100vh;
+}
