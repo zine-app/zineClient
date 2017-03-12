@@ -11,7 +11,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  toggleSlideout: () => dispatch(toggleSlideout())
+  toggleSlideout: () => dispatch(toggleSlideout({ withCard: 'userProfile' }))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserProfileButtonContainer)

@@ -2,9 +2,19 @@ import * as React from 'react'
 import 'app/styles/slideout'
 import 'app/styles/animations/slideInLeft'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import DefaultCard from 'app/components/cards/DefaultCard'
+import UserProfileCard from 'app/components/cards/UserProfileCard'
 
 
-export default ({ children = [], isOpen=false }) =>
+const cards = {
+  'default': <DefaultCard />,
+  'userProfile': <UserProfileCard />
+}
+
+const getCard = cardName =>
+  cards[cardName] ? cards[cardName] : cards['default']
+
+export default ({ cardName, isOpen=false }) =>
   <div className="slideout--container">
     <ReactCSSTransitionGroup
       transitionName="slideInLeft"
@@ -14,7 +24,7 @@ export default ({ children = [], isOpen=false }) =>
       {
         isOpen ?
           <div className="slideout--card">
-            { children }
+            { getCard(cardName) }
           </div> :
           null
       }

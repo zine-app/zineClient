@@ -4,7 +4,7 @@ import { handleActions } from 'redux-actions'
 const initialState = createSlideout()
 
 export const slideoutReducer = handleActions({
-  "UI:SLIDEOUT:OPEN": (state, action) => state.merge({ isOpen: true }),
+  "UI:SLIDEOUT:OPEN": (state, action) => state.merge({ isOpen: true, cardName: action.payload.withCard }),
   "UI:SLIDEOUT:CLOSE": (state, action) => state.merge({ isOpen: false }),
-  "UI:SLIDEOUT:TOGGLE": (state, action) => state.merge({ isOpen: !state.get('isOpen') })
+  "UI:SLIDEOUT:TOGGLE": (state, action) => state.merge({ isOpen: !state.get('isOpen'), cardName: action.payload.withCard })
 }, initialState)
