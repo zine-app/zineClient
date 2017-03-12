@@ -6,6 +6,7 @@ import AppNavigation from 'app/components/AppNavigation'
 import ArrowIcon from 'app/icons/arrow'
 import AboutPage from 'app/components/AboutPage'
 import { Link as ScrollLink, Element as ScrollElement } from 'react-scroll'
+import '../styles/splashPage.scss'
 
 
 const SplashPage = () =>

@@ -3,5 +3,6 @@ import UserProfile from 'app/containers/UserProfile'
 
 export default () =>
   <div>
-    <UserProfile />
+    <div></div>
+    <div></div>
   </div>

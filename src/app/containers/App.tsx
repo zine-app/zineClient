@@ -1,13 +1,7 @@
 import * as React from 'react'
 import WebFont from 'webfontloader'
-import AppLoader from 'app/containers/AppLoader'
+import App from 'app/components/App'
 
 WebFont.load({ google: { families: ['Caveat'] } })
-
-const App = ({ children }) =>
-  <main className="zine-app--main">
-    <AppLoader />
-    { children }
-  </main>
 
 export default App
