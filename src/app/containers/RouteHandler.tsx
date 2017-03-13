@@ -11,7 +11,7 @@ interface RouteHandlerProps extends React.Props<{}> {
 }
 
 const defaultProps = {
-  dependencies: () => { Promise.resolve() },
+  dependencies: async () => {},
   authorized: () => {},
   success: () => null,
   failure: () => null,
@@ -21,7 +21,7 @@ const defaultProps = {
 
 class RouteHandler extends React.Component<RouteHandlerProps, any> {
   constructor (props) {
-    super(assign(props, defaultProps))
+    super(assign(defaultProps, props))
 
     this.state = {
       dependenciesHaveLoaded: false,
@@ -29,7 +29,9 @@ class RouteHandler extends React.Component<RouteHandlerProps, any> {
 
     this.props.startLoading()
 
-    this.props.dependencies()
+    const deps = this.props.dependencies()
+
+    deps
       .then(() => {
         this.props.stopLoading()
 
