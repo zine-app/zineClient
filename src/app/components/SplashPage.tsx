@@ -32,6 +32,8 @@ const SplashPage = () =>
         <div>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <h1 className="zine-logo">zine</h1>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
             <h2 className="zine-tagline">A fresh way to discover and create content online</h2>
           </div>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -70,7 +72,7 @@ const SplashPage = () =>
       flexDirection: 'column',
       color: 'white',
       fontFamily: 'Helvetica, Arial, sans-serif',
-      fontSize: '2em',
+      fontSize: '1.4em',
       position: 'relative',
       backgroundColor: 'rgb(45,230,100)'
     }}
