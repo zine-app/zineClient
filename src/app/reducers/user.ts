@@ -17,7 +17,7 @@ export const userReducer = handleActions({
         ]
     )),
 
-  "USER:SAVE": (state, action) =>
+  "USER:SAVE:RESPONSE": (state, action) =>
     state.merge(
       pick(action.payload,
         [

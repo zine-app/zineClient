@@ -15,8 +15,7 @@ const mapStateToProps = state => ({
   // toMap enables us to set a ProfileImage property,
   // which allows us to cache a file and display a preview
   // before sending to the server
-  initialValues: state.get('user').toMap(),
-  user: state.get('user')
+  initialValues: state.get('user').toMap()
 })
 
 const mapDispatchToProps = (dispatch) => ({
