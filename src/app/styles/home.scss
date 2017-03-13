@@ -11,5 +11,6 @@
 .zine-home-page-layout--main {
   margin-left: 5rem;
   box-sizing: border-box;
-  min-height: 100vh;
+  height: 100vh;
+  overflow-y: auto;
 }

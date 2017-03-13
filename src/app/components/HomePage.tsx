@@ -3,6 +3,7 @@ import UserProfile from 'app/containers/UserProfile'
 import 'app/styles/home'
 import Sidebar from 'app/components/Sidebar'
 import Slideout from 'app/containers/Slideout'
+import Explainer from 'app/components/Explainer'
 
 export default () =>
   <div>
@@ -10,5 +11,7 @@ export default () =>
       <Sidebar />
     </div>
     <Slideout />
-    <div className='zine-home-page-layout--main'></div>
+    <div className='zine-home-page-layout--main'>
+      <Explainer />
+    </div>
   </div>
