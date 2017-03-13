@@ -1,7 +1,6 @@
 import React from 'react'
 import { Field } from 'redux-form/immutable'
 import Dropzone from 'react-dropzone'
-import uploadImage from 'app/webAPI/image'
 import ProfileImage from 'app/components/ProfileImage'
 import DropzoneField from 'app/components/DropzoneField'
 import 'app/styles/control'
@@ -44,10 +43,11 @@ export default props => {
             renderInitialValue={(initialValue) =>
               <ProfileImage src={initialValue} />
             }
-            previewImages={(dataURL) =>
-              <ProfileImage src={dataURL} />
+            previewFiles={(file, dataURL, index) =>
+              <ProfileImage src={dataURL} key={index} />
             }
-            name='profileImageURL'
+            initialValue={props.initialValues.get('profileImageURL')}
+            name='profileImage'
             component={DropzoneField}
           />
         </div>
@@ -55,10 +55,15 @@ export default props => {
       <div className='user-profile--list-item'>
         <button
           className="control--button__blue"
-          disabled={!props.dirty || !props.valid}
+          disabled={props.pristine || props.invalid}
           onClick={props.handleSubmit(user => props.saveUser(user.toJSON()))}
         >
-            save
+            {
+              props.submitting ?  'saving...' :
+                (props.pristine && props.submitSucceeded) ?
+                  'saved' :
+                  'save'
+            }
         </button>
       </div>
     </form>

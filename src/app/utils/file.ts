@@ -4,7 +4,6 @@ export const readAsDataURL = files =>
       const reader = new FileReader()
 
       reader.onload = (event:any)  => {
-        console.log('YAYAYAY')
         resolve(event.target.result)
       }
 

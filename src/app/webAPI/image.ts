@@ -10,4 +10,12 @@ export default file => {
     method: 'POST',
     body: data
   })
+  .then(checkStatus)
+  .then(parseJSON)
+  .then((body) => ({
+    error: false,
+    status: 200,
+    body: body
+  }))
+  .catch(handleError)
 }

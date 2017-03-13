@@ -19,7 +19,7 @@ export default (field) =>
       }}
     >
       {
-        !field.meta.dirty && field.renderInitialValue(field.input.value)
+        !field.meta.dirty && field.renderInitialValue(field.initialValue)
       }
       {
         field.input.value &&
@@ -27,7 +27,7 @@ export default (field) =>
         (
           <ul>
           {
-            field.input.value.map((value) => field.previewImages(value.preview))
+            field.input.value.map((value, index) => field.previewFiles(value.file, value.preview, index))
           }
           </ul>
         )
