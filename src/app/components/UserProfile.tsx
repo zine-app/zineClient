@@ -2,6 +2,8 @@ import React from 'react'
 import { Field } from 'redux-form/immutable'
 import Dropzone from 'react-dropzone'
 import uploadImage from 'app/webAPI/image'
+import ProfileImage from 'app/components/ProfileImage'
+import DropzoneField from 'app/components/DropzoneField'
 import 'app/styles/control'
 import 'app/styles/userProfile'
 
@@ -38,28 +40,16 @@ export default props => {
       <div className='user-profile--list-item'>
         <div className='control--field-group'>
           <label>profile picture</label>
-          <Dropzone
-            accept="image/jpeg"
-            maxSize={200000}
-            multiple={false}
-            onDrop={(acceptedFiles, rejectedFiles) => {
-              if(acceptedFiles[0]) {
-                console.log('uploading...')
-                uploadImage(acceptedFiles[0])
-                  .then(res => {
-                    res.json()
-                      .then(body => {
-                        props.saveUser({
-                          profileImageURL: body.url
-                        })
-                      })
-                  })
-                  .catch(err => console.log('upload failed', err))
-              }
-            }}
-          >
-            <img src={props.initialValues.get('profileImageURL')} />
-          </Dropzone>
+          <Field
+            renderInitialValue={(initialValue) =>
+              <ProfileImage src={initialValue} />
+            }
+            previewImages={(dataURL) =>
+              <ProfileImage src={dataURL} />
+            }
+            name='profileImageURL'
+            component={DropzoneField}
+          />
         </div>
       </div>
       <div className='user-profile--list-item'>
