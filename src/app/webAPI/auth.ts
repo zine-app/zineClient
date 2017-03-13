@@ -51,7 +51,6 @@ export const requestZineLogout:TrequestZineLogout = () =>
     credentials: 'include'
   })
   .then(checkStatus)
-  .then(parseJSON)
   .then((body:any):webAPI.Response.ZineAuth => ({
     error: false,
     status: 200

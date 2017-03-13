@@ -9,19 +9,26 @@ const defaultMapResponseToMeta = (response:webAPI.Response.IResponse, origin?:st
   origin
 })
 
-const createFetchAction = (
-  type:string,
-  request:(params:any) => Promise<any>,
-  requestParams?:any) =>
+const createFetchAction =
+  (
+    type:string,
+    request:(params:any) => Promise<any>,
+    requestParams?:any
+  ) =>
   // curry to allow overrides of default mapping functions
-  async (
+  (
     mapResponseToPayload = defaultMapResponseToPayload,
     mapResponseToMeta = defaultMapResponseToMeta
-  ):Promise<IAction> =>
+  ) =>
   // call request and return action
+  async (dispatch):Promise<IAction> =>
   {
+
+      dispatch(createAction(`${type}:REQUEST`)())
+
       const response = await request(requestParams)
-      return createAction(type, mapResponseToPayload, mapResponseToMeta)(response)
+
+      return dispatch(createAction(`${type}:RESPONSE`, mapResponseToPayload, mapResponseToMeta)(response))
   }
 
-  export default createFetchAction
+export default createFetchAction

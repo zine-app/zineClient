@@ -20,52 +20,49 @@ const renderField = ({ input, label, type, meta: { touched, error, warning, asyn
 )
 
 
-export default props => {
-  return (
-    <form>
-      <div className='user-profile--list-item'>
-        <div className='control--field-group'>
-          <label>name</label>
-          <Field
-            name="name"
-            label="name"
-            component={renderField}
-            type="text"
-            placeholder="name"
-            validate={[ required, maxLength(25), minLength(1) ]}
-          />
-        </div>
+export default props =>
+  <form>
+    <div className='user-profile--list-item'>
+      <div className='control--field-group'>
+        <label>name</label>
+        <Field
+          name="name"
+          label="name"
+          component={renderField}
+          type="text"
+          placeholder="name"
+          validate={[ required, maxLength(25), minLength(1) ]}
+        />
       </div>
-      <div className='user-profile--list-item'>
-        <div className='control--field-group'>
-          <label>profile picture</label>
-          <Field
-            renderInitialValue={(initialValue) =>
-              <ProfileImage src={initialValue} />
-            }
-            previewFiles={(file, dataURL, index) =>
-              <ProfileImage src={dataURL} key={index} />
-            }
-            initialValue={props.initialValues.get('profileImageURL')}
-            name='profileImage'
-            component={DropzoneField}
-          />
-        </div>
+    </div>
+    <div className='user-profile--list-item'>
+      <div className='control--field-group'>
+        <label>profile picture</label>
+        <Field
+          renderInitialValue={(initialValue) =>
+            <ProfileImage src={initialValue} />
+          }
+          previewFiles={(file, dataURL, index) =>
+            <ProfileImage src={dataURL} key={index} />
+          }
+          initialValue={props.initialValues.get('profileImageURL')}
+          name='profileImage'
+          component={DropzoneField}
+        />
       </div>
-      <div className='user-profile--list-item'>
-        <button
-          className="control--button__blue"
-          disabled={props.pristine || props.invalid}
-          onClick={props.handleSubmit(user => props.saveUser(user.toJSON()))}
-        >
-            {
-              props.submitting ?  'saving...' :
-                (props.pristine && props.submitSucceeded) ?
-                  'saved' :
-                  'save'
-            }
-        </button>
-      </div>
-    </form>
-  )
-}
+    </div>
+    <div className='user-profile--list-item'>
+      <button
+        className="control--button__blue"
+        disabled={props.pristine || props.invalid}
+        onClick={props.handleSubmit(user => props.saveUser(user.toJSON()))}
+      >
+          {
+            props.submitting ?  'saving...' :
+              (props.pristine && props.submitSucceeded) ?
+                'saved' :
+                'save'
+          }
+      </button>
+    </div>
+  </form>

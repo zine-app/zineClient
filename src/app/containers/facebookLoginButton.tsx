@@ -1,6 +1,8 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import signUpWithFacebook from 'app/actions/auth/signUpWithFacebook'
+import showAppLoader from 'app/actions/UI/appLoader/showAppLoader'
+import hideAppLoader from 'app/actions/UI/appLoader/hideAppLoader'
 
 
 const FacebookLoginButton = ({ login, theme }) =>
@@ -12,7 +14,11 @@ const FacebookLoginButton = ({ login, theme }) =>
   </button>
 
 const mapDispatchToProps = dispatch => ({
-  login: () => dispatch(signUpWithFacebook())
+  login: () => {
+    dispatch(showAppLoader())
+    dispatch(signUpWithFacebook())
+      .then(() => dispatch(hideAppLoader()))
+  }
 })
 
 const mapStateToProps = (state, props:{ theme?:string }) => ({})

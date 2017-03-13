@@ -2,4 +2,4 @@ import React from 'react'
 
 
 export default ({ logout }) =>
-  <button onClick={logout}>logout</button>
+  <button className="control--button" onClick={logout}>logout</button>

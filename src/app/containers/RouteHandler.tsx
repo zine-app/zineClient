@@ -22,13 +22,11 @@ const defaultProps = {
 class RouteHandler extends React.Component<RouteHandlerProps, any> {
   constructor (props) {
     super(assign(props, defaultProps))
+
     this.state = {
       dependenciesHaveLoaded: false,
-      hasAuthenticated: false
     }
-  }
 
-  componentWillMount () {
     this.props.startLoading()
 
     this.props.dependencies()
@@ -38,10 +36,6 @@ class RouteHandler extends React.Component<RouteHandlerProps, any> {
         this.setState({
           dependenciesHaveLoaded: true
         })
-
-        const isAuthorized = this.props.authorized()
-
-        this.setState({ isAuthorized, hasAuthenticated: true })
       })
       .catch(error => {
         this.props.stopLoading()
@@ -49,8 +43,8 @@ class RouteHandler extends React.Component<RouteHandlerProps, any> {
   }
 
   render () {
-    return this.state.hasAuthenticated ?
-      this.state.isAuthorized ?
+    return this.state.dependenciesHaveLoaded ?
+      this.props.authorized() ?
         this.props.success() :
         this.props.failure()
       :
