@@ -12,4 +12,14 @@ declare namespace Constant {
     facebookUserId: string
     facebookUserAccessToken: string
   }
+
+  interface IZine {
+    id: string
+    ownerId: string
+    name: string
+    description: string
+    categories: string
+    iconImageURL: string
+    published: boolean
+  }
 }

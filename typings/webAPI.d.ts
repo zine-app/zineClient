@@ -32,4 +32,8 @@ declare namespace webAPI.Response {
   interface FacebookAuthResponse extends IResponse {
     body: fb.AuthResponse
   }
+
+  interface PostZine extends IResponse {
+    body: Constant.IZine
+  }
 }

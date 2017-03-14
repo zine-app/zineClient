@@ -1,6 +1,6 @@
 import React from 'react'
 import DropzoneField from 'app/components/DropzoneField'
-import { Field, SubmissionError } from 'redux-form/immutable'
+import { Field } from 'redux-form/immutable'
 import Toggle from 'react-toggle'
 import 'app/styles/toggle'
 import 'app/styles/zineIcon'
@@ -92,14 +92,11 @@ export default props =>
     <button
       className="control--button__blue"
       disabled={props.pristine || props.invalid}
-      onClick={props.handleSubmit(() =>
-        new Promise((resolve, reject) => {
-          reject(new SubmissionError({ _error: 'poop' }))
-        })
-      )}
+      onClick={props.handleSubmit(zine => props.save(zine.toJSON()))}
     >
         {
-          props.submitting ?  'saving...' :
+          props.submitting ?
+            'saving...' :
             (props.pristine && props.submitSucceeded) ?
               'saved' :
               'save'
