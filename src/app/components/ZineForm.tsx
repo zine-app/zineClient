@@ -1,6 +1,6 @@
 import React from 'react'
 import DropzoneField from 'app/components/DropzoneField'
-import { Field } from 'redux-form/immutable'
+import { Field, SubmissionError } from 'redux-form/immutable'
 import Toggle from 'react-toggle'
 import 'app/styles/toggle'
 import 'app/styles/zineIcon'
@@ -59,7 +59,7 @@ const formatIcon = (input) =>
       null
 
 
-export default () =>
+export default props =>
   <form>
     <Field
       name="name" component={control} label="name"
@@ -89,5 +89,23 @@ export default () =>
     <Field
       name="published" component={control} type="toggle" label="published"
     />
-    <button className="control--button__blue">save</button>
+    <button
+      className="control--button__blue"
+      disabled={props.pristine || props.invalid}
+      onClick={props.handleSubmit(() =>
+        new Promise((resolve, reject) => {
+          reject(new SubmissionError({ _error: 'poop' }))
+        })
+      )}
+    >
+        {
+          props.submitting ?  'saving...' :
+            (props.pristine && props.submitSucceeded) ?
+              'saved' :
+              'save'
+        }
+    </button>
+    {
+      props.error && <div className="control--error">{props.error}</div>
+    }
   </form>
