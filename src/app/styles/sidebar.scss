@@ -17,6 +17,10 @@
 .sidebar--container--main {
   flex: 1 1 auto;
   box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0.4em 0;
 }
 
 .sidebar--container--footer {

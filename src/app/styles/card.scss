@@ -5,3 +5,8 @@
   display: flex;
   flex-direction: column;
 }
+
+.card--list-item {
+  box-sizing: border-box;
+  padding: 1em 0em;
+}

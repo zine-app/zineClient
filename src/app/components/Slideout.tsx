@@ -4,11 +4,13 @@ import 'app/styles/animations/slideInLeft'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import DefaultCard from 'app/components/cards/DefaultCard'
 import UserProfileCard from 'app/components/cards/UserProfileCard'
+import ZineCard from 'app/components/cards/ZineCard'
 
 
 const cards = {
   'default': <DefaultCard />,
-  'userProfile': <UserProfileCard />
+  'userProfile': <UserProfileCard />,
+  'zine': <ZineCard />
 }
 
 const getCard = cardName =>

@@ -12,25 +12,16 @@ export default (field) =>
         readAsDataURL(acceptedFiles)
           .then(dataURLs => {
             field.input.onChange(acceptedFiles.map((file, index) => ({
-              preview: dataURLs[index],
+              src: dataURLs[index],
               file
             })))
         })
       }}
     >
       {
-        !field.meta.dirty && field.renderInitialValue(field.initialValue)
-      }
-      {
-        field.input.value &&
-        Array.isArray(field.input.value) &&
-        (
-          <ul>
-          {
-            field.input.value.map((value, index) => field.previewFiles(value.file, value.preview, index))
-          }
-          </ul>
-        )
+        (field.meta.pristine && !field.input.value) ?
+          field.placeholder :
+          field.input.value
       }
     </Dropzone>
     {
