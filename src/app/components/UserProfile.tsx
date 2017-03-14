@@ -5,6 +5,7 @@ import ProfileImage from 'app/components/ProfileImage'
 import DropzoneField from 'app/components/DropzoneField'
 import 'app/styles/control'
 import 'app/styles/userProfile'
+import { isArray } from 'lodash'
 
 const required = value => value ? undefined : 'Required'
 const maxLength = max => value =>
@@ -18,6 +19,17 @@ const renderField = ({ input, label, type, meta: { touched, error, warning, asyn
     {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
   </div>
 )
+
+const ProfileImagePlaceholder = () => <ProfileImage src="" />
+
+const formatProfileImage = (input) =>
+  isArray(input) ?
+    input.map(({ preview }, index) =>
+      <ProfileImage src={preview} key={index} />
+    ) :
+    input ?
+        <ProfileImage src={input} /> :
+      null
 
 
 export default props =>
@@ -39,15 +51,9 @@ export default props =>
       <div className='control--field-group'>
         <label>profile picture</label>
         <Field
-          renderInitialValue={(initialValue) =>
-            <ProfileImage src={initialValue} />
-          }
-          previewFiles={(file, dataURL, index) =>
-            <ProfileImage src={dataURL} key={index} />
-          }
-          initialValue={props.initialValues.get('profileImageURL')}
-          name='profileImage'
-          component={DropzoneField}
+          name="profileImageURL" component={DropzoneField}
+          format={formatProfileImage}
+          placeholder={ProfileImagePlaceholder()}
         />
       </div>
     </div>

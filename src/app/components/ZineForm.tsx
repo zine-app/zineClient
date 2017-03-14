@@ -33,7 +33,7 @@ const IconPlaceholder = () =>
 
 const formatIcon = (input) =>
   isArray(input) ?
-    input.map(({ file, preview }, index) =>
+    input.map(({ preview }, index) =>
       <div
         key={index}
         style={{ backgroundImage: `url("${preview}")` }}

@@ -1,22 +1,12 @@
 import * as React from 'react'
 import Dropzone from 'react-dropzone'
-import { readAsDataURL } from 'app/utils/file'
-
 
 export default (field) =>
   <div>
     <Dropzone
-      style={{}}
+      style={{} }
       name={field.name}
-      onDrop={(acceptedFiles) => {
-        readAsDataURL(acceptedFiles)
-          .then(dataURLs => {
-            field.input.onChange(acceptedFiles.map((file, index) => ({
-              src: dataURLs[index],
-              file
-            })))
-        })
-      }}
+      onDrop={(acceptedFiles) => field.input.onChange(acceptedFiles)}
     >
       {
         (field.meta.pristine && !field.input.value) ?
