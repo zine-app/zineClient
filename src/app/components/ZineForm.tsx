@@ -6,10 +6,15 @@ import 'app/styles/toggle'
 import 'app/styles/zineIcon'
 import PlusIcon from 'app/icons/plus'
 import { isArray } from 'lodash'
+import * as validate from 'app/utils/validate'
 
 const controlRenderers = {
-  text: ({ input, type, placeholder }) =>
-    <input className="control--field" {...input} type={type} placeholder={placeholder} />,
+  text: ({ input, type, placeholder, meta }) =>
+    <input
+      className={`control--field${meta.touched && meta.error && '__error'}`}
+      {...input} type={type}
+      placeholder={placeholder}
+    />,
 
   toggle: ({ defaultChecked = false }) =>
     <Toggle defaultChecked={defaultChecked} />,
@@ -24,6 +29,12 @@ const control = props =>
       <label>{props.label}</label>
       { controlRenderers[props.type] && controlRenderers[props.type](props) }
     </div>
+    {
+      props.meta.touched && props.meta.error &&
+        <div className="control--error">
+        {props.meta.error}
+        </div>
+    }
   </div>
 
 const IconPlaceholder = () =>
@@ -47,19 +58,28 @@ const formatIcon = (input) =>
       </div>:
       null
 
+
 export default () =>
   <form>
     <Field
       name="name" component={control} label="name"
       type="text" placeholder="Doodels"
+      validate={[
+        validate.required, validate.name,
+        validate.maxLength(25), validate.minLength(1)
+      ]}
     />
     <Field
       name="description" component={control} label="description"
       type="text" placeholder="Daily Doodles by Alex"
+      validate={[
+        validate.maxLength(50), validate.minLength(0)
+      ]}
     />
     <Field
-      name="categories" component={control} label="categories"
+      name="categories" component={control} label="categories (comma seperated)"
       type="text" placeholder="art, drawing, doodles"
+      validate={[ validate.commaSeperatedString, validate.maxLength(2000) ]}
     />
     <Field
       name="icon" component={control} type="image" label="icon"

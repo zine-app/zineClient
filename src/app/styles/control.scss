@@ -1,6 +1,6 @@
 @import 'colors';
 
-.control--field {
+[class^="control--field"] {
   box-sizing: border-box;
   font-family: Hevetica, Arial, sans-serif;
   font-weight: 200;
@@ -20,7 +20,7 @@
   margin-bottom: 0.6rem;
 }
 
-input[type="text"].control--field {
+input[type="text"][class^="control--field"] {
   box-sizing: border-box;
   padding: 0.8rem 1.2rem;
   color: rgb(100,100,100);
@@ -30,7 +30,11 @@ input[type="text"].control--field {
   width: 100%;
 }
 
-input[type="text"]:focus.control--field {
+input[type="text"][class^="control--field"][class*="__error"] {
+  border: 1px solid $red;
+}
+
+input[type="text"][class^="control--field"]:focus {
   color: rgb(40,40,40);
   border-color: rgb(140,140,140);
 }
@@ -57,4 +61,12 @@ button[class^="control--button"]:disabled {
   color: rgb(180,180,180);
   border: 1px solid rgb(220,220,220);
   cursor: not-allowed;
+}
+
+.control--error {
+  color: $red;
+  font-family: Hevetica, Arial, sans-serif;
+  font-size: 1.2rem;
+  box-sizing: border-box;
+  padding: 0.4rem 0;
 }
