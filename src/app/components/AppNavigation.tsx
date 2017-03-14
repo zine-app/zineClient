@@ -5,10 +5,10 @@ import TwitterIcon from '../icons/twitter'
 
 export default () =>
   <nav className="zine-app--nav">
-    <a href="" target="_blank">
+    <a href="https://www.facebook.com/zineMedia/" target="_blank">
       <FacebookIcon color="rgb(255,255,255)" className="navbar--fb-icon"/>
     </a>
-    <a href="" target="_blank">
+    <a href="https://twitter.com/zine_media" target="_blank">
       <TwitterIcon color="rgb(255,255,255)" className="navbar--tw-icon" />
     </a>
   </nav>

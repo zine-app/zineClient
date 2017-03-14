@@ -42,8 +42,8 @@ export default () =>
         }}
       >
         We know you want more! and we promise we're working hard on it.
-        We release new features every Monday, so follow us on <a href="#">Facebook</a> or
-        <a href="#">Twitter</a> to get feature announcements, make requests, or just to say hello!
+        We release new features every Monday, so follow us on <a href="https://www.facebook.com/zineMedia/" target="_blank">Facebook</a> or
+        <a href="https://twitter.com/zine_media" target="_blank">Twitter</a> to get feature announcements, make requests, or just to say hello!
       </p>
       <p>- Gary and Alex</p>
     </div>

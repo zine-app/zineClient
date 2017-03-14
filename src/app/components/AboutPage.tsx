@@ -203,7 +203,7 @@ const AboutPage = () =>
             fontSize: '2rem'
           }}
         >
-          Use simple editing tools to get create your own theme.
+          Use simple editing tools to create your own theme.
         </h2>
         </div>
       </div>
@@ -255,7 +255,7 @@ const AboutPage = () =>
             fontSize: '2rem'
           }}
         >
-          Your content will be recommended to other people, and your subscribers will be notified when you have uploaded something new.
+          Your content will be recommended to other people, and your subscribers will be notified when you post something.
         </h2>
         </div>
       </div>
