@@ -21,7 +21,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch) => ({
   saveUser: user => dispatch(async () => {
     if(user.profileImage) {
-      const uploadImageResponse = await uploadImage(user.profileImage[0].file)
+      const uploadImageResponse = await uploadImage(user.profileImage[0])
 
       user.profileImageURL = uploadImageResponse.body.url
     }

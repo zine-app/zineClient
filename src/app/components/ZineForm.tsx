@@ -53,9 +53,11 @@ const formatIcon = (input) =>
       </div>
     ):
     input ?
-      <div className="zine-icon">
-        src: { input }
-      </div>:
+      <div
+        style={{ backgroundImage: `url("${input}")` }}
+        className="zine-icon"
+      >
+      </div> :
       null
 
 
@@ -82,7 +84,7 @@ export default props =>
       validate={[ validate.commaSeperatedString, validate.maxLength(2000) ]}
     />
     <Field
-      name="icon" component={control} type="image" label="icon"
+      name="iconImageURL" component={control} type="image" label="icon"
       format={formatIcon}
       placeholder={IconPlaceholder()}
     />

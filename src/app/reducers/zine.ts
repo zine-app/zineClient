@@ -9,7 +9,7 @@ export const zineReducer = handleActions({
   "ZINE:SAVE:RESPONSE": {
     next: (state, action) =>
       state.update(
-        state.has(zine => zine.name === action.payload.name) ?
+        state.find(zine => zine.name === action.payload.name) ?
           state.findIndex(zine => zine.name === action.payload.name) :
           state.size,
 
