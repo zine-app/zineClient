@@ -1,7 +1,8 @@
 import * as React from 'react'
 import 'app/styles/sidebar'
 import UserProfileButton from 'app/containers/UserProfileButton'
-import NewZineButton from 'app/containers/NewZineButton'
+import HomePageTools from 'app/components/sidebar/groups/HomePageTools'
+import OwnZines from 'app/containers/sidebar/groups/OwnZines'
 
 export default () =>
   <div className="sidebar--container">
@@ -9,7 +10,8 @@ export default () =>
       <UserProfileButton />
     </div>
     <div className="sidebar--container--main">
-      <NewZineButton />
+      <HomePageTools />
+      <OwnZines />
     </div>
     <div className="sidebar--container--footer"></div>
   </div>

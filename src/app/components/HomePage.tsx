@@ -1,7 +1,7 @@
 import * as React from 'react'
 import UserProfile from 'app/containers/UserProfile'
 import 'app/styles/home'
-import Sidebar from 'app/components/Sidebar'
+import Sidebar from 'app/components/sidebar/Sidebar'
 import Slideout from 'app/containers/Slideout'
 import Explainer from 'app/components/Explainer'
 

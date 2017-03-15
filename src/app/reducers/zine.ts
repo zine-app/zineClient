@@ -6,11 +6,15 @@ import { createZine } from 'app/constants/Zine'
 const initialState = List()
 
 export const zineReducer = handleActions({
-  "ZINE:SAVE": {
+  "ZINE:SAVE:RESPONSE": {
     next: (state, action) =>
       state.update(
-        state.findIndex(zine => zine.name === action.payload.name),
+        state.has(zine => zine.name === action.payload.name) ?
+          state.findIndex(zine => zine.name === action.payload.name) :
+          state.size,
+
         createZine(),
+
         zine =>
           zine.merge(
             pick(action.payload,
