@@ -28,7 +28,7 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 const asyncValidate = zine =>
-  requestGetZine({ name: zine.name })
+  requestGetZine({ name: zine.name.trim() })
     .then(response => {
       if(
         response.status === 200 &&

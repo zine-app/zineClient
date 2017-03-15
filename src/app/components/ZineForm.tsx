@@ -7,6 +7,7 @@ import 'app/styles/zineIcon'
 import PlusIcon from 'app/icons/plus'
 import { isArray } from 'lodash'
 import * as validate from 'app/utils/validate'
+import { debounce } from 'lodash'
 
 const controlRenderers = {
   text: ({ input, type, placeholder, meta }) =>
@@ -30,7 +31,7 @@ const control = props =>
       { controlRenderers[props.type] && controlRenderers[props.type](props) }
     </div>
     {
-      props.meta.touched && props.meta.error &&
+      props.meta.dirty && props.meta.invalid &&
         <div className="control--error">
         {props.meta.error}
         </div>
@@ -61,50 +62,56 @@ const formatIcon = (input) =>
       null
 
 
-export default props =>
-  <div>
-    <Field
+export default props => {
+  const debouncedAsyncValidate = debounce(props.asyncValidate, 600)
+
+  return (
+    <div>
+      <Field
       name="name" component={control} label="name"
       type="text" placeholder="Doodels"
       validate={[
         validate.required, validate.name,
         validate.maxLength(25), validate.minLength(1)
       ]}
-    />
-    <Field
+      onChange={() => { debouncedAsyncValidate() }}
+      />
+      <Field
       name="description" component={control} label="description"
       type="text" placeholder="Daily Doodles by Alex"
       validate={[
         validate.maxLength(50), validate.minLength(0)
       ]}
-    />
-    <Field
+      />
+      <Field
       name="categories" component={control} label="categories (comma seperated)"
       type="text" placeholder="art, drawing, doodles"
       validate={[ validate.commaSeperatedString, validate.maxLength(2000) ]}
-    />
-    <Field
+      />
+      <Field
       name="iconImageURL" component={control} type="image" label="icon"
       format={formatIcon}
       placeholder={IconPlaceholder()}
-    />
-    <Field
+      />
+      <Field
       name="published" component={control} type="toggle" label="published"
-    />
-    <button
+      />
+      <button
       className="control--button__blue"
       disabled={props.pristine || props.invalid}
       onClick={props.handleSubmit(zine => props.save(zine.toJSON()))}
-    >
-        {
-          props.submitting ?
-            'saving...' :
-            (props.pristine && props.submitSucceeded) ?
-              'saved' :
-              'save'
-        }
-    </button>
-    {
-      props.error && <div className="control--error">{props.error}</div>
-    }
-  </div>
+      >
+      {
+        props.submitting ?
+        'saving...' :
+        (props.pristine && props.submitSucceeded) ?
+        'saved' :
+        'save'
+      }
+      </button>
+      {
+        props.error && <div className="control--error">{props.error}</div>
+      }
+    </div>
+  )
+}
