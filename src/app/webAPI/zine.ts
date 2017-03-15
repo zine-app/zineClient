@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch'
 import { checkStatus, parseJSON, handleError } from 'app/utils/fetch'
+import toQueryString from 'app/utils/toQueryString'
 
 export const requestPostZine = (zine):Promise<webAPI.Response.PostZine> =>
   fetch(`${API_URL}/zine`, {
@@ -32,3 +33,16 @@ export const requestFetchMyZines = () =>
       body: body
     }))
     .catch(handleError)
+
+export const requestGetZine = (query) =>
+  fetch(`${API_URL}/zine?${toQueryString(query)}`, {
+    credentials: 'include'
+  })
+  .then(checkStatus)
+  .then(parseJSON)
+  .then((body):webAPI.Response.FetchZines => ({
+    error: false,
+    status: 200,
+    body: body
+  }))
+  .catch(handleError)

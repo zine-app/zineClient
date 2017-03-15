@@ -10,6 +10,7 @@ export const userReducer = handleActions({
       state.merge(
         pick(action.payload,
           [
+            'id',
             'name',
             'email',
             'profileImageURL',

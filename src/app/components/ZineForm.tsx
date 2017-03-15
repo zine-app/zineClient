@@ -62,7 +62,7 @@ const formatIcon = (input) =>
 
 
 export default props =>
-  <form>
+  <div>
     <Field
       name="name" component={control} label="name"
       type="text" placeholder="Doodels"
@@ -107,4 +107,4 @@ export default props =>
     {
       props.error && <div className="control--error">{props.error}</div>
     }
-  </form>
+  </div>

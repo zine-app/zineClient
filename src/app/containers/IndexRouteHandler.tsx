@@ -20,7 +20,7 @@ const loadDependencies = ({ setUser, fetchMyZines }) => async () => {
     const me = await requestGetMe()
     const myZines = await fetchMyZines()
 
-    let setUserParams:Partial<Constant.IUser> = assign(pick(me.body, ['name', 'email', 'profileImageURL']))
+    let setUserParams:Partial<Constant.IUser> = assign(pick(me.body, ['name', 'email', 'profileImageURL', 'id']))
 
     if(facebookLoginStatus.body.status === 'connected') {
         setUserParams.facebookUserId = facebookLoginStatus.body.authResponse.userID
