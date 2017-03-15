@@ -5,3 +5,8 @@
   border: 1px dashed rgb(120,120,120);
   border-radius: 0.4rem;
 }
+
+.new-zine-button:disabled {
+  cursor: not-allowed;
+  border: 1px dashed rgb(200,200,200);
+}

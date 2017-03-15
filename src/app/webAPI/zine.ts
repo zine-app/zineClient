@@ -46,3 +46,16 @@ export const requestGetZine = (query) =>
     body: body
   }))
   .catch(handleError)
+
+export const requestGetZines = (query) =>
+    fetch(`${API_URL}/zines?${toQueryString(query)}`, {
+      credentials: 'include'
+    })
+    .then(checkStatus)
+    .then(parseJSON)
+    .then((body):webAPI.Response.FetchZines => ({
+      error: false,
+      status: 200,
+      body: body
+    }))
+    .catch(handleError)
