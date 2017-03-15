@@ -19,3 +19,16 @@ export const requestPostZine = (zine):Promise<webAPI.Response.PostZine> =>
       body: body
     }))
     .catch(handleError)
+
+export const requestFetchMyZines = () =>
+  fetch(`${API_URL}/my/zines`, {
+      credentials: 'include'
+    })
+    .then(checkStatus)
+    .then(parseJSON)
+    .then((body):webAPI.Response.FetchZines => ({
+      error: false,
+      status: 200,
+      body: body
+    }))
+    .catch(handleError)

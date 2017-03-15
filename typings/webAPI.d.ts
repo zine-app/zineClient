@@ -36,4 +36,8 @@ declare namespace webAPI.Response {
   interface PostZine extends IResponse {
     body: Constant.IZine
   }
+
+  interface FetchZines extends IResponse {
+    body: Constant.IZine[]
+  }
 }

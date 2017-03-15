@@ -2,7 +2,7 @@ import fetch from 'isomorphic-fetch'
 import { checkStatus, parseJSON, handleError } from 'app/utils/fetch'
 
 export const requestGetMe = ():Promise<webAPI.Response.ZineAuth> =>
-  fetch(`${API_URL}/user/me/`, {
+  fetch(`${API_URL}/my/user`, {
       credentials: 'include'
     })
     .then(checkStatus)

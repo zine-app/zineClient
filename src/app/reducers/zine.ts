@@ -27,4 +27,12 @@ export const zineReducer = handleActions({
     throw: (state, action) => state
   },
 
+  "ZINE:FETCH:RESPONSE": {
+    next: (state, action) =>
+      state.merge(action.payload.map(zine => createZine(zine)))
+    ,
+
+    throw: (state, action) => state
+  }
+
 }, initialState)
