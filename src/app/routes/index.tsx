@@ -1,11 +1,15 @@
 import * as React from 'react'
-import {Route, IndexRoute} from 'react-router'
+import { Route } from 'react-router-dom'
 import App from 'app/containers/App'
 import IndexRouteHandler from 'app/containers/IndexRouteHandler'
 import ZineHomePage from 'app/containers/ZineHomePage'
+import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
+
 
 export default
-  <Route path="/" component={App} >
-    <IndexRoute component={IndexRouteHandler} />
+  <App>
+    <Route exact path="/" component={IndexRouteHandler} />
     <Route path="/:zineName" component={ZineHomePage} />
-  </Route>
+  </App>
+
+  // <Route path="/" component={App} ></Route>

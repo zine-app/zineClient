@@ -3,7 +3,7 @@ import 'app/styles/reset'
 import 'app/styles/app'
 import AppLoader from 'app/containers/AppLoader'
 
-export default ({ children }) =>
+export default ({ children }:{ children?:any}) =>
   <main className="zine-app--main">
     <AppLoader />
     { children }

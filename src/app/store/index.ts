@@ -4,11 +4,21 @@ import reduxThunk from 'redux-thunk'
 import promiseMiddleware from 'redux-promise'
 import { createState } from '../constants/State'
 import createLogger from 'redux-logger'
+import { routerMiddleware } from 'react-router-redux'
+
 
 const initialState = createState()
 const logger = createLogger({
   stateTransformer: state => state.toJS()
 })
-const middleware = applyMiddleware(promiseMiddleware, reduxThunk, logger)
 
-export default createStore(rootReducer, initialState, middleware)
+export default ({ history }) => {
+  const middleware = applyMiddleware(
+    promiseMiddleware,
+    reduxThunk,
+    logger,
+    routerMiddleware(history)
+  )
+
+  return createStore(rootReducer, initialState, middleware)
+}
