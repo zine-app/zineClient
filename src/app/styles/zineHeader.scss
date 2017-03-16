@@ -1,0 +1,24 @@
+@import 'textStyles';
+
+.zine--header {
+  overflow: hidden;
+  height: 30rem;
+  box-sizing: border-box;
+  background-color: rgb(150,150,150)
+}
+
+.zine--header--top-bar {
+  margin: 4em;
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.zine--header--top-bar--zine-name {
+  font-family: $zineFontFamily;
+  font-size: 1em;
+  color: white;
+  font-weight: 400;
+}

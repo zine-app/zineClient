@@ -1,10 +1,11 @@
 import * as React from 'react'
 import {Route, IndexRoute} from 'react-router'
-import App from '../containers/App'
-import IndexRouteHandler from '../containers/IndexRouteHandler'
-import AboutPage from '../containers/AboutPage'
+import App from 'app/containers/App'
+import IndexRouteHandler from 'app/containers/IndexRouteHandler'
+import ZineHomePage from 'app/containers/ZineHomePage'
 
 export default
   <Route path="/" component={App} >
     <IndexRoute component={IndexRouteHandler} />
+    <Route path="/:zineName" component={ZineHomePage} />
   </Route>

@@ -12,6 +12,7 @@ import { once, assign, pick } from 'lodash'
 import showAppLoader, { TShowAppLoader } from 'app/actions/UI/appLoader/showAppLoader'
 import hideAppLoader, { THideAppLoader } from 'app/actions/UI/appLoader/hideAppLoader'
 import RouteHandler from 'app/containers/RouteHandler'
+import 'app/styles/grid'
 
 
 const loadDependencies = ({ setUser, fetchMyZines }) => async () => {
