@@ -1,16 +1,18 @@
 import * as React from 'react'
 import 'app/styles/zineHeader'
 
-export default ({ zine: { name, headerImageUrl = '' }, user }) =>
+const zineHeaderStyle = ({ headerImageUrl }) => ({
+  backgroundImage: headerImageUrl ? `url('${headerImageUrl}')` : 'none'
+})
+
+export default ({ zine, user }) =>
   <div
     className="zine--header"
-    style={{
-      backgroundImage: `url('${headerImageUrl}')`
-    }}
+    style={zineHeaderStyle(zine)}
   >
     <div className="zine--header--top-bar">
       <div className="zine--header--top-bar--zine-name">
-        {name}
+        {zine.name}
       </div>
     </div>
   </div>

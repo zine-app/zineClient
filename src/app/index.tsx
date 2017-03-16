@@ -10,7 +10,7 @@ import { ConnectedRouter } from 'react-router-redux'
 const history = createHistory()
 
 ReactDOM.render(
-  <Provider store={store(history)}>
+  <Provider store={store({ history })}>
     <ConnectedRouter history={history}>
       { routes }
     </ConnectedRouter>
