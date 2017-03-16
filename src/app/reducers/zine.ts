@@ -9,8 +9,8 @@ export const zineReducer = handleActions({
   "ZINE:SAVE:RESPONSE": {
     next: (state, action) =>
       state.update(
-        state.find(zine => zine.name === action.payload.name) ?
-          state.findIndex(zine => zine.name === action.payload.name) :
+        state.find(zine => zine.id === action.payload.id) ?
+          state.findIndex(zine => zine.id === action.payload.id) :
           state.size,
 
         createZine(),
@@ -19,6 +19,7 @@ export const zineReducer = handleActions({
           zine.merge(
             pick(action.payload,
               [
+                'id',
                 'name',
                 'description',
                 'categories',

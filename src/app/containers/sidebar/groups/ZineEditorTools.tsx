@@ -5,9 +5,9 @@ import setZineForm from 'app/actions/UI/zineForm/setZineForm'
 import toggleSlideout from 'app/actions/UI/slideout/toggleSlideout'
 
 
-const mapDispatchToProps = (dispatch, { zine: { name } }) => ({
+const mapDispatchToProps = (dispatch, { zine: { id } }) => ({
   toggleSettingsCard: () => {
-    dispatch(setZineForm({ currentZine: name }))
+    dispatch(setZineForm({ currentZine: id }))
     dispatch(toggleSlideout({ withCard: 'zine' }))
   }
 })

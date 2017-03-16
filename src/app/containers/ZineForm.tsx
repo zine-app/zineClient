@@ -7,12 +7,13 @@ import saveZine from 'app/actions/zine/saveZine'
 import setZineForm from 'app/actions/UI/zineForm/setZineForm'
 import { requestGetZine } from 'app/webAPI/zine'
 import { createZine } from 'app/constants/Zine'
+import { replace } from 'react-router-redux'
 
 
 const mapStateToProps = state => ({
   initialValues: state
     .get('zines')
-    .find(zine => zine.name === state.getIn(['ui', 'zineForm', 'currentZine'])) ||
+    .find(zine => zine.id === state.getIn(['ui', 'zineForm', 'currentZine'])) ||
     createZine({
       ownerId: state.getIn(['user', 'id'])
     })
@@ -23,7 +24,8 @@ const mapDispatchToProps = (dispatch) => ({
     .then(action => {
       if(action.error) throw new SubmissionError({ _error: action.meta.message })
 
-      dispatch(setZineForm({ currentZine: zine.name }))
+      dispatch(setZineForm({ currentZine: action.payload.id }))
+      dispatch(replace(`/${zine.name}`))
     })
 })
 
