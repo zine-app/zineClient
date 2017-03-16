@@ -4,10 +4,17 @@ import 'app/styles/home'
 import Sidebar from 'app/components/sidebar/Sidebar'
 import Slideout from 'app/containers/Slideout'
 
-export default ({ children }:{ children?:any}) =>
+interface InAppMasterPageProps {
+  children?: any
+  editorTools?: boolean
+  zine?: any
+  user?: any
+}
+
+export default ({ children, editorTools=false, user, zine }:InAppMasterPageProps) =>
   <div>
     <div className='zine-home-page-layout--sidebar'>
-      <Sidebar />
+      <Sidebar editorTools={editorTools} user={user} zine={zine} />
     </div>
     <Slideout />
     <div className='zine-home-page-layout--main'>
