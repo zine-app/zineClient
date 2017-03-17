@@ -8,6 +8,7 @@ import PlusIcon from 'app/icons/plus'
 import { isArray } from 'lodash'
 import * as validate from 'app/utils/validate'
 import { debounce } from 'lodash'
+import ConfirmButton from 'app/containers/ConfirmButton'
 
 const controlRenderers = {
   text: ({ input, type, placeholder, meta }) =>
@@ -148,22 +149,47 @@ export default props => {
       <Field
         name="published" component={control} type="toggle" label="published"
       />
-      <button
-        className="control--button__blue"
-        disabled={props.pristine || props.invalid}
-        onClick={props.handleSubmit(zine => props.save(zine.toJSON()))}
-      >
-      {
-        props.submitting ?
-        'saving...' :
-        (props.pristine && props.submitSucceeded) ?
-        'saved' :
-        'save'
-      }
-      </button>
-      {
-        props.error && <div className="control--error">{props.error}</div>
-      }
+
+      <div className="card--list-item">
+        <div className="control--field-group">
+          <button
+            className="control--button__blue"
+            disabled={props.pristine || props.invalid}
+            onClick={props.handleSubmit(zine => props.save(zine.toJSON()))}
+          >
+          {
+            props.submitting ?
+            'saving...' :
+            (props.pristine && props.submitSucceeded) ?
+            'saved' :
+            'save'
+          }
+          </button>
+        </div>
+      </div>
+
+      <Field
+        name="deleted"
+        component={field => {
+          return (
+            <ConfirmButton
+              message="are you sure you want to delete this zine?"
+              className="control--button"
+              onConfirm={() => {
+                // field.input.onChange(true).then(console.log)
+                props.handleSubmit(zine => props.delete(zine.toJSON()))()
+              }}
+              onReject={() => {  }}
+            >
+            delete
+            </ConfirmButton>
+          )
+        }}
+      />
+
+    {
+      props.error && <div className="control--error">{props.error}</div>
+    }
     </div>
   )
 }

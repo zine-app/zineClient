@@ -56,6 +56,12 @@ button[class^="control--button"][class*="__blue"] {
   color: #FFF
 }
 
+button[class^="control--button"][class*="__red"] {
+  border: none;
+  background-color: $red;
+  color: #FFF
+}
+
 button[class^="control--button"]:disabled {
   background-color: #FFF;
   color: rgb(180,180,180);

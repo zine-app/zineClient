@@ -9,7 +9,8 @@ const ZineRecord = Record({
   categories: '',
   iconImageURL: '',
   headerImageURL: '',
-  published: ''
+  published: false,
+  deleted: false
 })
 
 export class Zine extends ZineRecord {
@@ -21,6 +22,7 @@ export class Zine extends ZineRecord {
   iconImageURL: string
   headerImageURL: string
   published: boolean
+  deleted: boolean
 }
 
 export const createZine = (zine ?: Partial<Constant.IZine>):Zine => new Zine(zine)

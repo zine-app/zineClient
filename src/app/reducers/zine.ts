@@ -25,7 +25,8 @@ export const zineReducer = handleActions({
                 'categories',
                 'iconImageURL',
                 'headerImageURL',
-                'published'
+                'published',
+                'deleted'
               ]
             ))
       ),
@@ -35,8 +36,17 @@ export const zineReducer = handleActions({
 
   "ZINE:FETCH:RESPONSE": {
     next: (state, action) =>
-      state.merge(action.payload.map(zine => createZine(zine)))
-    ,
+      state.merge(action.payload.map(zine => createZine(zine))),
+
+    throw: (state, action) => state
+  },
+
+  "ZINE:DELETE:RESPONSE": {
+    next: (state, action) =>
+      state.update(
+        state.findIndex(zine => zine.id === action.meta.id),
+        zine => zine.set('deleted', true)
+      ),
 
     throw: (state, action) => state
   }

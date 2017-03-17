@@ -1,0 +1,22 @@
+@import 'textStyles';
+
+.confirm-dialogue--container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.confirm-dialogue--message {
+  font-family: $zineFontFamily;
+  font-size: 1.2rem;
+  color: rgb(80,80,80);
+  margin-bottom: 0.8rem;
+}
+
+.confirm-dialogue--control-container {
+  margin: 0 0.4rem
+}

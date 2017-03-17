@@ -22,5 +22,6 @@ declare namespace Constant {
     iconImageURL: string
     headerImageURL: string
     published: boolean
+    deleted: boolean
   }
 }

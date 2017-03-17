@@ -4,6 +4,7 @@ import ZineForm from 'app/components/ZineForm'
 import { reduxForm, SubmissionError } from 'redux-form/immutable'
 import uploadImage from 'app/webAPI/image'
 import saveZine from 'app/actions/zine/saveZine'
+import deleteZine from 'app/actions/zine/deleteZine'
 import setZineForm from 'app/actions/UI/zineForm/setZineForm'
 import { requestGetZine } from 'app/webAPI/zine'
 import { createZine } from 'app/constants/Zine'
@@ -31,7 +32,9 @@ const mapDispatchToProps = (dispatch) => ({
         if(oldZine.name !== zine.name) dispatch(replace(`/${zine.name}`))
       })
     }
-  )
+  ),
+
+  delete: zine => dispatch(deleteZine(zine))
 })
 
 const asyncValidate = zine =>
