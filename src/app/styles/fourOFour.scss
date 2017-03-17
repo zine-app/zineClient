@@ -1,0 +1,12 @@
+@import 'textStyles';
+
+.four-o-four {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb('80,80,80');
+  font-family: $zineFontFamily;
+  font-size: 1.4rem;
+}

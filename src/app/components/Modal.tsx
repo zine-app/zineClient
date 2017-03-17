@@ -3,8 +3,8 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import 'app/styles/modal'
 
 interface ModalProps extends React.Props<any> {
-  color: string,
-  show: boolean
+  color?: string,
+  show?: boolean
 }
 
 export default ({ color = 'white', show = false, children }:ModalProps) =>
