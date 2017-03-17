@@ -18,6 +18,13 @@
 
 .zine--header--top-bar--zine-name {
   font-family: $zineFontFamily;
+  font-size: 1.2em;
+  color: white;
+  font-weight: 400;
+}
+
+.zine--header--top-bar--zine-description {
+  font-family: $zineFontFamily;
   font-size: 1em;
   color: white;
   font-weight: 400;
