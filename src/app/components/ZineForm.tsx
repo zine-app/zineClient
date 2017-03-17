@@ -61,6 +61,53 @@ const formatIcon = (input) =>
       </div> :
       null
 
+const headerImageContainerStyle = (image?:string):any => ({
+  height: '8em',
+  width: '100%',
+  backgroundImage: image ? `url("${image}")` : 'none',
+  backgroundColor: 'rgb(240,240,240)',
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  backgroundRepeat: 'no-repeat',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  cursor: 'pointer'
+})
+
+const headerImagePlaceholder = () =>
+  <div
+    style={headerImageContainerStyle()}
+  >
+    <div
+      style={{
+        height: '3em',
+        width: '3em',
+      }}
+    >
+    <PlusIcon />
+    </div>
+  </div>
+
+const formatHeaderImage = (input) =>
+  isArray(input) ?
+    input.map(({ preview }, index) =>
+      <div
+        key={index}
+        style={headerImageContainerStyle(preview)}
+      >
+      </div>
+    ):
+    input ?
+      <div
+        style={headerImageContainerStyle(input)}
+        className="header-image"
+      >
+      </div> :
+      null
+
+
+
 
 export default props => {
   const debouncedAsyncValidate = debounce(props.asyncValidate, 600)
@@ -68,38 +115,43 @@ export default props => {
   return (
     <div>
       <Field
-      name="name" component={control} label="name"
-      type="text" placeholder="Doodels"
-      validate={[
-        validate.required, validate.name,
-        validate.maxLength(25), validate.minLength(1)
-      ]}
-      onChange={() => { debouncedAsyncValidate() }}
+        name="name" component={control} label="name"
+        type="text" placeholder="Doodels"
+        validate={[
+          validate.required, validate.name,
+          validate.maxLength(25), validate.minLength(1)
+        ]}
+        onChange={() => { debouncedAsyncValidate() }}
       />
       <Field
-      name="description" component={control} label="description"
-      type="text" placeholder="Daily Doodles by Alex"
-      validate={[
-        validate.maxLength(50), validate.minLength(0)
-      ]}
+        name="description" component={control} label="description"
+        type="text" placeholder="Daily Doodles by Alex"
+        validate={[
+          validate.maxLength(50), validate.minLength(0)
+        ]}
       />
       <Field
-      name="categories" component={control} label="categories (comma seperated)"
-      type="text" placeholder="art, drawing, doodles"
-      validate={[ validate.commaSeperatedString, validate.maxLength(2000) ]}
+        name="categories" component={control} label="categories (comma seperated)"
+        type="text" placeholder="art, drawing, doodles"
+        validate={[ validate.commaSeperatedString, validate.maxLength(2000) ]}
       />
       <Field
-      name="iconImageURL" component={control} type="image" label="icon"
-      format={formatIcon}
-      placeholder={IconPlaceholder()}
+        name="iconImageURL" component={control} type="image" label="icon"
+        format={formatIcon}
+        placeholder={IconPlaceholder()}
       />
       <Field
-      name="published" component={control} type="toggle" label="published"
+        name="headerImageURL" component={control} type="image" label="header image"
+        format={formatHeaderImage}
+        placeholder={headerImagePlaceholder()}
+      />
+      <Field
+        name="published" component={control} type="toggle" label="published"
       />
       <button
-      className="control--button__blue"
-      disabled={props.pristine || props.invalid}
-      onClick={props.handleSubmit(zine => props.save(zine.toJSON()))}
+        className="control--button__blue"
+        disabled={props.pristine || props.invalid}
+        onClick={props.handleSubmit(zine => props.save(zine.toJSON()))}
       >
       {
         props.submitting ?

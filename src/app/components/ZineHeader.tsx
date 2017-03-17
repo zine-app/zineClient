@@ -1,8 +1,8 @@
 import * as React from 'react'
 import 'app/styles/zineHeader'
 
-const zineHeaderStyle = ({ headerImageUrl }) => ({
-  backgroundImage: headerImageUrl ? `url('${headerImageUrl}')` : 'none'
+const zineHeaderStyle = ({ headerImageURL }) => ({
+  backgroundImage: headerImageURL ? `url('${headerImageURL}')` : 'none'
 })
 
 export default ({ zine, user }) =>

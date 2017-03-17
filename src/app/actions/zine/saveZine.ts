@@ -14,6 +14,12 @@ export const saveZine:TSaveZine = zine =>
       zine.iconImageURL = uploadImageResponse.body.url
     }
 
+    if(isArray(zine.headerImageURL)) {
+      const uploadImageResponse = await uploadImage(zine.headerImageURL[0])
+
+      zine.headerImageURL = uploadImageResponse.body.url
+    }
+
     return dispatch(createFetchAction('ZINE:SAVE', requestPostZine, zine)())
   }
 

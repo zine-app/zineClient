@@ -8,6 +8,7 @@ const ZineRecord = Record({
   description: '',
   categories: '',
   iconImageURL: '',
+  headerImageURL: '',
   published: ''
 })
 
@@ -18,6 +19,7 @@ export class Zine extends ZineRecord {
   description: string
   categories: string
   iconImageURL: string
+  headerImageURL: string
   published: boolean
 }
 

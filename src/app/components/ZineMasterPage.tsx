@@ -2,6 +2,7 @@ import * as React from 'react'
 import MasterPage from 'app/components/InAppMasterPage'
 import ZineHeader from 'app/components/ZineHeader'
 import ZineNav from 'app/components/ZineNav'
+import ZineBody from 'app/components/ZineBody'
 
 interface TZineMasterPageProps {
   children?: any
@@ -17,5 +18,7 @@ export default ({ zine, user, children }:TZineMasterPageProps) =>
   >
     <ZineHeader zine={zine} user={user} />
     <ZineNav zine={zine} user={user} />
-    { children }
+    <ZineBody>
+      { children }
+    </ZineBody>
   </MasterPage>

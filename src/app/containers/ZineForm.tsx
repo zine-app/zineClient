@@ -20,13 +20,18 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  save: zine => dispatch(saveZine(zine))
-    .then(action => {
-      if(action.error) throw new SubmissionError({ _error: action.meta.message })
+  save: zine => dispatch((dispatch, getState) => {
+    const oldZine = getState().get('zines').find(_zine => _zine.id === zine.id)
 
-      dispatch(setZineForm({ currentZine: action.payload.id }))
-      dispatch(replace(`/${zine.name}`))
-    })
+    dispatch(saveZine(zine))
+      .then(action => {
+        if(action.error) throw new SubmissionError({ _error: action.meta.message })
+
+        dispatch(setZineForm({ currentZine: action.payload.id }))
+        if(oldZine.name !== zine.name) dispatch(replace(`/${zine.name}`))
+      })
+    }
+  )
 })
 
 const asyncValidate = zine =>

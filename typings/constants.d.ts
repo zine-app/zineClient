@@ -20,6 +20,7 @@ declare namespace Constant {
     description: string
     categories: string
     iconImageURL: string
+    headerImageURL: string
     published: boolean
   }
 }
