@@ -167,7 +167,8 @@ export default props => {
           </button>
         </div>
       </div>
-
+    {
+      props.initialValues.id &&
       <Field
         name="deleted"
         component={field => {
@@ -186,6 +187,7 @@ export default props => {
           )
         }}
       />
+    }
 
     {
       props.error && <div className="control--error">{props.error}</div>
