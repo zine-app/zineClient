@@ -26,7 +26,8 @@ export const zineReducer = handleActions({
                 'iconImageURL',
                 'headerImageURL',
                 'published',
-                'deleted'
+                'deleted',
+                'ownerId'
               ]
             ))
       ),
