@@ -6,7 +6,7 @@ export default ({ iconImageURL="", onClick, children }:{iconImageURL?:string, on
     <div
       className="sidebar--group--item"
       style={{
-        backgroundImage: `url(${iconImageURL})`
+        backgroundImage: iconImageURL ?  `url(${iconImageURL})` : 'none'
       }}
     >
       { children }
