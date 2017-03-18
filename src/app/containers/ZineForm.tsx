@@ -29,7 +29,7 @@ const mapDispatchToProps = (dispatch) => ({
         if(action.error) throw new SubmissionError({ _error: action.meta.message })
 
         dispatch(setZineForm({ currentZine: action.payload.id }))
-        if(oldZine.name !== zine.name) dispatch(replace(`/${zine.name}`))
+        if(oldZine && oldZine.name !== zine.name) dispatch(replace(`/${zine.name}`))
       })
     }
   ),
