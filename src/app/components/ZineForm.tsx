@@ -169,23 +169,28 @@ export default props => {
       </div>
     {
       props.initialValues.id &&
-      <Field
-        name="deleted"
-        component={field => {
-          return (
-            <ConfirmButton
-              message="are you sure you want to delete this zine?"
-              className="control--button"
-              onConfirm={() => {
-                props.handleSubmit(zine => props.delete(zine.toJSON()))()
-              }}
-              onReject={() => {  }}
-            >
-            delete
-            </ConfirmButton>
-          )
-        }}
-      />
+      <div className="card--list-item" style={{ marginTop: '2rem' }}>
+        <div className="control--field-group">
+          <Field
+            name="deleted"
+            component={field => {
+              return (
+                <ConfirmButton
+                  message="are you sure you want to delete this zine?"
+                  className="control--button"
+                  onConfirm={() => {
+                    props.handleSubmit(zine => props.delete(zine.toJSON()))()
+                  }}
+                  onReject={() => {  }}
+                >
+                delete
+                </ConfirmButton>
+              )
+            }}
+          />
+        </div>
+      </div>
+
     }
 
     {

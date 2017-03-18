@@ -11,6 +11,7 @@ interface IZineEditorProps {
 export default ({ toggleSettingsCard }:IZineEditorProps) =>
   <SidebarGroup>
     <button
+      data-tip="zine settings"
       className="zine-editor-tools--item"
       onClick={toggleSettingsCard}
     ><GearIcon /></button>
