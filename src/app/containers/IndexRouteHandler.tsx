@@ -19,7 +19,7 @@ const loadDependencies = ({ setUser, fetchMyZines }) => async () => {
     await loadFacebookSDK()
     const facebookLoginStatus = await facebook.getLoginStatus()
     const me = await requestGetMe()
-    const myZines = await fetchMyZines()
+    const myZines = await fetchMyZines({ deleted: false })
 
     let setUserParams:Partial<Constant.IUser> = assign(pick(me.body, ['name', 'email', 'profileImageURL', 'id']))
 
@@ -40,7 +40,7 @@ interface IDispatchProps {
 
 const mapDispatchToProps = (dispatch):IDispatchProps => ({
   setUser: (user) => dispatch(setUser(user)),
-  fetchMyZines: () => dispatch(fetchMyZines()),
+  fetchMyZines: (query) => dispatch(fetchMyZines(query)),
   showAppLoader: () => dispatch(showAppLoader()),
   hideAppLoader: () => dispatch(hideAppLoader())
 })

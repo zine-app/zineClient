@@ -4,5 +4,6 @@ import 'app/styles/card'
 
 export default ({ zine }) =>
   <div className="card--container__zine">
+    <div className="card-header">zine settings</div>
     <ZineForm zine={zine} />
   </div>

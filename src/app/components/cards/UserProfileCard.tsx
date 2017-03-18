@@ -6,6 +6,9 @@ import 'app/styles/userProfileCard'
 
 export default () =>
   <div className="card--container__user-profile">
-    <UserProfile />
+    <div>
+      <div className="card-header">Your Profile</div>
+      <UserProfile />
+    </div>
     <LogoutButton />
   </div>

@@ -177,7 +177,6 @@ export default props => {
               message="are you sure you want to delete this zine?"
               className="control--button"
               onConfirm={() => {
-                // field.input.onChange(true).then(console.log)
                 props.handleSubmit(zine => props.delete(zine.toJSON()))()
               }}
               onReject={() => {  }}

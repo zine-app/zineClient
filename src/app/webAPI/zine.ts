@@ -22,8 +22,8 @@ export const requestPostZine = (zine):Promise<webAPI.Response.PostZine> =>
     }))
     .catch(handleError)
 
-export const requestFetchMyZines = () =>
-  fetch(`${API_URL}/my/zines`, {
+export const requestFetchMyZines = (query = {}) =>
+  fetch(`${API_URL}/my/zines?${toQueryString(query)}`, {
       credentials: 'include'
     })
     .then(checkStatus)

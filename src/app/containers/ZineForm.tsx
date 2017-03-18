@@ -6,30 +6,30 @@ import uploadImage from 'app/webAPI/image'
 import saveZine from 'app/actions/zine/saveZine'
 import deleteZine from 'app/actions/zine/deleteZine'
 import setZineForm from 'app/actions/UI/zineForm/setZineForm'
+import closeSlideout from 'app/actions/UI/slideout/closeSlideout'
 import { requestGetZine } from 'app/webAPI/zine'
 import { createZine } from 'app/constants/Zine'
-import { replace } from 'react-router-redux'
+import { withRouter } from 'react-router'
 
 
 const mapStateToProps = (state, props) => ({
   initialValues: props.zine || createZine({ ownerId: state.getIn(['user', 'id'])})
 })
 
-const mapDispatchToProps = (dispatch) => ({
-  save: zine => dispatch((dispatch, getState) => {
-    const oldZine = getState().get('zines').find(_zine => _zine.id === zine.id)
+const mapDispatchToProps = (dispatch, { history }) => ({
+  save: zine => dispatch(saveZine(zine))
+    .then(action => {
+      if(action.error) throw new SubmissionError({ _error: action.meta.message })
 
-    dispatch(saveZine(zine))
-      .then(action => {
-        if(action.error) throw new SubmissionError({ _error: action.meta.message })
+      history.push(`/${zine.name}`)
+      dispatch(closeSlideout())
+    }),
 
-        dispatch(setZineForm({ currentZine: action.payload.id }))
-        if(oldZine && oldZine.name !== zine.name) dispatch(replace(`/${zine.name}`))
-      })
-    }
-  ),
-
-  delete: zine => dispatch(deleteZine(zine))
+  delete: zine => {
+    dispatch(deleteZine(zine))
+    dispatch(closeSlideout())
+    history.push('/')
+  }
 })
 
 const asyncValidate = zine =>
@@ -47,9 +47,9 @@ const asyncValidate = zine =>
       }
     })
 
-export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(reduxForm({
   form: 'zine',
   enableReinitialize: true,
   asyncValidate,
   asyncBlurFields: ['name']
-})(ZineForm))
+})(ZineForm)))
