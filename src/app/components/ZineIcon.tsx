@@ -7,7 +7,7 @@ export default ({ zine: { iconImageURL="" } }:{ zine:Constant.IZine }) =>
   <div
     className="zine-icon"
     style={{
-      backgroundImage: `url(${iconImageURL})`
+      backgroundImage: iconImageURL ? `url(${iconImageURL})` : 'none'
     }}
   >
   </div>
