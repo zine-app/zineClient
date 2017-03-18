@@ -10,7 +10,7 @@ const UserProfileButtonContainer = ({ src, toggleSlideout, disabled }) =>
 const mapDispatchToProps = dispatch => ({
   toggleSlideout: () => dispatch((dispatch) => {
     dispatch(setZineForm({ currentZine: '' }))
-    dispatch(toggleSlideout({ withCard: 'zine' }))
+    dispatch(toggleSlideout({ withCard: 'newZine' }))
   })
 })
 

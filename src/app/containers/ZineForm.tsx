@@ -11,13 +11,8 @@ import { createZine } from 'app/constants/Zine'
 import { replace } from 'react-router-redux'
 
 
-const mapStateToProps = state => ({
-  initialValues: state
-    .get('zines')
-    .find(zine => zine.id === state.getIn(['ui', 'zineForm', 'currentZine'])) ||
-    createZine({
-      ownerId: state.getIn(['user', 'id'])
-    })
+const mapStateToProps = (state, props) => ({
+  initialValues: props.zine || createZine({ ownerId: state.getIn(['user', 'id'])})
 })
 
 const mapDispatchToProps = (dispatch) => ({
