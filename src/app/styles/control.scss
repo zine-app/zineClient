@@ -40,6 +40,7 @@ input[type="text"][class^="control--field"]:focus {
 }
 
 button[class^="control--button"] {
+  cursor: pointer;
   font-family: Hevetica, Arial, sans-serif;
   font-size: 1.2rem;
   background-color: #FFF;

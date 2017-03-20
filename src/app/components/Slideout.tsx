@@ -27,6 +27,7 @@ const renderCard = (cardName, props) => {
 export default ({ cardName, isOpen=false, zine, closeSlideout }) =>
   <div
     className="slideout--container"
+    style={{ pointerEvents: isOpen ? 'auto' : 'none' }}
     onClick={closeSlideout}
   >
     <ReactCSSTransitionGroup
