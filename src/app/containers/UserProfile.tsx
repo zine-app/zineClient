@@ -19,15 +19,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  saveUser: user => dispatch(async () => {
-    if(user.profileImage) {
-      const uploadImageResponse = await uploadImage(user.profileImage[0])
-
-      user.profileImageURL = uploadImageResponse.body.url
-    }
-
-    return dispatch(saveUser(pick(user, ['name', 'profileImageURL'])))
-  })
+  saveUser: user => dispatch(saveUser(pick(user, ['name', 'profileImageURL'])))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserProfileForm)
