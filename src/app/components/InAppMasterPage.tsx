@@ -21,7 +21,6 @@ export default ({ children, editorTools=false, user, zine }:InAppMasterPageProps
     </div>
     <Slideout zine={zine} />
     <div
-      onClick={() => console.log('clicking yay')}
       className='zine-home-page-layout--main'
     >
       { children }

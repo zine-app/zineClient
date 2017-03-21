@@ -3,6 +3,7 @@ import 'app/styles/zineHeader'
 import { Link } from 'react-router-dom'
 import ZineIcon from 'app/components/ZineIcon'
 import 'app/styles/zineNav'
+import ReactTooltip from 'react-tooltip'
 
 export default ({ zine, user }) =>
   <div className="zine--nav">
@@ -11,6 +12,6 @@ export default ({ zine, user }) =>
     </Link>
     <div className="zine--nav--button-container">
       <button className="zine--nav--button">subscribe</button>
-      <button className="zine--nav--button">post</button>
+      <button className="zine--nav--button">subscribe</button>
     </div>
   </div>

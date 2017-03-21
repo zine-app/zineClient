@@ -4,5 +4,5 @@ import 'app/styles/fourOFour'
 
 export default () =>
   <Modal show={true}>
-    <div className="four-o-four">404</div>
+    <div className="four-o-four">Error</div>
   </Modal>
