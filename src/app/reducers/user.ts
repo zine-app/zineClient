@@ -66,6 +66,23 @@ export const userReducer = handleActions({
       }),
 
     throw: (state, action) => state
+  },
+
+  "AUTH:ME:RESPONSE": {
+    next: (state, action) =>
+      state.merge(
+        pick(action.payload,
+          [
+            'id',
+            'name',
+            'email',
+            'profileImageURL',
+            'facebookUserId',
+            'facebookUserAccessToken'
+          ]
+      )),
+
+    throw: (state, action) => state
   }
 
 }, initialState)
