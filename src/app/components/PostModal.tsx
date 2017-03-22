@@ -2,11 +2,21 @@ import * as React from 'react'
 import Modal from 'app/components/Modal'
 import 'app/styles/postModal'
 
-export default ({ shouldDisplay, hidePostModal, showImageModal }) =>
-  <Modal show={shouldDisplay} color="black">
+export default ({
+  shouldDisplay,
+  hidePostModal,
+  showImageModal,
+  transition="",
+
+}) =>
+  <Modal
+    show={shouldDisplay}
+    color="black"
+    transition={transition}
+  >
     <div
       className="post-modal--background"
-      onClick={hidePostModal}
+      onClick={() => hidePostModal({ transition: 'fade' })}
     >
       <div
         onClick={event => event.stopPropagation()}

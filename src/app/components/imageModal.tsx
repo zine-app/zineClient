@@ -2,11 +2,15 @@ import * as React from 'react'
 import Modal from 'app/components/Modal'
 import 'app/styles/imageModal'
 
-export default ({ shouldDisplay, hideImageModal }) =>
-  <Modal show={shouldDisplay} color="black">
+export default ({ shouldDisplay, hideImageModal, transition }) =>
+  <Modal
+    show={shouldDisplay}
+    color="black"
+    transition={transition}
+  >
     <div
       className="image-modal--background"
-      onClick={hideImageModal}
+      onClick={() => hideImageModal({ transition: 'fade' })}
     >
       <div
         onClick={event => event.stopPropagation()}

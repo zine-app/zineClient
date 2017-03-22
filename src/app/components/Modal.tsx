@@ -2,16 +2,37 @@ import * as React from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import 'app/styles/modal'
 
-interface ModalProps extends React.Props<any> {
-  color?: string,
-  show?: boolean
+const transitions = {
+  default: {
+    name: '',
+    enterTimeout: 1,
+    leaveTimeout: 1
+  },
+
+  fade: {
+    name: 'fadein',
+    enterTimeout: 200,
+    leaveTimeout: 300
+  }
 }
 
-export default ({ color = 'white', show = false, children }:ModalProps) =>
+const getTransition = transision =>
+  transitions[transision] || transitions['default']
+
+interface ModalProps extends React.Props<any> {
+  color?: string
+  show?: boolean
+  transition?: string
+}
+
+export default ({
+  transition="",
+  color = 'white', show = false, children
+}:ModalProps) =>
     <ReactCSSTransitionGroup
-      transitionName="fadein"
-      transitionEnterTimeout={500}
-      transitionLeaveTimeout={300}
+      transitionName={getTransition(transition).name}
+      transitionEnterTimeout={getTransition(transition).enterTimeout}
+      transitionLeaveTimeout={getTransition(transition).leaveTimeout}
     >
     {
       show ?

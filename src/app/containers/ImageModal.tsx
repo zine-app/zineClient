@@ -8,7 +8,8 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const mapStateToProps = state => ({
-  shouldDisplay: state.getIn(['ui', 'imageModal', 'shouldDisplay'])
+  shouldDisplay: state.getIn(['ui', 'imageModal', 'shouldDisplay']),
+  transition: state.getIn(['ui', 'postModal', 'transition'])
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ImageModal)

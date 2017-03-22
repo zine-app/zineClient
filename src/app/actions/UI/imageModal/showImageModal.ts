@@ -1,6 +1,7 @@
 import { createAction } from 'redux-actions'
 
-export type TShowImageModel  =() => Action.CreatorReturnTypes
-export const showImageModel:TShowImageModel = createAction('UI:IMAGE_MODAL:SHOW')
+export type TShowImageModel = ({ transition }?:{ transition?:string }) => Action.CreatorReturnTypes
+export const showImageModel:TShowImageModel = (options = {}) =>
+  createAction('UI:IMAGE_MODAL:SHOW')(options)
 
 export default showImageModel

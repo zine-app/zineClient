@@ -1,6 +1,7 @@
 import { createAction } from 'redux-actions'
 
-export type TTogglePostModel  =() => Action.CreatorReturnTypes
-export const togglePostModel:TTogglePostModel = createAction('UI:POST_MODAL:TOGGLE')
+export type TTogglePostModel = ({ transition }?:{ transition?:string }) => Action.CreatorReturnTypes
+export const togglePostModel:TTogglePostModel = (options = {}) =>
+  createAction('UI:POST_MODAL:TOGGLE')(options)
 
 export default togglePostModel
