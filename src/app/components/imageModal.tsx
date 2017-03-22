@@ -17,7 +17,7 @@ export default ({ shouldDisplay, hideImageModal, transition }) =>
         onClick={event => event.stopPropagation()}
         className="image-modal--container"
       >
-        <h1 className="image-modal--message">upload and image</h1>
+        <h1 className="image-modal--message">post image</h1>
         <div style={{ height: '2rem' }} />
         <PostImageForm />
       </div>

@@ -23,7 +23,7 @@ export default (props) =>
     <button
       className="control--button__blue"
       disabled={props.pristine || props.invalid}
-      onClick={props.handleSubmit(zine => props.save(zine.toJSON()))}
+      onClick={props.handleSubmit(post => props.save(post.toJSON()))}
     >
     {
       props.submitting ?
@@ -33,4 +33,7 @@ export default (props) =>
       'save'
     }
     </button>
+    {
+      props.error && <div className="control--error">{props.error}</div>
+    }
   </div>

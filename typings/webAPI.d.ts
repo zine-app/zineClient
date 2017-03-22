@@ -6,6 +6,19 @@ declare namespace webAPI.Request {
     password?:string,
     vendor: 'facebook' | 'zine'
   }
+
+  interface ZinePost {
+    title?:string
+    description?:string
+    authorId?:string
+    zineId?:string
+    content: {
+      id?:string
+      type?:string //image | markdown | video | audio
+      url?:string
+      markdown?:string
+    }
+  }
 }
 
 
@@ -42,5 +55,18 @@ declare namespace webAPI.Response {
   }
 
   interface DeleteZines extends IResponse {
+  }
+
+  interface ZinePost {
+    title:string
+    description:string
+    authorId:string
+    zineId:string
+    content: {
+      type:string,
+      id: string,
+      url?: string,
+      markdown?: any
+    }
   }
 }
