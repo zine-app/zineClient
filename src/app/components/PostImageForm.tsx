@@ -5,7 +5,7 @@ import ImageField from 'app/components/fields/ImageField'
 import * as validate from 'app/utils/validate'
 
 
-export default () =>
+export default (props) =>
   <div>
     <TextField placeholder="title" name="title"
       validate={[
@@ -20,5 +20,17 @@ export default () =>
     <div style={{ height: '1rem' }} />
     <TextField placeholder="tags" name="tags(comma seperated)" />
     <div style={{ height: '2rem' }} />
-    <button className="control--button__blue">save</button>
+    <button
+      className="control--button__blue"
+      disabled={props.pristine || props.invalid}
+      onClick={props.handleSubmit(zine => props.save(zine.toJSON()))}
+    >
+    {
+      props.submitting ?
+      'saving...' :
+      (props.pristine && props.submitSucceeded) ?
+      'saved' :
+      'save'
+    }
+    </button>
   </div>

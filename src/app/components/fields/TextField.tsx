@@ -29,7 +29,7 @@ const renderComponent = ({ input, placeholder, label, meta: { touched, dirty, in
   )
 }
 
-export default ({ name, validate, placeholder, label }) =>
+export default ({ name, validate, placeholder, label }:ITextFieldProps) =>
   <Field
     placeholder={placeholder}
     label={label}
