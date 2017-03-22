@@ -1,6 +1,6 @@
 @import 'textStyles';
 
-.post-modal--background {
+.image-modal--background {
   height: 100%;
   width: 100%;
   display: flex;
@@ -8,14 +8,14 @@
   justify-content: center;
 }
 
-.post-modal--container {
+.image-modal--container {
   background-color: white;
   border-radius: 2rem;
   box-sizing: border-box;
   padding: 4rem;
 }
 
-.post-modal--message {
+.image-modal--message {
   font-family: $zineFontFamily;
   font-size: 1.4rem;
   font-weight: 200;

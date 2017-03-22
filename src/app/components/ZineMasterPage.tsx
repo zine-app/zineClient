@@ -4,6 +4,7 @@ import ZineHeader from 'app/components/ZineHeader'
 import ZineNav from 'app/containers/ZineNav'
 import ZineBody from 'app/components/ZineBody'
 import PostModal from 'app/containers/PostModal'
+import ImageModal from 'app/containers/ImageModal'
 
 interface TZineMasterPageProps {
   children?: any
@@ -18,6 +19,7 @@ export default ({ zine, user, children }:TZineMasterPageProps) =>
     editorTools={user.id === zine.ownerId}
   >
     <PostModal />
+    <ImageModal />
     <ZineHeader zine={zine} user={user} />
     <ZineNav zine={zine} user={user} />
     <ZineBody>

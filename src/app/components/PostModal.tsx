@@ -2,7 +2,7 @@ import * as React from 'react'
 import Modal from 'app/components/Modal'
 import 'app/styles/postModal'
 
-export default ({ shouldDisplay, hidePostModal }) =>
+export default ({ shouldDisplay, hidePostModal, showImageModal }) =>
   <Modal show={shouldDisplay} color="black">
     <div
       className="post-modal--background"
@@ -16,6 +16,10 @@ export default ({ shouldDisplay, hidePostModal }) =>
         <ul>
           <li>
             <button
+              onClick={() => {
+                hidePostModal()
+                showImageModal()
+              }}
               className="control--button"
             >image</button>
           </li>
