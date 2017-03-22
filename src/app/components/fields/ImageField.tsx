@@ -43,9 +43,13 @@ export default ({ label, name }:IImageFieldProps) =>
       <div className="control--text">
           { label && <label>{label}</label> }
           <Dropzone
+            multiple={false}
+            minSize={200}
+            maxSize={800000}
+            accept="image/jpeg"
             style={{}}
             name={name}
-            onDrop={(acceptedFiles) => input.onChange(acceptedFiles)}
+            onDropAccepted={acceptedFiles => input.onChange(acceptedFiles)}
           >
             {
               isArray(input.value) ?
