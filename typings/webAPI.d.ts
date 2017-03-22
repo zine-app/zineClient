@@ -8,16 +8,12 @@ declare namespace webAPI.Request {
   }
 
   interface ZinePost {
+    type:string
     title?:string
     description?:string
     authorId?:string
-    zineId?:string
-    content: {
-      id?:string
-      type?:string //image | markdown | video | audio
-      url?:string
-      markdown?:string
-    }
+    zineId:string
+    contentURL:string
   }
 }
 
@@ -58,15 +54,11 @@ declare namespace webAPI.Response {
   }
 
   interface ZinePost {
+    type:string
     title:string
     description:string
     authorId:string
     zineId:string
-    content: {
-      type:string,
-      id: string,
-      url?: string,
-      markdown?: any
-    }
+    contentURL:string
   }
 }
