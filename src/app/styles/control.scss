@@ -77,3 +77,15 @@ button[class^="control--button"]:disabled {
   box-sizing: border-box;
   padding: 0.4rem 0;
 }
+
+.control--image {
+  width: 100%;
+  background-color: rgb(240,240,240);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer
+}

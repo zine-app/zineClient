@@ -13,6 +13,19 @@
   border-radius: 2rem;
   box-sizing: border-box;
   padding: 4rem;
+  width: 90vw;
+}
+
+@media (min-device-width: 48em) {
+  .image-modal--container {
+    width: 70vw;
+  }
+}
+
+@media (min-device-width: 75em) {
+  .image-modal--container {
+    width: 50vw;
+  }
 }
 
 .image-modal--message {

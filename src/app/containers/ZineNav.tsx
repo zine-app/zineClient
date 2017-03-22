@@ -4,9 +4,8 @@ import ZineNav from 'app/components/ZineNav'
 import togglePostModal from 'app/actions/ui/postModal/togglePostModal'
 
 const mapDispatchToProps = dispatch => ({
-  togglePostModal: () => dispatch(togglePostModal({
-    transition: 'fadein'
-  }))
+  togglePostModal: () =>
+    dispatch(togglePostModal({ transition: 'fadein' }))
 })
 
 export default connect(undefined, mapDispatchToProps)(ZineNav)
