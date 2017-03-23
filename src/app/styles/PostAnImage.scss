@@ -1,14 +1,6 @@
 @import 'textStyles';
 
-.image-modal--background {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.image-modal--container {
+.post-an-image--container {
   background-color: white;
   border-radius: 2rem;
   box-sizing: border-box;
@@ -17,18 +9,18 @@
 }
 
 @media (min-device-width: 48em) {
-  .image-modal--container {
+  .post-an-image--container {
     width: 70vw;
   }
 }
 
 @media (min-device-width: 75em) {
-  .image-modal--container {
+  .post-an-image--container {
     width: 50vw;
   }
 }
 
-.image-modal--message {
+.post-an-image--message {
   font-family: $zineFontFamily;
   font-size: 1.4rem;
   font-weight: 200;

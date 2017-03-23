@@ -10,10 +10,10 @@ import FourOFour from 'app/components/FourOFour'
 
 export default () =>
   <main className="zine-app--main">
-    <AppLoader />
     <Switch>
       <Route exact path="/" component={HomePage} />
       <Route exact path="/:zineName" component={ZineHomePage} />
       <Route component={FourOFour} />
     </Switch>
+    <AppLoader />
   </main>

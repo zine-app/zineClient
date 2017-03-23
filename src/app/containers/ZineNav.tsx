@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import ZineNav from 'app/components/ZineNav'
-import togglePostModal from 'app/actions/ui/postModal/togglePostModal'
+import toggleModal from 'app/actions/ui/Modal/toggleModal'
 
 const mapDispatchToProps = dispatch => ({
-  togglePostModal: () =>
-    dispatch(togglePostModal({ transition: 'fadein' }))
+  toggleModal: () =>
+    dispatch(toggleModal({ transition: 'fadein' }))
 })
 
 export default connect(undefined, mapDispatchToProps)(ZineNav)
