@@ -8,6 +8,7 @@ import PlusIcon from 'app/icons/plus'
 interface IImageFieldProps {
   name:string
   label?:string
+  validate?:Array<any>
 }
 
 
@@ -36,8 +37,9 @@ const Preview = ({ url }) =>
   }
   </div>
 
-export default ({ label, name }:IImageFieldProps) =>
+export default ({ label, name, validate }:IImageFieldProps) =>
   <Field
+    validate={validate}
     name={name}
     component={({ input, name , meta: { pristine, touched, dirty, invalid, error} }) =>
       <div className="control--text">

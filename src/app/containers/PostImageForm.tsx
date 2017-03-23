@@ -5,10 +5,11 @@ import { reduxForm, SubmissionError } from 'redux-form/immutable'
 import savePost from 'app/actions/post/savePost'
 import { assign } from 'lodash'
 
-const mapDispatchToProps = (dispatch) => ({
-  save: post => dispatch(savePost(assign(post, { type: 'image' })))
+const mapDispatchToProps = (dispatch, { zineId, hideModal }) => ({
+  save: post => dispatch(savePost(assign(post, { type: 'image', zineId })))
     .then(action => {
       if(action.error) throw new SubmissionError({ _error: action.meta.message })
+      hideModal()
     })
 })
 

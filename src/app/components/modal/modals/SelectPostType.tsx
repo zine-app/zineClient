@@ -3,15 +3,12 @@ import 'app/styles/postModal'
 
 export default ({
   shouldDisplay,
-  hidePostModal,
-  showImageModal,
+  hideModal,
+  showModal,
   transition="",
-
-}) =>
-  <div
-    className="post-modal--background"
-    onClick={() => hidePostModal({ transition: 'fade' })}
-  >
+  props: { zineId }
+}) => {
+  return (
     <div
       onClick={event => event.stopPropagation()}
       className="post-modal--container"
@@ -20,10 +17,7 @@ export default ({
       <ul>
         <li>
           <button
-            onClick={() => {
-              hidePostModal()
-              showImageModal()
-            }}
+            onClick={() => { showModal({ name: 'PostAnImage', props: { zineId } }) }}
             className="control--button"
           >image</button>
         </li>
@@ -34,4 +28,5 @@ export default ({
         </li>
       </ul>
     </div>
-  </div>
+  )
+}

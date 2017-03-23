@@ -3,7 +3,6 @@ import MasterPage from 'app/components/InAppMasterPage'
 import ZineHeader from 'app/components/ZineHeader'
 import ZineNav from 'app/containers/ZineNav'
 import ZineBody from 'app/components/ZineBody'
-import Modal from 'app/containers/Modal/Modal'
 
 interface TZineMasterPageProps {
   children?: any
@@ -17,7 +16,6 @@ export default ({ zine, user, children }:TZineMasterPageProps) =>
     user={user}
     editorTools={user.id === zine.ownerId}
   >
-    <Modal />
     <ZineHeader zine={zine} user={user} />
     <ZineNav zine={zine} user={user} />
     <ZineBody>

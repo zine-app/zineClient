@@ -9,10 +9,10 @@ const modals = {
   SelectPostType
 }
 
-const getModal = modalName => modals[modalName]
+const getModal = name => modals[name]
 
-const renderModal = (modalName, props={}) => {
-  const Modal = getModal(modalName)
+const renderModal = (name, props={}) => {
+  const Modal = getModal(name)
 
   return Modal ?
     <Modal {...props} /> :
@@ -34,27 +34,33 @@ const transitions = {
 }
 
 const getTransition = transision =>
-  transitions[transision] || transitions['default']
+  transitions[transision] ? transitions[transision] : transitions['default']
 
 interface ModalProps extends React.Props<any> {
   color?: string
-  show?: boolean
+  shouldDisplay?: boolean
   transition?: string
   props?: any
-  modalName: string
+  name: string
+  hide: () => void
+  show: () => void
 }
 
-export default ({
-  transition="",
-  color = 'white', show = false, children,
-  modalName, props
-}:ModalProps) =>
+export default (props:ModalProps) =>
     <ReactCSSTransitionGroup
-      transitionName={getTransition(transition).name}
-      transitionEnterTimeout={getTransition(transition).enterTimeout}
-      transitionLeaveTimeout={getTransition(transition).leaveTimeout}
+      transitionName={getTransition(props.transition).name}
+      transitionEnterTimeout={getTransition(props.transition).enterTimeout}
+      transitionLeaveTimeout={getTransition(props.transition).leaveTimeout}
     >
     {
-      show ? renderModal(modalName, props) : null
+      props.shouldDisplay ?
+        <div className="modal--container__black"
+          onClick={props.hide}
+        >
+          <div onClick={event => event.stopPropagation()}>
+          { renderModal(props.name, {...props, hideModal:props.hide, showModal:props.show}) }
+          </div>
+        </div> :
+        null
     }
     </ReactCSSTransitionGroup>

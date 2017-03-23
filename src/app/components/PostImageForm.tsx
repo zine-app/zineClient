@@ -14,7 +14,11 @@ export default (props) =>
       ]}
     />
     <div style={{ height: '1rem' }} />
-    <ImageField name="image" />
+    <ImageField name="contentURL"
+      validate={[
+        validate.required
+      ]}
+    />
     <div style={{ height: '1rem' }} />
     <TextField placeholder="description" name="description" />
     <div style={{ height: '1rem' }} />

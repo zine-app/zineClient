@@ -5,6 +5,7 @@ import 'app/styles/tooltip'
 import Sidebar from 'app/components/sidebar/Sidebar'
 import Slideout from 'app/containers/Slideout'
 import ReactTooltip from 'react-tooltip'
+import Modal from 'app/containers/Modal/Modal'
 
 
 interface InAppMasterPageProps {
@@ -16,6 +17,7 @@ interface InAppMasterPageProps {
 
 export default ({ children, editorTools=false, user, zine }:InAppMasterPageProps) =>
   <div>
+    <Modal />
     <div className='zine-home-page-layout--sidebar'>
       <Sidebar editorTools={editorTools} user={user} zine={zine} />
     </div>
