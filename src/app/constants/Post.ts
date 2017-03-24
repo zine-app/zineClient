@@ -7,7 +7,8 @@ const PostRecord = Record({
   description: '',
   authorId: '',
   zineId: '',
-  contentURL: ''
+  contentURL: '',
+  createdAt: ''
 })
 
 export class Post extends PostRecord {
@@ -17,6 +18,7 @@ export class Post extends PostRecord {
   authorId: string
   zineId: string
   contentURL: string
+  createdAt: string
 }
 
 export const createPost = (post ?: Partial<Constant.IPost>):Post => new Post(post)

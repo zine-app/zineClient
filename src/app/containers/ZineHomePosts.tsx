@@ -21,7 +21,9 @@ const mapDispatchToProps = (dispatch, { zine }) => ({
 })
 
 const mapStateToProps = (state, { zine }) => ({
-  posts: state.get('posts').filter(post => post.zineId === zine.id)
+  posts: state.get('posts')
+    .filter(post => post.zineId === zine.id)
+    .sort((a, b) => new Date(b.createdAt) > new Date(a.createdAt))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ZineHomePostsContainer)
