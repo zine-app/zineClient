@@ -2,11 +2,9 @@ import * as React from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import 'app/styles/modal'
 import PostAnImage from 'app/components/modal/modals/PostAnImage'
-import SelectPostType from 'app/components/modal/modals/SelectPostType'
 
 const modals = {
-  PostAnImage,
-  SelectPostType
+  PostAnImage
 }
 
 const getModal = name => modals[name]

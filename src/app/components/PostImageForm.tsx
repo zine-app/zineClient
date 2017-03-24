@@ -20,8 +20,6 @@ export default (props) =>
       ]}
     />
     <div style={{ height: '1rem' }} />
-    <TextField placeholder="description" name="description" />
-    <div style={{ height: '1rem' }} />
     <TextField placeholder="tags" name="tags(comma seperated)" />
     <div style={{ height: '2rem' }} />
     <button
