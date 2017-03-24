@@ -21,11 +21,11 @@ export default ({ children, editorTools=false, user, zine }:InAppMasterPageProps
     <div className='zine-home-page-layout--sidebar'>
       <Sidebar editorTools={editorTools} user={user} zine={zine} />
     </div>
-    <Slideout zine={zine} />
     <div
       className='zine-home-page-layout--main'
     >
       { children }
     </div>
+    <Slideout zine={zine} />
     <ReactTooltip type="dark" effect="solid" delayShow={1000} className="tooltip"/>
   </div>
