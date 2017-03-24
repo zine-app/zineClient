@@ -1,3 +1,61 @@
+@import 'textStyles';
+
+.post--padding {
+  box-sizing: border-box;
+  padding: 1rem;
+}
+
 .post--container {
-  
+  position: relative;
+  box-sizing: border-box;
+  background-color: #FFF;
+  overflow: hidden;
+  box-shadow: 0 0 3px 1px rgba(0,0,0,0.08);
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.post--container:before {
+  content: '';
+  display: block;
+  padding-top: 70%
+}
+
+.post--content-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.post--content--image {
+  box-sizing: border-box;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-color: rgb(220,220,220);
+  flex: 1 1 auto;
+  width: 100%;
+}
+
+.post--content--details {
+  box-sizing: border-box;
+  padding: 1rem 2rem;
+  width: 100%;
+}
+
+.post--title {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 1.2rem;
+  font-family: $zineFontFamily;
+  weight: 400;
+  color: rgb(80,80,80);
 }

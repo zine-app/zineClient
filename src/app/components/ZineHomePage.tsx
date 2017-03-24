@@ -9,6 +9,6 @@ export default ({ zine, user }) =>
       zine={zine}
       user={user}
     >
-      <ZineHomePosts />
+      <ZineHomePosts zine={zine} />
     </MasterPage> :
     <FourOFour />

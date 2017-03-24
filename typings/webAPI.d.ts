@@ -50,6 +50,10 @@ declare namespace webAPI.Response {
     body: Constant.IZine[]
   }
 
+  interface FetchPosts extends IResponse {
+    body: Constant.IPost[]
+  }
+
   interface DeleteZines extends IResponse {
   }
 
