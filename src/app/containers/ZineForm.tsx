@@ -6,7 +6,7 @@ import uploadImage from 'app/webAPI/image'
 import saveZine from 'app/actions/zine/saveZine'
 import deleteZine from 'app/actions/zine/deleteZine'
 import closeSlideout from 'app/actions/UI/slideout/closeSlideout'
-import { requestGetZine } from 'app/webAPI/zine'
+import { requestFetchZine } from 'app/webAPI/zine'
 import { createZine } from 'app/constants/Zine'
 import { withRouter } from 'react-router'
 
@@ -32,7 +32,7 @@ const mapDispatchToProps = (dispatch, { history }) => ({
 })
 
 const asyncValidate = zine =>
-  requestGetZine({ name: zine.name.trim() })
+  requestFetchZine({ name: zine.name.trim() })
     .then(response => {
       if(
         response.status === 200 &&

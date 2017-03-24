@@ -35,7 +35,7 @@ export const requestFetchMyZines = (query = {}) =>
     }))
     .catch(handleError)
 
-export const requestGetZine = (query) =>
+export const requestFetchZine = (query) =>
   fetch(`${API_URL}/zine?${toQueryString(query)}`, {
     credentials: 'include'
   })
@@ -48,7 +48,7 @@ export const requestGetZine = (query) =>
   }))
   .catch(handleError)
 
-export const requestGetZines = (query) =>
+export const requestFetchZines = (query) =>
     fetch(`${API_URL}/zines?${toQueryString(query)}`, {
       credentials: 'include'
     })
