@@ -40,7 +40,7 @@ const control = props =>
   </div>
 
 const IconPlaceholder = () =>
-  <div className="zine-icon">
+  <div className="zine-icon__medium">
     <PlusIcon />
   </div>
 
@@ -50,14 +50,14 @@ const formatIcon = (input) =>
       <div
         key={index}
         style={{ backgroundImage: `url("${preview}")` }}
-        className="zine-icon"
+        className="zine-icon__medium"
       >
       </div>
     ):
     input ?
       <div
         style={{ backgroundImage: `url("${input}")` }}
-        className="zine-icon"
+        className="zine-icon__medium"
       >
       </div> :
       null
