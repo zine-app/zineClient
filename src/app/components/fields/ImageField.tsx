@@ -47,7 +47,7 @@ export default ({ label, name, validate }:IImageFieldProps) =>
           <Dropzone
             multiple={false}
             minSize={200}
-            maxSize={800000}
+            maxSize={4000000}
             accept="image/jpeg"
             style={{}}
             name={name}

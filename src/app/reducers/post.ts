@@ -20,7 +20,7 @@ export const postReducer = handleActions({
           createPost(),
 
           post =>
-          post.merge(
+          post.mergeDeep(
             pick(action.payload[index],
               [
                 'id',
@@ -28,8 +28,8 @@ export const postReducer = handleActions({
                 'description',
                 'title',
                 'contentURL',
-                'zineId',
-                'authorId',
+                'zine',
+                'author',
                 'createdAt'
               ]
             ))
@@ -52,7 +52,7 @@ export const postReducer = handleActions({
       createPost(),
 
       post =>
-      post.merge(
+      post.mergeDeep(
         pick(action.payload,
           [
             'id',
@@ -60,8 +60,8 @@ export const postReducer = handleActions({
             'description',
             'title',
             'contentURL',
-            'zineId',
-            'authorId',
+            'zine',
+            'author',
             'createdAt'
           ]
       ))

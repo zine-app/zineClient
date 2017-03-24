@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch, { zine }) => ({
 
 const mapStateToProps = (state, { zine }) => ({
   posts: state.get('posts')
-    .filter(post => post.zineId === zine.id)
+    .filter(post => post.zine.id === zine.id)
     .sort((a, b) => new Date(b.createdAt) > new Date(a.createdAt))
 })
 

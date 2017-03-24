@@ -44,9 +44,27 @@
 }
 
 .post--content--details {
+  display: flex;
+  flex-direction: row;
   box-sizing: border-box;
-  padding: 1rem 2rem;
+  padding: 1rem 1rem;
   width: 100%;
+}
+
+.post--content--details--left-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex: 1 1 auto;
+}
+
+.post--content--details--right-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  flex: 0 0 auto;
 }
 
 .post--title {
@@ -58,4 +76,11 @@
   font-family: $zineFontFamily;
   weight: 400;
   color: rgb(80,80,80);
+}
+
+.post--time {
+  font-size: 1rem;
+  font-family: $zineFontFamily;
+  weight: 200;
+  color: rgb(160,160,160);
 }
