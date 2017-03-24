@@ -6,7 +6,7 @@ export default ({
   description = '',
   contentURL = ''
 }) =>
-  <div className="col-xs-12 col-sm-4 col-lg -3">
+  <div className="col-xs-12 col-sm-4 col-lg-3">
     <div className="post--padding">
       <div className="post--container">
         <div
