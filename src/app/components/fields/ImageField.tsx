@@ -1,5 +1,5 @@
 import React from 'react'
-import { Field } from 'redux-form/immutable'
+import { Field, SubmissionError } from 'redux-form/immutable'
 import Dropzone from 'react-dropzone'
 import 'app/styles/control'
 import { isArray } from 'lodash'
@@ -47,17 +47,18 @@ export default ({ label, name, validate }:IImageFieldProps) =>
           <Dropzone
             multiple={false}
             minSize={200}
-            maxSize={4000000}
             accept="image/jpeg"
             style={{}}
             name={name}
             onDropAccepted={acceptedFiles => input.onChange(acceptedFiles)}
           >
             {
-              isArray(input.value) ?
-                input.value.map(({ preview }, index) =>
-                  <Preview url={preview} key={index} />):
-                <Preview url={input.value} />
+              error ?
+                <Preview url="" />:
+                isArray(input.value) ?
+                  input.value.map(({ preview }, index) =>
+                    <Preview url={preview} key={index} />):
+                  <Preview url={input.value} />
             }
           </Dropzone>
         {

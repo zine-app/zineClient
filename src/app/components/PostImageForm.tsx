@@ -9,13 +9,14 @@ export default (props) =>
   <div>
     <TextField placeholder="title" name="title"
       validate={[
-        validate.maxLength(10),
+        validate.maxLength(50),
         validate.minLength(0)
       ]}
     />
     <div style={{ height: '1rem' }} />
     <ImageField name="contentURL"
       validate={[
+        validate.maxFileSize(4000000),
         validate.required
       ]}
     />

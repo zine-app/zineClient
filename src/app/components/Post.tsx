@@ -46,9 +46,13 @@ export default ({
           ></div>
             <div className="post--content--details">
               <div className="post--content--details--left-block">
-                <ZineIcon zine={zine} size="small" />
+                <div className="post--details-icon">
+                  <ZineIcon zine={zine} size="small" />
+                </div>
                 <div style={{ width: '0.4em' }} />
-                { title && <h1 className="post--title">{title}</h1>}
+                { title &&
+                  <h1 className="post--title">{title}</h1>
+                }
               </div>
               <div className="post--content--details--right-block">
                 <div className="post--time">{moment(createdAt).fromNow()}</div>
