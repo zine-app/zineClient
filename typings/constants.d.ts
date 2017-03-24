@@ -24,4 +24,13 @@ declare namespace Constant {
     published: boolean
     deleted: boolean
   }
+
+  interface IPost {
+    id: string
+    title: string
+    description: string
+    authorId: string
+    zineId: string
+    contentURL: string
+  }
 }

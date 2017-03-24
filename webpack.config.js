@@ -83,11 +83,15 @@ module.exports = function (env) {
                   JSON.stringify('dev'),
               },
 
-              'API_URL': env.production ?
+              'API_URL': env.production && env.next ?
+                JSON.stringify('https://zine-next.herokuapp.com') :
+                env.production ?
                 JSON.stringify('https://zine-api.herokuapp.com') :
                 JSON.stringify('http://localhost:3001'),
 
-              'FACEBOOK_APP_ID': env.production ?
+              'FACEBOOK_APP_ID': env.production && env.next ?
+                JSON.stringify('1193228920796165') :
+                env.production ?
                 JSON.stringify('826483897470671') :
                 JSON.stringify('1177220292397028'),
 

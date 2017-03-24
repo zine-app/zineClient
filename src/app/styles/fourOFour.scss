@@ -1,8 +1,11 @@
 @import 'textStyles';
 
 .four-o-four {
-  height: 100%;
-  width: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100vh;
+  width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;

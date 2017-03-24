@@ -13,6 +13,9 @@ default:
 prod:
 	rm -rf dist && ${webpack} --env.production
 
+next:
+	rm -rf dist && ${webpack} --env.production --env.next
+
 watch-tsc:
 	${tsc} -w
 
@@ -23,4 +26,4 @@ test-watch:
 	${ava} --watch
 
 dev:
-	${webpack-dev-server} --hot --inline --port 3000 --content-base dist/
+	${webpack-dev-server} --hot --inline --port 3000 --history-api-fallback --content-base dist/

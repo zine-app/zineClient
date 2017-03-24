@@ -6,6 +6,15 @@ declare namespace webAPI.Request {
     password?:string,
     vendor: 'facebook' | 'zine'
   }
+
+  interface ZinePost {
+    type:string
+    title?:string
+    description?:string
+    authorId?:string
+    zineId:string
+    contentURL:string
+  }
 }
 
 
@@ -41,6 +50,19 @@ declare namespace webAPI.Response {
     body: Constant.IZine[]
   }
 
+  interface FetchPosts extends IResponse {
+    body: Constant.IPost[]
+  }
+
   interface DeleteZines extends IResponse {
+  }
+
+  interface ZinePost {
+    type:string
+    title:string
+    description:string
+    authorId:string
+    zineId:string
+    contentURL:string
   }
 }

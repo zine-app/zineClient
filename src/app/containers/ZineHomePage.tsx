@@ -8,4 +8,4 @@ const mapStateToProps = (state, { match: { params } }) => ({
   user: state.get('user'),
 })
 
-export default connect(mapStateToProps)(ZineHomePage)
+ export default connect(mapStateToProps)(ZineHomePage)

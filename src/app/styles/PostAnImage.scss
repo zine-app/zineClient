@@ -1,0 +1,28 @@
+@import 'textStyles';
+
+.post-an-image--container {
+  background-color: white;
+  border-radius: 2rem;
+  box-sizing: border-box;
+  padding: 4rem;
+  width: 90vw;
+}
+
+@media (min-device-width: 48em) {
+  .post-an-image--container {
+    width: 70vw;
+  }
+}
+
+@media (min-device-width: 75em) {
+  .post-an-image--container {
+    width: 50vw;
+  }
+}
+
+.post-an-image--message {
+  font-family: $zineFontFamily;
+  font-size: 1.4rem;
+  font-weight: 200;
+  color: rgb(80,80,80)
+}

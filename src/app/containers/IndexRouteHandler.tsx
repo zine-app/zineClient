@@ -2,7 +2,6 @@ import * as React from 'react'
 import { setUser, TSetUser } from 'app/actions/user/setUser'
 import { connect } from 'react-redux'
 import SplashPage from 'app/components/SplashPage'
-import HomePage from 'app/components/HomePage'
 import store from '../store'
 import { load as loadFacebookSDK } from 'app/utils/facebook'
 import * as facebook from 'app/webAPI/facebook'
@@ -54,13 +53,13 @@ const mapStateToProps = (state):IStateProps => ({
   isLoggedIn: !!state.getIn(['user', 'name'])
 })
 
-const IndexRouteHandler = ({ isLoggedIn, setUser, showAppLoader, hideAppLoader, fetchMyZines }) =>
+const IndexRouteHandler = ({ isLoggedIn, setUser, showAppLoader, hideAppLoader, fetchMyZines, children }) =>
   <RouteHandler
     dependencies={loadDependencies({ setUser, fetchMyZines })}
     startLoading={() => showAppLoader()}
     stopLoading={() => hideAppLoader()}
     authorized={() => isLoggedIn}
-    success={() => <HomePage />}
+    success={() => children}
     failure={() => <SplashPage />}
   />
 

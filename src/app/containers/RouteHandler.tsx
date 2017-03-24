@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { assign } from 'lodash'
 
+
 interface RouteHandlerProps extends React.Props<{}> {
   dependencies?: () => Promise<any>
   authorized?: () => boolean
@@ -10,38 +11,39 @@ interface RouteHandlerProps extends React.Props<{}> {
   stopLoading?: () => any
 }
 
-const defaultProps = {
-  dependencies: async () => {},
-  authorized: () => {},
-  success: () => null,
-  failure: () => null,
-  startLoading: () => {},
-  stopLoading: () => {}
-}
 
 class RouteHandler extends React.Component<RouteHandlerProps, any> {
   constructor (props) {
-    super(assign(defaultProps, props))
+    super(props)
 
     this.state = {
       dependenciesHaveLoaded: false,
     }
 
+    this.loadDependencies()
+  }
+
+  private loadDependencies () {
     this.props.startLoading()
 
     const deps = this.props.dependencies()
 
     deps
-      .then(() => {
-        this.props.stopLoading()
+    .then(() => {
+      this.props.stopLoading()
 
-        this.setState({
-          dependenciesHaveLoaded: true
-        })
+      this.setState({
+        dependenciesHaveLoaded: true
       })
-      .catch(error => {
-        this.props.stopLoading()
-      })
+    })
+    .catch(error => {
+      console.log('error', error)
+      this.props.stopLoading()
+    })
+  }
+
+  componentWillReceiveProps (props) {
+    if(props !== this.props) this.loadDependencies()
   }
 
   render () {

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import MasterPage from 'app/components/InAppMasterPage'
 import ZineHeader from 'app/components/ZineHeader'
-import ZineNav from 'app/components/ZineNav'
+import ZineNav from 'app/containers/ZineNav'
 import ZineBody from 'app/components/ZineBody'
 
 interface TZineMasterPageProps {
