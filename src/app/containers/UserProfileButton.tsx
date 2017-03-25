@@ -7,7 +7,9 @@ const UserProfileButtonContainer = ({ src, toggleSlideout }) =>
   <UserProfileButton src={src}  onClick={toggleSlideout} />
 
 const mapStateToProps = state => ({
-  src: state.getIn(['user', 'profileImageURL'])
+  src: state.get('users')
+    .find(user => user.id === state.getIn(['me', 'userId']))
+    .get('profileImageURL')
 })
 
 const mapDispatchToProps = dispatch => ({

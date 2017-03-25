@@ -22,8 +22,8 @@ const mapDispatchToProps = dispatch => ({
   appLoader: async () => {
     WebFont.load({ google: { families: ['Caveat'] } })
     await loadFacebookSDK()
-    await dispatch(fetchMe())
-    await dispatch(fetchMyZines({ deleted: false }))
+    const me = await dispatch(fetchMe())
+    me.payload.name && await dispatch(fetchMyZines({ deleted: false }))
   }
 })
 

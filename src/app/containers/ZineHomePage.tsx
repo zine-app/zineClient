@@ -16,7 +16,7 @@ const ZineHomePageContainer = ({ zineHomePageLoader, user, zine }) =>
 
 const mapStateToProps = (state, { match: { params } }) => ({
   zine: state.get('zines').find(zine => zine.name === params.zineName),
-  user: state.get('user'),
+  user: state.get('users').find(user => user.id === state.getIn(['me','userId']))
 })
 
 const mapDispatchToProps = (dispatch, { match: { params } }) => ({

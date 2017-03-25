@@ -5,7 +5,9 @@ import signUpWithZine from 'app/actions/auth/signUpWithZine'
 
 export default () => (dispatch, getState) =>
   dispatch(createAction('AUTH:SIGNUP', async () => {
-    const user = getState().get('user')
+    const user = getState()
+      .get('users')
+      .find(user => user.id === getState().getIn(['me', 'userId']))
 
     let facebookUserId:string = user.get('facebookUserId')
     let facebookUserAccessToken:string = user.get('facebookUserAccessToken')

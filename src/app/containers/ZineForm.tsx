@@ -12,7 +12,7 @@ import { withRouter } from 'react-router'
 
 
 const mapStateToProps = (state, props) => ({
-  initialValues: props.zine || createZine({ ownerId: state.getIn(['user', 'id'])})
+  initialValues: props.zine || createZine()
 })
 
 const mapDispatchToProps = (dispatch, { history }) => ({
