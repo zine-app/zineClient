@@ -77,7 +77,7 @@ export const userReducer = handleActions({
 
   "AUTH:LOGOUT:RESPONSE": {
     next: (state, action) =>
-      state.delete(state.find(user => user.id === action.payload.userId)),
+      state.delete(state.find(user => user.id === action.payload.id)),
 
     throw: (state, action) => state
   },

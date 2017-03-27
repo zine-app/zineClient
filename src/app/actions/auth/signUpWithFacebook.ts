@@ -1,13 +1,13 @@
 import * as facebook from 'app/webAPI/facebook'
+import getMyUser from 'app/selectors/me/getMyUser'
 import { createAction } from 'redux-actions'
 import loginWithFacebook from 'app/actions/auth/loginWithFacebook'
 import signUpWithZine from 'app/actions/auth/signUpWithZine'
 
+
 export default () => (dispatch, getState) =>
   dispatch(createAction('AUTH:SIGNUP', async () => {
-    const user = getState()
-      .get('users')
-      .find(user => user.id === getState().getIn(['me', 'userId']))
+    const user = getMyUser(getState())
 
     let facebookUserId:string = user.get('facebookUserId')
     let facebookUserAccessToken:string = user.get('facebookUserAccessToken')

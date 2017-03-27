@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 import signUpWithFacebook from 'app/actions/auth/signUpWithFacebook'
 import showAppLoader from 'app/actions/UI/appLoader/showAppLoader'
 import hideAppLoader from 'app/actions/UI/appLoader/hideAppLoader'
@@ -13,14 +14,15 @@ const FacebookLoginButton = ({ login, theme }) =>
     sign up with Facebook!
   </button>
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch, { history }) => ({
   login: () => {
     dispatch(showAppLoader())
     dispatch(signUpWithFacebook())
       .then(() => dispatch(hideAppLoader()))
+      .then(() => history.push('/'))
   }
 })
 
 const mapStateToProps = (state, props:{ theme?:string }) => ({})
 
-export default connect(mapStateToProps, mapDispatchToProps)(FacebookLoginButton)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(FacebookLoginButton))

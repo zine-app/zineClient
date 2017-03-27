@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
+import getMyUser from 'app/selectors/me/getMyUser'
 import UserProfileButton from 'app/components/UserProfileButton'
 import toggleSlideout from 'app/actions/UI/slideout/toggleSlideout'
 
@@ -7,9 +8,7 @@ const UserProfileButtonContainer = ({ src, toggleSlideout }) =>
   <UserProfileButton src={src}  onClick={toggleSlideout} />
 
 const mapStateToProps = state => ({
-  src: state.get('users')
-    .find(user => user.id === state.getIn(['me', 'userId']))
-    .get('profileImageURL')
+  src: getMyUser(state) ? getMyUser(state).get('profileImageURL') : ''
 })
 
 const mapDispatchToProps = dispatch => ({
