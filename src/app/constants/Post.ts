@@ -6,8 +6,8 @@ const PostRecord = Record({
   id: '',
   title: '',
   description: '',
-  author: createUser(),
-  zine: createZine(),
+  authorId: '',
+  zineId: '',
   contentURL: '',
   createdAt: ''
 })
@@ -16,14 +16,8 @@ export class Post extends PostRecord {
   id: string
   title: string
   description: string
-  author: {
-    id: string
-    profileImageURL: string
-  }
-  zine: {
-    id: string
-    iconImageURL: string
-  }
+  authorId: string
+  zine: string
   contentURL: string
   createdAt: string
 }
