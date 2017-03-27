@@ -1,29 +1,22 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
+import getPostsForZine from 'app/selectors/post/getPostsForZine'
 import ZineHomePosts from 'app/components/ZineHomePosts'
-import Bundle from 'app/containers/Bundle'
 import fetchPosts from 'app/actions/post/fetchPosts'
-import AppLoader from 'app/components/AppLoader'
-import ErrorPage from 'app/components/ErrorPage'
 
-const ZineHomePostsContainer =  ({ postLoader, posts }) =>
-  <Bundle
-    load={postLoader}
-    loading={() => <AppLoader shouldDisplay={true} />}
-    success={() => <ZineHomePosts posts={posts} />}
-    error={(error) => <ErrorPage />}
-  />
+const ZineHomePostsContainer =  ({ fetchPosts, posts }) => {
+  fetchPosts()
+
+  return <ZineHomePosts posts={posts} />
+}
+
 
 const mapDispatchToProps = (dispatch, { zine }) => ({
-  postLoader: async () => {
-    await dispatch(fetchPosts({ zineId: zine.id }))
-  }
+  fetchPosts: () => dispatch(fetchPosts({ zineId: zine.id }))
 })
 
-const mapStateToProps = (state, { zine }) => ({
-  posts: state.get('posts')
-    .filter(post => post.zine.id === zine.id)
-    .sort((a, b) => new Date(b.createdAt) > new Date(a.createdAt))
+const mapStateToProps = (state, props) => ({
+  posts: getPostsForZine(state, props)
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ZineHomePostsContainer)
