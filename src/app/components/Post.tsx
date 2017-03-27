@@ -31,7 +31,7 @@ export default ({
   contentURL = '',
   createdAt = '',
   author: {
-    profileImageURL = ''
+    profileImageURL= ''
   },
   zine = null
 }) =>

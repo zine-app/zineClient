@@ -7,7 +7,7 @@ export default ({ src="", size="medium" }) =>
   <div
     className={`profile-image__${size}`}
     style={{
-      backgroundImage: `url(${src})`
+      backgroundImage: src ? `url(${src})` : 'none'
     }}
   >
   {
