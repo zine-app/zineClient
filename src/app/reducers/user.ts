@@ -9,8 +9,8 @@ export const userReducer = handleActions({
   "USER:SET": {
     next: (state, action) =>
       state.update(
-        state.find(user => user.id === action.payload.userId) ?
-          state.indexOf(user => user.id === action.payload.userId) :
+        state.find(user => user.id === action.payload.id) ?
+          state.indexOf(user => user.id === action.payload.id) :
           state.size,
 
         createUser(),
@@ -32,8 +32,8 @@ export const userReducer = handleActions({
   "USER:SAVE:RESPONSE": {
     next: (state, action) =>
       state.update(
-        state.find(user => user.id === action.payload.userId) ?
-          state.indexOf(user => user.id === action.payload.userId) :
+        state.find(user => user.id === action.payload.id) ?
+          state.indexOf(user => user.id === action.payload.id) :
           state.size,
 
         createUser(),
@@ -55,8 +55,8 @@ export const userReducer = handleActions({
   "AUTH:ZINE:SIGNUP:RESPONSE": {
     next: (state, action) =>
       state.update(
-        state.find(user => user.id === action.payload.userId) ?
-          state.indexOf(user => user.id === action.payload.userId) :
+        state.find(user => user.id === action.payload.id) ?
+          state.indexOf(user => user.id === action.payload.id) :
           state.size,
 
         createUser(),
