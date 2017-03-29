@@ -4,6 +4,8 @@ import setProps from 'app/actions/UI/setUIProps'
 import startLoading from 'app/actions/UI/startLoading'
 import stopLoading from 'app/actions/UI/stopLoading'
 import createUI from 'app/actions/UI/createUI'
+import { isEqual } from 'lodash'
+
 
 interface IProps extends React.Props<{}> {
   Component: any
@@ -32,11 +34,21 @@ class UIWrapper extends React.Component<IProps, any> {
     }
   }
 
-  render () {
-    if(!this.props.ui) return null
+  componentWillReceiveProps (props) {
+    const { load, startLoading, stopLoading } = this.props
 
-    const { Component, setProps, initialProps } = this.props
-    const { loading, error, props } = this.props.ui
+
+    if(!isEqual(this.props.initialProps, props.initialProps)) {
+      if(load) {
+        startLoading()
+        load().then(stopLoading())
+      }
+    }
+  }
+
+  render () {
+    const { Component, setProps, initialProps, ui = {} } = this.props
+    const { loading = false, error = null, props ={} } = ui
 
     return (
       <Component
