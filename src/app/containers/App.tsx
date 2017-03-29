@@ -11,14 +11,24 @@ import createUI from 'app/containers/UI'
 import getMyUser from 'app/selectors/me/getMyUser'
 
 
+interface IProps extends React.Props<any> {
+  me: any
+  load: () => void
+}
 
-const AppContainer = ({ load, me }) =>
-  createUI({
-    name: 'app',
-    load,
-    props: { me }
-  })(App)
+class AppContainer extends React.Component<IProps, any> {
+  componentWillMount () {
+    this.props.load()
+  }
 
+  componentWillReceiveProps (props) {
+    this.props !== props && props.load()
+  }
+
+  render () {
+    return <App {...this.props} loading={false} />
+  }
+}
 
 const load = async dispatch => {
   WebFont.load({ google: { families: ['Caveat'] } })
@@ -31,9 +41,12 @@ const mapDispatchToProps = dispatch => ({
   load: () => dispatch(load)
 })
 
-const mapStateToProps = state => ({
-  me: getMyUser(state)
-})
+const mapStateToProps = state => {
+  console.log('USER', getMyUser(state))
+  return ({
+    me: getMyUser(state)
+  })
+}
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppContainer)
