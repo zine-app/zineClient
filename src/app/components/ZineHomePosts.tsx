@@ -9,4 +9,10 @@ export default ({ posts }) =>
         {posts.map((post, index) => <Post {...post.toJS()} key={index} />)}
       </div>
     </div> :
-    <div>no posts</div>
+    <div className="zine-home-posts--container">
+      <div className="zine-home-posts--empty-message--container">
+        <p className="zine-home-posts--empty-message">
+          You haven't posted anything yet. Sad! :(
+        </p>
+      </div>
+    </div>
