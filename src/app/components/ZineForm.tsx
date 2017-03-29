@@ -11,12 +11,6 @@ import { debounce } from 'lodash'
 import ConfirmButton from 'app/containers/ConfirmButton'
 import ImageField from 'app/components/fields/ImageField'
 
-<ImageField name="contentURL"
-  validate={[
-    validate.maxFileSize(4000000),
-    validate.required
-  ]}
-/>
 
 const controlRenderers = {
   text: ({ input, type, placeholder, meta }) =>
@@ -94,7 +88,6 @@ export default props => {
           renderPlaceholder={() => <IconPlaceholder />}
           validate={[
             validate.maxFileSize(4000000),
-            validate.required
           ]}
         />
       </div>
@@ -102,7 +95,6 @@ export default props => {
         <ImageField name="headerImageURL"
           validate={[
             validate.maxFileSize(4000000),
-            validate.required
           ]}
         />
       </div>
