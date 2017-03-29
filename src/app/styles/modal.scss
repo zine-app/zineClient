@@ -7,6 +7,8 @@
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
   z-index: 1
 }
 
@@ -18,6 +20,18 @@
   background-color: rgba(250,50,0,0.9);
 }
 
+.modal--container__black {
+  background-color: rgba(0,0,0,0.4);
+}
+
+.fadein-enter {
+  opacity: 0;
+}
+
+.fadein-enter.fadein-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in;
+}
 
 .fadein-leave {
   opacity: 1;
@@ -25,5 +39,5 @@
 
 .fadein-leave.fadein-leave-active {
   opacity: 0;
-  transition: opacity 300ms ease-in;
+  transition: opacity 200ms ease-in;
 }

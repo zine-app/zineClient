@@ -1,0 +1,93 @@
+@import 'textStyles';
+
+.post--padding {
+  box-sizing: border-box;
+  padding: 1rem;
+}
+
+.post--container {
+  position: relative;
+  box-sizing: border-box;
+  background-color: #FFF;
+  overflow: hidden;
+  box-shadow: 0 0 3px 1px rgba(0,0,0,0.08);
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.post--container:before {
+  content: '';
+  display: block;
+  padding-top: 70%
+}
+
+.post--content-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.post--content--image {
+  box-sizing: border-box;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-color: rgb(220,220,220);
+  flex: 1 1 auto;
+  width: 100%;
+}
+
+.post--content--details {
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  padding: 1rem 1rem;
+  width: 100%;
+}
+
+.post--content--details--left-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex: 1 1 auto;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding-right: 1em; 
+}
+
+.post--details-icon {
+  flex: 0 0 auto;
+}
+
+.post--content--details--right-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  flex: 0 0 auto;
+}
+
+.post--title {
+  box-sizing: border-box;
+  font-size: 1.2rem;
+  font-family: $zineFontFamily;
+  weight: 400;
+  color: rgb(80,80,80);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.post--time {
+  font-size: 1rem;
+  font-family: $zineFontFamily;
+  weight: 200;
+  color: rgb(160,160,160);
+}

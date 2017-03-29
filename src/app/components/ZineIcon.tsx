@@ -3,9 +3,9 @@ import ProfileIcon from 'app/icons/profile'
 import 'app/styles/zineIcon'
 
 
-export default ({ zine: { iconImageURL="" } }:{ zine:Constant.IZine }) =>
+export default ({ zine: { iconImageURL="" }, size="medium" }:{ zine:Constant.IZine, size?:string }) =>
   <div
-    className="zine-icon"
+    className={`zine-icon__${size}`}
     style={{
       backgroundImage: iconImageURL ? `url(${iconImageURL})` : 'none'
     }}

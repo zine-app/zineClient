@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import LogoutButton from 'app/components/LogoutButton'
 import logout, { TLogout } from 'app/actions/auth/logout'
+import fetchMe from 'app/actions/user/fetchMe'
 import { withRouter } from 'react-router'
 
 type LogoutButtonContainerProps = React.Props<any> & IDispatchProps
@@ -13,11 +14,8 @@ interface IDispatchProps {
   logout:TLogout
 }
 
-const mapDispatchToProps = (dispatch, { history }):IDispatchProps => ({
-  logout: () => {
-
-    return dispatch(logout()).then(() => history.push('/'))
-  }
+const mapDispatchToProps = (dispatch):IDispatchProps => ({
+  logout: () => dispatch(logout())
 })
 
-export default withRouter(connect(undefined, mapDispatchToProps)(LogoutButtonContainer))
+export default connect(undefined, mapDispatchToProps)(LogoutButtonContainer)

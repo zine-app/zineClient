@@ -1,5 +1,4 @@
 import * as React from 'react'
-import Modal from 'app/components/Modal'
 import 'app/styles/confirmButton'
 
 export default ({
@@ -14,7 +13,8 @@ export default ({
     >
     { children }
     </button>
-    <Modal show={shouldShowConfirmDialogue}>
+    {
+      shouldShowConfirmDialogue ?
       <div className="confirm-dialogue--container">
         <div className="confirm-dialogue--message">{message}</div>
         <div>
@@ -35,6 +35,7 @@ export default ({
             </button>
           </span>
         </div>
-      </div>
-    </Modal>
+      </div>:
+      null
+    }
   </div>

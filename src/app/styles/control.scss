@@ -40,6 +40,7 @@ input[type="text"][class^="control--field"]:focus {
 }
 
 button[class^="control--button"] {
+  cursor: pointer;
   font-family: Hevetica, Arial, sans-serif;
   font-size: 1.2rem;
   background-color: #FFF;
@@ -75,4 +76,16 @@ button[class^="control--button"]:disabled {
   font-size: 1.2rem;
   box-sizing: border-box;
   padding: 0.4rem 0;
+}
+
+.control--image {
+  width: 100%;
+  background-color: rgb(240,240,240);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer
 }

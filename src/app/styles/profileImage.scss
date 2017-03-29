@@ -1,6 +1,4 @@
-.profile-image {
-  height: 3rem;
-  width: 3rem;
+[class^="profile-image"]{
   box-sizing: border-box;
   background-color: rgb(120,120,120);
   border-radius: 100%;
@@ -9,3 +7,8 @@
   background-position: center;
   cursor: pointer;
 }
+
+
+[class^="profile-image"][class*="small"] { width: 1.5rem; height: 1.5rem; }
+[class^="profile-image"][class*="medium"] { width: 3rem; height: 3rem; }
+[class^="profile-image"][class*="large"] { width: 5rem; height: 5rem; }

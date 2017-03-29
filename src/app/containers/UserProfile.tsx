@@ -1,4 +1,5 @@
 import React from 'react'
+import getMyUser from 'app/selectors/me/getMyUser'
 import { connect } from 'react-redux'
 import UserProfile from 'app/components/UserProfile'
 import { reduxForm } from 'redux-form/immutable'
@@ -15,7 +16,7 @@ const mapStateToProps = state => ({
   // toMap enables us to set a ProfileImage property,
   // which allows us to cache a file and display a preview
   // before sending to the server
-  initialValues: state.get('user').toMap()
+  initialValues: getMyUser(state).toMap()
 })
 
 const mapDispatchToProps = (dispatch) => ({

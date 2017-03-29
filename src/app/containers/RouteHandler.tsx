@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { assign } from 'lodash'
 
+
 interface RouteHandlerProps extends React.Props<{}> {
   dependencies?: () => Promise<any>
   authorized?: () => boolean
@@ -36,6 +37,7 @@ class RouteHandler extends React.Component<RouteHandlerProps, any> {
       })
     })
     .catch(error => {
+      console.log('error', error)
       this.props.stopLoading()
     })
   }

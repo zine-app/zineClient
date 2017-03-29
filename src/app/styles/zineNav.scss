@@ -4,8 +4,10 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   box-sizing: border-box;
-  padding: 1rem 2rem;
+  flex: 0 0 5rem;
+  padding: 0 2rem;
   border-bottom: 1px solid rgba(0,0,0,0.18);
   box-shadow: 0rem 0.4rem 0.4rem 0rem rgba(0,0,0,0.1)
 }
@@ -18,6 +20,7 @@
 }
 
 .zine--nav--button {
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;

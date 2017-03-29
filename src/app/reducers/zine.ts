@@ -35,9 +35,38 @@ export const zineReducer = handleActions({
     throw: (state, action) => state
   },
 
-  "ZINE:FETCH:RESPONSE": {
+  "ZINES:FETCH:RESPONSE": {
     next: (state, action) =>
       state.merge(action.payload.map(zine => createZine(zine))),
+
+    throw: (state, action) => state
+  },
+
+  "ZINE:FETCH:RESPONSE": {
+    next: (state, action) =>
+      state.update(
+        state.find(zine => zine.id === action.payload.id) ?
+          state.findIndex(zine => zine.id === action.payload.id) :
+          state.size,
+
+        createZine(),
+
+        zine =>
+          zine.merge(
+            pick(action.payload,
+              [
+                'id',
+                'name',
+                'description',
+                'categories',
+                'iconImageURL',
+                'headerImageURL',
+                'published',
+                'deleted',
+                'ownerId'
+              ]
+            ))
+        ),
 
     throw: (state, action) => state
   },

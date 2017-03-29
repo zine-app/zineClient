@@ -31,3 +31,9 @@ export const pattern = (regex, message = 'Invalid format') => (value) =>
 export const name = value =>
   value && /[^A-Z0-9_]/i.test(value) ?
   'Must contain letters, numbers or _ only' : undefined
+
+export const maxFileSize = size => file =>
+  file && file.length && file.length > 0 &&
+    file[0] instanceof File &&
+    file[0].size > size ?
+    'too large' : undefined
