@@ -15,12 +15,8 @@ const FacebookLoginButton = ({ login, theme }) =>
   </button>
 
 const mapDispatchToProps = (dispatch, { history }) => ({
-  login: () => {
-    dispatch(showAppLoader())
-    dispatch(signUpWithFacebook())
-      .then(() => dispatch(hideAppLoader()))
-      .then(() => history.push('/'))
-  }
+  login: () => dispatch(signUpWithFacebook())
+    .then(() => history.push('/'))
 })
 
 const mapStateToProps = (state, props:{ theme?:string }) => ({})

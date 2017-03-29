@@ -1,18 +1,16 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import ZineHomePage from 'app/components/ZineHomePage'
-import Bundle from 'app/containers/Bundle'
 import ErrorPage from 'app/components/ErrorPage'
 import AppLoader from 'app/components/AppLoader'
 import fetchZine from 'app/actions/zine/fetchZine'
+import createUI from 'app/containers/UI'
 
-const ZineHomePageContainer = ({ zineHomePageLoader, user, zine }) =>
-  <Bundle
-    load={zineHomePageLoader}
-    loading={() => <AppLoader shouldDisplay={true} />}
-    success={() => <ZineHomePage user={user} zine={zine} />}
-    error={(error) => <ErrorPage />}
-  />
+const ZineHomePageContainer = ({ load, user, zine }) =>
+  createUI({
+    name: 'zine-home-page',
+    load
+  })(() => <ZineHomePage  user={user} zine={zine} />)
 
 const mapStateToProps = (state, { match: { params } }) => ({
   zine: state.get('zines').find(zine => zine.name === params.zineName),
@@ -20,7 +18,7 @@ const mapStateToProps = (state, { match: { params } }) => ({
 })
 
 const mapDispatchToProps = (dispatch, { match: { params } }) => ({
-  zineHomePageLoader: async () => {
+  load: async () => {
     await dispatch(fetchZine({ name: params.zineName, deleted: false }))
   }
 })

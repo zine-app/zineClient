@@ -102,6 +102,11 @@ export const userReducer = handleActions({
     ),
 
     throw: (state, action) => state
+  },
+
+  "AUTH:LOGOUT": {
+    next: state => state.clear(),
+    throw: state => state
   }
 
 }, initialState)

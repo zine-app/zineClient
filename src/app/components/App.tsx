@@ -1,6 +1,5 @@
 import * as React from 'react'
-import { Switch, Route } from 'react-router-dom'
-import PrivateRoute from 'app/containers/PrivateRoute'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import 'app/styles/reset'
 import 'app/styles/app'
 import 'app/styles/grid'
@@ -11,13 +10,20 @@ import ZineHomePage from 'app/containers/ZineHomePage'
 import FourOFour from 'app/components/FourOFour'
 
 
-export default () =>
+export default ({ loading, me}) =>
   <main className="zine-app--main">
-    <Switch>
-      <PrivateRoute exact path="/" component={HomePage} />
-      <Route exact path="/login" component={SplashPage} />
-      <Route exact path="/:zineName" component={ZineHomePage} />
-      <Route component={FourOFour} />
-    </Switch>
-    <AppLoader />
+  {
+    loading ?
+      <AppLoader shouldDisplay={true} /> :
+      me && me.name ?
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route exact path="/:zineName" component={ZineHomePage} />
+        </Switch> :
+        <Switch>
+          <Route exact path="/" component={SplashPage} />
+          <Redirect to="/" />
+        </Switch>
+
+  }
   </main>

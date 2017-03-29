@@ -4,4 +4,7 @@ const getMe = state => state.get('me')
 const getUsers = state => state.get('users')
 
 export default createSelector([getMe, getUsers],
-  (me, users) => users.find(user => user.id === me.userId))
+  (me, users) => {
+    console.log(me)
+    return users.find(user => user.id === me.userId)
+  })
