@@ -9,6 +9,14 @@ import { isArray } from 'lodash'
 import * as validate from 'app/utils/validate'
 import { debounce } from 'lodash'
 import ConfirmButton from 'app/containers/ConfirmButton'
+import ImageField from 'app/components/fields/ImageField'
+
+<ImageField name="contentURL"
+  validate={[
+    validate.maxFileSize(4000000),
+    validate.required
+  ]}
+/>
 
 const controlRenderers = {
   text: ({ input, type, placeholder, meta }) =>
@@ -44,68 +52,12 @@ const IconPlaceholder = () =>
     <PlusIcon />
   </div>
 
-const formatIcon = (input) =>
-  isArray(input) ?
-    input.map(({ preview }, index) =>
-      <div
-        key={index}
-        style={{ backgroundImage: `url("${preview}")` }}
-        className="zine-icon__medium"
-      >
-      </div>
-    ):
-    input ?
-      <div
-        style={{ backgroundImage: `url("${input}")` }}
-        className="zine-icon__medium"
-      >
-      </div> :
-      null
-
-const headerImageContainerStyle = (image?:string):any => ({
-  height: '8em',
-  width: '100%',
-  backgroundImage: image ? `url("${image}")` : 'none',
-  backgroundColor: 'rgb(240,240,240)',
-  backgroundSize: 'cover',
-  backgroundPosition: 'center',
-  backgroundRepeat: 'no-repeat',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  cursor: 'pointer'
-})
-
-const headerImagePlaceholder = () =>
+const IconPreview = ({ url }) =>
   <div
-    style={headerImageContainerStyle()}
-  >
-    <div
-      style={{
-        height: '3em',
-        width: '3em',
-      }}
-    >
-    <PlusIcon />
-    </div>
-  </div>
+    style={{ backgroundImage: `url("${url}")` }}
+    className="zine-icon__medium"
+  ></div>
 
-const formatHeaderImage = (input) =>
-  isArray(input) ?
-    input.map(({ preview }, index) =>
-      <div
-        key={index}
-        style={headerImageContainerStyle(preview)}
-      >
-      </div>
-    ):
-    input ?
-      <div
-        style={headerImageContainerStyle(input)}
-        className="header-image"
-      >
-      </div> :
-      null
 
 
 
@@ -136,16 +88,24 @@ export default props => {
         type="text" placeholder="art, drawing, doodles"
         validate={[ validate.commaSeperatedString, validate.maxLength(2000) ]}
       />
-      <Field
-        name="iconImageURL" component={control} type="image" label="icon"
-        format={formatIcon}
-        placeholder={IconPlaceholder()}
-      />
-      <Field
-        name="headerImageURL" component={control} type="image" label="header image"
-        format={formatHeaderImage}
-        placeholder={headerImagePlaceholder()}
-      />
+      <div className="card--list-item">
+        <ImageField name="iconImageURL"
+          renderPreview={(url, key) => <IconPreview url={url} key={key} />}
+          renderPlaceholder={() => <IconPlaceholder />}
+          validate={[
+            validate.maxFileSize(4000000),
+            validate.required
+          ]}
+        />
+      </div>
+      <div className="card--list-item">
+        <ImageField name="headerImageURL"
+          validate={[
+            validate.maxFileSize(4000000),
+            validate.required
+          ]}
+        />
+      </div>
       <Field
         name="published" component={control} type="toggle" label="published"
       />

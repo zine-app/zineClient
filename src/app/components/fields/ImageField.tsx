@@ -9,35 +9,55 @@ interface IImageFieldProps {
   name:string
   label?:string
   validate?:Array<any>
+  renderPlaceholder?:() => any
+  renderPreview?:(url:string, key?:number) => any
 }
 
-
-const Preview = ({ url }) =>
+const DefaultPlaceholder = () =>
   <div
-    className="control--image"
     style={{
-      backgroundImage: url ? `url('${url}')` : 'none'
+      position: 'relative',
+      backgroundColor: 'rgb(240,240,240)',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      curosor: 'pointer'
     }}
   >
-    <div style={{
-      paddingTop: '60%'
-    }}></div>
-  {
-    url ?
-      null :
-      <div
-        style={{
-          position: 'absolute',
-          height: '3em',
-          width: '3em',
-        }}
-      >
-        <PlusIcon />
-      </div>
-  }
+    <div style={{ paddingTop: '70%' }}></div>
+    <div
+      style={{
+        position: 'absolute',
+        height: '3em',
+        width: '3em',
+      }}
+    >
+      <PlusIcon />
+    </div>
   </div>
 
-export default ({ label, name, validate }:IImageFieldProps) =>
+
+const DefaultPreview = ({ url }) =>
+  <div
+    style={{
+      backgroundImage: `url('${url}')`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      curosor: 'pointer'
+    }}
+  >
+    <div style={{ paddingTop: '70%' }}></div>
+  </div>
+
+
+
+export default ({
+  label,
+  name,
+  validate,
+  renderPreview = (url, key=0) => <DefaultPreview url={url} key={key} />,
+  renderPlaceholder = () => <DefaultPlaceholder />
+}:IImageFieldProps) =>
   <Field
     validate={validate}
     name={name}
@@ -54,11 +74,10 @@ export default ({ label, name, validate }:IImageFieldProps) =>
           >
             {
               error ?
-                <Preview url="" />:
+                renderPlaceholder() :
                 isArray(input.value) ?
-                  input.value.map(({ preview }, index) =>
-                    <Preview url={preview} key={index} />):
-                  <Preview url={input.value} />
+                  input.value.map(({ preview }, index) => renderPreview(preview, index)) :
+                    input.value ? renderPreview(input.value) : renderPlaceholder()
             }
           </Dropzone>
         {
