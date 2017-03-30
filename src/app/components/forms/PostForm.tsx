@@ -1,6 +1,8 @@
 import * as React from 'react'
+import { Field } from 'redux-form/immutable'
 import TextField from 'app/components/fields/TextField'
 import * as validate from 'app/utils/validate'
+import PostEditor from 'app/containers/PostEditor'
 
 
 export default props =>
@@ -11,6 +13,14 @@ export default props =>
         validate.minLength(0)
       ]}
     />
+    <div>
+      <Field
+        name="post"
+        component={({ input }) =>
+          <PostEditor onChange={console.log} />
+        }
+      />
+    </div>
     <button
       className="control--button__blue"
       disabled={props.pristine || props.invalid}
