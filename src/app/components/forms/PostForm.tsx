@@ -15,9 +15,9 @@ export default props =>
     />
     <div>
       <Field
-        name="post"
+        name="body"
         component={({ input }) =>
-          <PostEditor onChange={console.log} />
+          <PostEditor onChange={input.onChange} />
         }
       />
     </div>
