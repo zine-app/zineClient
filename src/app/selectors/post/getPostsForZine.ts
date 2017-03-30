@@ -9,8 +9,8 @@ const getZine = (state, props) =>
 
 export default createSelector(
   [getPosts, getUsers, getZine],
-  (posts, users, zine) => {
-    const _posts = posts
+  (posts, users, zine) =>
+    posts
       .filter(post => post.zineId === zine.id)
       .sort((postA, postB) =>
         new Date(postB.createdAt) > new Date(postA.createdAt))
@@ -26,9 +26,4 @@ export default createSelector(
             author: users.find(user => user.id === post.authorId),
             zine: zine
           }
-      )))
-
-    console.log('getPosts', _posts)
-
-    return _posts
-  })
+      ))))

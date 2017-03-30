@@ -1,0 +1,21 @@
+@import 'textStyles';
+
+.post-form--container {
+  background-color: white;
+  border-radius: 2rem;
+  box-sizing: border-box;
+  padding: 4rem;
+  width: 90vw;
+}
+
+@media (min-device-width: 48em) {
+  .post-form--container {
+    width: 70vw;
+  }
+}
+
+@media (min-device-width: 75em) {
+  .post-form--container {
+    width: 50vw;
+  }
+}

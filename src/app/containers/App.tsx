@@ -7,7 +7,6 @@ import fetchMyZines from 'app/actions/zine/fetchMyZines'
 import { load as loadFacebookSDK } from 'app/utils/facebook'
 import ErrorPage from 'app/components/ErrorPage'
 import AppLoader from 'app/components/AppLoader'
-import createUI from 'app/containers/UI'
 import getMyUser from 'app/selectors/me/getMyUser'
 
 
@@ -41,12 +40,9 @@ const mapDispatchToProps = dispatch => ({
   load: () => dispatch(load)
 })
 
-const mapStateToProps = state => {
-  console.log('USER', getMyUser(state))
-  return ({
+const mapStateToProps = state => ({
     me: getMyUser(state)
-  })
-}
+})
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppContainer)
