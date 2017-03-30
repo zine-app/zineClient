@@ -48,11 +48,17 @@ export const requestZineLogin:TrequestZineLogin = (params) =>
 type TrequestZineLogout = () => Promise<webAPI.Response.ZineAuth>
 export const requestZineLogout:TrequestZineLogout = () =>
   fetch(`${API_URL}/auth/logout`, {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
     credentials: 'include'
   })
   .then(checkStatus)
+  .then(parseJSON)
   .then((body:any):webAPI.Response.ZineAuth => ({
     error: false,
-    status: 200
+    status: 200,
+    body: body
   }))
   .catch(handleError)

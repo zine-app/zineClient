@@ -1,14 +1,14 @@
 import * as React from 'react'
 import MasterPage from 'app/components/ZineMasterPage'
 import FourOFour from 'app/components/FourOFour'
-import ContentExplainer from 'app/components/ContentExplainer'
+import ZineHomePosts from 'app/components/ZineHomePosts'
 
-export default ({ zine, user }) =>
+export default ({ zine, user, posts }) =>
   zine ?
     <MasterPage
       zine={zine}
       user={user}
     >
-      <ContentExplainer />
+      <ZineHomePosts posts={posts} />
     </MasterPage> :
     <FourOFour />

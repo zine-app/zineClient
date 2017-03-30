@@ -1,3 +1,12 @@
+.app-loader--container {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(255,255,255,0.95)
+}
+
 .app-loader--signal {
   border: 1px solid #333;
   border-radius: 30px;

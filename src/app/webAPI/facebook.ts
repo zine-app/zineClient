@@ -33,3 +33,16 @@ export const getLoginStatus:TgetLoginStatus = () =>
       body: response
     }))
   })
+
+type Tlogout = () => Promise<webAPI.Response.FacebookAuthResponse>
+
+export const logout:Tlogout = () =>
+  new Promise((resolve, reject) => {
+    if(!(<any>window).FB) reject(new Error('facebook sdk not loaded'))
+
+    FB.logout(response => resolve({
+      status: 200,
+      error: false,
+      body: response
+    }))
+  })

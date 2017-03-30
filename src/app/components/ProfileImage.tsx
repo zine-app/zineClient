@@ -3,11 +3,11 @@ import ProfileIcon from 'app/icons/profile'
 import 'app/styles/profileImage'
 
 
-export default ({ src="" }) =>
+export default ({ src="", size="medium" }) =>
   <div
-    className="profile-image"
+    className={`profile-image__${size}`}
     style={{
-      backgroundImage: `url(${src})`
+      backgroundImage: src ? `url(${src})` : 'none'
     }}
   >
   {
