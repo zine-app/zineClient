@@ -1,26 +1,34 @@
 import * as React from 'react'
-import { Editor, EditorState, convertToRaw } from 'draft-js'
+import { Editor, EditorState, convertToRaw, convertFromRaw } from 'draft-js'
 import { debounce } from 'lodash'
 
 interface IProp extends React.Props<any> {
-  onChange: (contentState:any) => void
+  onChange?: (contentState:any) => void
+  readOnly?: boolean
+  initialState?: any
 }
 
 
-class PostEditor extends React.Component<IProp, any> {
+export default class PostEditor extends React.Component<IProp, any> {
   constructor (props) {
     super(props)
 
-    this.state = { editorState: EditorState.createEmpty() }
+    this.state = {
+      editorState: props.initialState ?
+        EditorState.createWithContent(convertFromRaw(props.initialState)):
+        EditorState.createEmpty()
+    }
 
     this.onChange = this.onChange.bind(this)
     this.onFinished = debounce(this.onFinished.bind(this), 300)
   }
 
   private onFinished () {
-    this.props.onChange(
-      convertToRaw(this.state.editorState.getCurrentContent())
-    )
+    if(this.props.onChange) {
+      this.props.onChange(
+        convertToRaw(this.state.editorState.getCurrentContent())
+      )
+    }
   }
 
   private onChange (editorState:any) {
@@ -31,9 +39,11 @@ class PostEditor extends React.Component<IProp, any> {
   render () {
 
     return (
-      <Editor editorState={this.state.editorState} onChange={this.onChange} />
+      <Editor
+        readOnly={this.props.readOnly || false}
+        editorState={this.state.editorState}
+        onChange={this.onChange}
+      />
     )
   }
 }
-
-export default PostEditor

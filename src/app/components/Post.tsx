@@ -2,6 +2,7 @@ import * as React from 'react'
 import 'app/styles/post'
 import ProfileImage from 'app/components/ProfileImage'
 import ZineIcon from 'app/components/ZineIcon'
+import PostEditor from 'app/containers/PostEditor'
 import moment from 'moment'
 
 moment.locale('en', {
@@ -27,8 +28,7 @@ moment.locale('en', {
 
 export default ({
   title = '',
-  description = '',
-  contentURL = '',
+  body = null,
   createdAt = '',
   author: {
     profileImageURL= ''
@@ -39,11 +39,11 @@ export default ({
     <div className="post--padding">
       <div className="post--container">
         <div className="post--content-container">
-          <div className="post--content--image"
-            style={{
-              backgroundImage: `url('${contentURL}')`
-            }}
-          ></div>
+
+
+          <div className="post--content--image">
+            <PostEditor readOnly={true} initialState={body} />
+          </div>
             <div className="post--content--details">
               <div className="post--content--details--left-block">
                 <div className="post--details-icon">

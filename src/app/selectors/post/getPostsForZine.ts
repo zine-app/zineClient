@@ -18,8 +18,7 @@ export default createSelector(
           pick(post, [
             'id',
             'title',
-            'description',
-            'contentURL',
+            'body',
             'createdAt'
           ]),
           {

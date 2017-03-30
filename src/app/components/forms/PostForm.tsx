@@ -13,14 +13,12 @@ export default props =>
         validate.minLength(0)
       ]}
     />
-    <div>
-      <Field
-        name="body"
-        component={({ input }) =>
-          <PostEditor onChange={input.onChange} />
-        }
-      />
-    </div>
+    <Field
+      name="body"
+      component={({ input }) =>
+        <PostEditor onChange={rawEditorState => input.onChange(rawEditorState)} />
+      }
+    />
     <button
       className="control--button__blue"
       disabled={props.pristine || props.invalid}
