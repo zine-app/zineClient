@@ -61,8 +61,8 @@ export const postReducer = handleActions({
             'title',
             'contentURL',
             'createdAt',
-            'zine',
-            'author'
+            'zineId',
+            'authorId'
           ]
       ))
     ),
