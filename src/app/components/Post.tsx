@@ -49,7 +49,7 @@ export default ({
             <div className="post--content--details">
               <div className="post--content--details--left-block">
                 <div className="post--details-icon">
-                  <ZineIcon zine={zine} size="small" />
+                  <ZineIcon url={zine ? zine.iconImageURL : ''} size="small" />
                 </div>
                 <div style={{ width: '0.4em' }} />
                 { title &&

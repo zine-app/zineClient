@@ -7,8 +7,8 @@ import AppLoader from 'app/components/AppLoader'
 import SplashPage from 'app/components/SplashPage'
 import HomePage from 'app/components/HomePage'
 import ZineHomePage from 'app/containers/ZineHomePage'
-import FourOFour from 'app/components/FourOFour'
 import PostPage from 'app/components/pages/PostPage'
+import FourOFour from 'app/components/FourOFour'
 import AppTools from 'app/components/AppTools'
 
 
@@ -22,16 +22,20 @@ export default ({ loading, user, zine }) =>
           <Switch>
             <Route
               exact path="/"
-              component={HomePage}
-              render={({ component: Component, ...rest }) =>
-                <Component user={user} zine={zine} {...rest}/>
+              render={props =>
+                <HomePage user={user} zine={zine} {...props}/>
               }
             />
             <Route
               exact path="/:zineName"
-              component={ZineHomePage}
-              render={({ component: Component, ...rest }) =>
-                <Component user={user} zine={zine} {...rest}/>
+              render={props =>
+                <ZineHomePage user={user} zine={zine} {...props}/>
+              }
+            />
+            <Route
+              exact path="/:zineName/post/:postId"
+              render={props =>
+                <PostPage user={user} zine={zine} {...props}/>
               }
             />
           </Switch>

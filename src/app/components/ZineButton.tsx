@@ -4,5 +4,5 @@ import 'app/styles/userProfileButton'
 
 export default ({ zine, onClick }:{ zine:Constant.IZine, onClick?:()=>void }) =>
   <button className="user-profile-button" onClick={onClick}>
-    <ZineIcon zine={zine} />
+    <ZineIcon url={zine ? zine.iconImageURL : ''} />
   </button>
