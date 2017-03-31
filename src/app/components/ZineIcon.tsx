@@ -3,7 +3,7 @@ import ProfileIcon from 'app/icons/profile'
 import 'app/styles/zineIcon'
 
 
-export default ({ url="", size="medium" }:{ zine:Constant.IZine, size?:string }) =>
+export default ({ url="", size="medium" }:{ url?:string, size?:string }) =>
   <div
     className={`zine-icon__${size}`}
     style={{

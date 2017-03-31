@@ -2,7 +2,7 @@ import * as React from 'react'
 import ZineHeader from 'app/components/ZineHeader'
 import ZineNav from 'app/containers/ZineNav'
 import ZineBody from 'app/components/ZineBody'
-import 'app/styles/zineMasterPage' 
+import 'app/styles/zineMasterPage'
 
 interface TZineMasterPageProps {
   children?: any
@@ -12,7 +12,7 @@ interface TZineMasterPageProps {
 
 export default ({ zine, user, children }:TZineMasterPageProps) =>
   <div className="zineMasterPage">
-    <ZineHeader zine={zine} user={user} />
+    <ZineHeader zine={zine} />
     <ZineNav zine={zine} user={user} />
     <ZineBody>
       { children }

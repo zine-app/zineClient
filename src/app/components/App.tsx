@@ -7,9 +7,11 @@ import AppLoader from 'app/components/AppLoader'
 import SplashPage from 'app/components/SplashPage'
 import HomePage from 'app/components/HomePage'
 import ZineHomePage from 'app/containers/ZineHomePage'
-import PostPage from 'app/components/pages/PostPage'
+import ZinePostPage from 'app/containers/pages/ZinePostPage'
 import FourOFour from 'app/components/FourOFour'
 import AppTools from 'app/components/AppTools'
+import FetchRoute from 'app/containers/FetchRoute'
+import fetchPost from 'app/actions/post/fetchPosts'
 
 
 export default ({ loading, user, zine }) =>
@@ -32,10 +34,14 @@ export default ({ loading, user, zine }) =>
                 <ZineHomePage user={user} zine={zine} {...props}/>
               }
             />
-            <Route
+            <FetchRoute
               exact path="/:zineName/post/:postId"
+              load={async (dispatch, props) => {
+                await dispatch(fetchPost({ _id: props.computedMatch.params.postId }))
+              }
+              }
               render={props =>
-                <PostPage user={user} zine={zine} {...props}/>
+                <ZinePostPage user={user} zine={zine} {...props}/>
               }
             />
           </Switch>
