@@ -12,7 +12,6 @@
   overflow: hidden;
   box-shadow: 0 0 3px 1px rgba(0,0,0,0.08);
   border-radius: 2px;
-  cursor: pointer;
 }
 
 .post--container:before {
@@ -59,7 +58,7 @@
   flex: 1 1 auto;
   overflow: hidden;
   box-sizing: border-box;
-  padding-right: 1em; 
+  padding-right: 1em;
 }
 
 .post--details-icon {
