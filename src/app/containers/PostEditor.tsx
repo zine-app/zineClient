@@ -1,6 +1,7 @@
 import * as React from 'react'
-import { Editor, EditorState, convertToRaw, convertFromRaw } from 'draft-js'
+import { Editor, EditorState, convertToRaw, convertFromRaw, RichUtils, AtomicBlockUtils } from 'draft-js'
 import { debounce } from 'lodash'
+import MediaComponent from 'app/components/MediaComponent'
 
 interface IProp extends React.Props<any> {
   onChange?: (contentState:any) => void
@@ -20,6 +21,10 @@ export default class PostEditor extends React.Component<IProp, any> {
     }
 
     this.onChange = this.onChange.bind(this)
+    this.makeBlockParagraph = this.makeBlockParagraph.bind(this)
+    this.makeBlockHeader = this.makeBlockHeader.bind(this)
+    this.insertImage = this.insertImage.bind(this)
+    this.blockRenderer = this.blockRenderer.bind(this)
     this.onFinished = debounce(this.onFinished.bind(this), 300)
   }
 
@@ -36,14 +41,54 @@ export default class PostEditor extends React.Component<IProp, any> {
     this.setState(state => ({ editorState }))
   }
 
+  private makeBlockParagraph () {
+    this.onChange(RichUtils.toggleBlockType(
+      this.state.editorState,
+      'unstyled'
+    ))
+  }
+
+  private makeBlockHeader () {
+    this.onChange(RichUtils.toggleBlockType(
+      this.state.editorState,
+      'header-one'
+    ))
+  }
+
+  private insertImage () {
+    this.onChange(AtomicBlockUtils.insertAtomicBlock(
+      this.state.editorState,
+      null,
+      ' '
+    ))
+  }
+
+  private blockRenderer (contentBlock) {
+    if(contentBlock.getType() === 'atomic') {
+      return {
+        component: MediaComponent,
+        editable: false,
+        props: {
+          foo: 'bar'
+        }
+      }
+    }
+  }
+
   render () {
 
     return (
-      <Editor
-        readOnly={this.props.readOnly || false}
-        editorState={this.state.editorState}
-        onChange={this.onChange}
-      />
+      <div>
+        <Editor
+          readOnly={this.props.readOnly || false}
+          editorState={this.state.editorState}
+          onChange={this.onChange}
+          blockRendererFn={this.blockRenderer}
+        />
+        <button onClick={this.makeBlockParagraph}>p</button>
+        <button onClick={this.makeBlockHeader}>H</button>
+        <button onClick={this.insertImage}>Image</button>
+      </div>
     )
   }
 }
