@@ -12,7 +12,8 @@ export const modalReducer = handleActions({
       [
         'transition',
         'props',
-        'name'
+        'name',
+        'theme'
       ]
     ),
     { shouldDisplay: true }
@@ -24,8 +25,7 @@ export const modalReducer = handleActions({
         action.payload,
         [
           'transition',
-          'props',
-          'name'
+          'name',
         ]
       ),
       { shouldDisplay: false }
@@ -38,7 +38,8 @@ export const modalReducer = handleActions({
         [
           'transition',
           'props',
-          'name'
+          'name',
+          'theme'
         ]
       ),
       { shouldDisplay: !state.shouldDisplay }

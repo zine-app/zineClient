@@ -1,21 +1,19 @@
 @import 'textStyles';
 
 .post-form--container {
-  background-color: white;
-  border-radius: 2rem;
   box-sizing: border-box;
-  padding: 4rem;
-  width: 90vw;
+  background-color: #FFF;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-@media (min-device-width: 48em) {
-  .post-form--container {
-    width: 70vw;
-  }
-}
-
-@media (min-device-width: 75em) {
-  .post-form--container {
-    width: 50vw;
-  }
+[class^="post-form--title"] {
+  box-sizing: border-box;
+  width: 100%;
+  font-family: $zineFontFamily;
+  font-size: 1.6em;
+  color: rgb(100,100,100);
+  weight: 200;
 }

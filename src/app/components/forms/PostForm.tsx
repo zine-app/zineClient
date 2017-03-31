@@ -2,12 +2,16 @@ import * as React from 'react'
 import { Field } from 'redux-form/immutable'
 import TextField from 'app/components/fields/TextField'
 import * as validate from 'app/utils/validate'
+import 'app/styles/postForm'
 import PostEditor from 'app/containers/PostEditor'
 
 
 export default props =>
-  <div>
-    <TextField placeholder="title" name="title"
+  <div className="post-form--container">
+    <TextField
+      className="post-form--title"
+      placeholder="title"
+      name="title"
       validate={[
         validate.maxLength(50),
         validate.minLength(0)

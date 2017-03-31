@@ -5,7 +5,12 @@ import toggleModal from 'app/actions/ui/Modal/toggleModal'
 
 const mapDispatchToProps = (dispatch, { zine }) => ({
   toggleModal: () =>
-    dispatch(toggleModal({ transition: 'fadein', name: 'Post', props: { zineId: zine.id } }))
+    dispatch(toggleModal({
+      theme: 'white',
+      transition: 'fadein',
+      name: 'Post',
+      props: { zineId: zine.id }
+    }))
 })
 
 export default connect(undefined, mapDispatchToProps)(ZineNav)
