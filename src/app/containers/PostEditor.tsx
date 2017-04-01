@@ -55,7 +55,9 @@ export default class PostEditor extends React.Component<IProp, any> {
     ))
   }
 
-  private insertImage () {
+  private insertImage (event) {
+    event.preventDefault()
+
     this.onChange(AtomicBlockUtils.insertAtomicBlock(
       this.state.editorState,
       null,
@@ -87,7 +89,8 @@ export default class PostEditor extends React.Component<IProp, any> {
         />
         <button onClick={this.makeBlockParagraph}>p</button>
         <button onClick={this.makeBlockHeader}>H</button>
-        <button onClick={this.insertImage}>Image</button>
+        <button onMouseDown={this.insertImage}>Image</button>
+        <button className="control--button__blue" onClick={this.insertImage}>save</button>
       </div>
     )
   }
