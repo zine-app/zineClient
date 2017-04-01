@@ -4,11 +4,7 @@ import 'app/styles/PostModal'
 import 'app/styles/grid'
 
 
-export default ({ shouldDisplay, hide, transition, props: { zineId } }) =>
+export default ({ props: { zineId } }) =>
   <div className="post-modal--container">
-    <div className="row center-xs">
-      <div className="col-xs-12 col-sm-8 col-lg-6">
-        <PostForm zineId={zineId} />
-      </div>
-    </div>
+    <PostForm zineId={zineId} />
   </div>

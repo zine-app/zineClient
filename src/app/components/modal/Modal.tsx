@@ -52,11 +52,12 @@ export default (props:ModalProps) =>
     >
     {
       props.shouldDisplay ?
-        <div className={`modal--container__${props.theme}`}
+        <div
+          className={`modal--container__${props.theme}`}
           onClick={props.hide}
         >
           <div onClick={event => event.stopPropagation()}>
-          { renderModal(props.name, {...props, hideModal:props.hide, showModal:props.show}) }
+          {renderModal(props.name, {...props, hideModal:props.hide, showModal:props.show})}
           </div>
         </div> :
         null

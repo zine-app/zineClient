@@ -11,6 +11,7 @@
 
 .post-form--post-container {
   box-sizing: border-box;
+  padding: 1em;
   flex: 1 1 auto;
   overflow-y: scroll;
   display: flex;
@@ -33,6 +34,10 @@
   border-top: 1px solid rgb(220,220,220);
   box-sizing: border-box;
   height: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
 }
 
 .post-form--toolbar--inner-container {
@@ -50,15 +55,27 @@
   justify-content: flex-start;
 }
 
-[class^="post-form--title"] {
+.post-form--title {
   box-sizing: border-box;
   width: 100%;
   font-family: $zineFontFamily;
   font-size: 3rem;
-  color: rgb(160,160,160);
-  font-weight: 200;
+  color: rgb(80,80,80);
+  font-weight: 800;
   border: none;
   outline: none;
   background-color: #FFF;
-  padding: 1rem 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.DraftEditor-root {
+  font-family: $zineFontFamily;
+  font-size: 1rem;
+}
+
+.DraftEditor-root {
+  font-size: 1.8rem;
+  line-height: 1.4em;
+  letter-spacing: 0.01em;
+  color: rgb(60,60,60);
 }

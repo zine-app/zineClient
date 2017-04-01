@@ -6,14 +6,19 @@ import {
   convertFromRaw,
   RichUtils,
   AtomicBlockUtils,
-  Entity
+  Entity,
+  DefaultDraftBlockRenderMap
 } from 'draft-js'
 import { debounce } from 'lodash'
 import MediaComponent from 'app/components/MediaComponent'
 import TextField from 'app/components/fields/TextField'
 import Dropzone from 'react-dropzone'
 import * as validate from 'app/utils/validate'
+import CameraIcon from 'app/icons/camera'
+import 'draft-js/dist/Draft.css'
 import 'app/styles/postForm'
+import { Map } from 'immutable'
+
 
 interface IProp extends React.Props<any> {
   onChange?: (contentState:any) => void
@@ -124,16 +129,16 @@ export default class PostEditor extends React.Component<IProp, any> {
               editorState={this.state.editorState}
               onChange={this.onChange}
               blockRendererFn={this.blockRenderer}
+              textAlignment="left"
+              placeholder="share something"
             />
           </div>
         </div>
         <div className="post-form--toolbar--container">
-          <div className="row center-xs">
+          <div className="row center-xs middle-xs">
             <div className="col-xs-11 col-sm-8 col-lg-6">
               <div className="post-form--toolbar--inner-container">
                 <div className="post-form--toolbar--edit-tools">
-                  <button onClick={this.makeBlockParagraph}>p</button>
-                  <button onClick={this.makeBlockHeader}>H</button>
                   <Dropzone
                     style={{}}
                     minSize={1}
@@ -142,14 +147,16 @@ export default class PostEditor extends React.Component<IProp, any> {
                     multiple={false}
                     onDropAccepted={this.insertImage}
                   >
-                    Image
+                    <div style={{ height: '4em', width: '4em', cursor: 'pointer' }}>
+                      <CameraIcon color="rgb(90, 150, 210)" />
+                    </div>
                   </Dropzone>
                 </div>
-                <div>
+                <div className="row middle-xs">
                   <button
                     className="control--button__blue"
                     onClick={this.insertImage}>
-                    save
+                    publish
                   </button>
                 </div>
               </div>
