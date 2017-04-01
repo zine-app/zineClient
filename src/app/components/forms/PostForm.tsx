@@ -104,6 +104,11 @@ export default class PostEditor extends React.Component<IProp, any> {
       return {
         component: MediaComponent,
         editable: false,
+        props: {
+          onChange: this.onChange,
+          editorState: this.state.editorState,
+          selection: this.state.editorState.getSelection()
+        }
       }
     }
   }
