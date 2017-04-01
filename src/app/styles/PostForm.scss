@@ -6,14 +6,59 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+}
+
+.post-form--post-container {
+  box-sizing: border-box;
+  flex: 1 1 auto;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  margin-bottom: 4rem;
+}
+
+.post-form--editor-container {
+  flex: 1 1 auto;
+  cursor: text;
+}
+
+.post-form--toolbar--container {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  width: 100vw;
+  border-top: 1px solid rgb(220,220,220);
+  box-sizing: border-box;
+  height: 4rem;
+}
+
+.post-form--toolbar--inner-container {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
+}
+
+.post-form--toolbar--edit-tools {
+  background-color: #FFF;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
 }
 
 [class^="post-form--title"] {
   box-sizing: border-box;
   width: 100%;
   font-family: $zineFontFamily;
-  font-size: 1.6em;
-  color: rgb(100,100,100);
-  weight: 200;
+  font-size: 3rem;
+  color: rgb(160,160,160);
+  font-weight: 200;
+  border: none;
+  outline: none;
+  background-color: #FFF;
+  padding: 1rem 1rem;
 }

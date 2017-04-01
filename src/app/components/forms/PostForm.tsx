@@ -32,6 +32,7 @@ export default class PostEditor extends React.Component<IProp, any> {
         EditorState.createEmpty()
     }
 
+    this.focus = this.focus.bind(this)
     this.onChange = this.onChange.bind(this)
     this.makeBlockParagraph = this.makeBlockParagraph.bind(this)
     this.makeBlockHeader = this.makeBlockHeader.bind(this)
@@ -39,6 +40,10 @@ export default class PostEditor extends React.Component<IProp, any> {
     this.blockRenderer = this.blockRenderer.bind(this)
     this.onFinished = debounce(this.onFinished.bind(this), 300)
   }
+
+  private focus () { if(this.editor) this.editor.focus()  }
+
+  private editor = null
 
   private onFinished () {
     if(this.props.onChange) {
@@ -73,7 +78,7 @@ export default class PostEditor extends React.Component<IProp, any> {
       .createEntity(
         'IMAGE',
         'IMMUTABLE',
-        { url: files[0].preview })
+        { image: files[0] })
 
     const newEditorState = EditorState.set(
       this.state.editorState,
@@ -102,35 +107,54 @@ export default class PostEditor extends React.Component<IProp, any> {
 
     return (
       <div className="post-form--container">
-        <TextField
-          className="post-form--title"
-          placeholder="title"
-          name="title"
-          validate={[
-            validate.maxLength(50),
-            validate.minLength(0)
-          ]}
-        />
-        <Editor
-          readOnly={this.props.readOnly || false}
-          editorState={this.state.editorState}
-          onChange={this.onChange}
-          blockRendererFn={this.blockRenderer}
-        />
-        <div>
-          <button onClick={this.makeBlockParagraph}>p</button>
-          <button onClick={this.makeBlockHeader}>H</button>
-          <Dropzone
-            style={{}}
-            minSize={1}
-            maxSize={4000000}
-            accept="image/jpeg"
-            multiple={false}
-            onDropAccepted={this.insertImage}
-          >
-            Image
-          </Dropzone>
-          <button className="control--button__blue" onClick={this.insertImage}>save</button>
+        <div className="post-form--post-container">
+          <TextField
+            className="post-form--title"
+            placeholder="title"
+            name="title"
+            validate={[
+              validate.maxLength(50),
+              validate.minLength(0)
+            ]}
+          />
+          <div onClick={this.focus} className="post-form--editor-container">
+            <Editor
+              ref={editor => this.editor = editor}
+              readOnly={this.props.readOnly || false}
+              editorState={this.state.editorState}
+              onChange={this.onChange}
+              blockRendererFn={this.blockRenderer}
+            />
+          </div>
+        </div>
+        <div className="post-form--toolbar--container">
+          <div className="row center-xs">
+            <div className="col-xs-11 col-sm-8 col-lg-6">
+              <div className="post-form--toolbar--inner-container">
+                <div className="post-form--toolbar--edit-tools">
+                  <button onClick={this.makeBlockParagraph}>p</button>
+                  <button onClick={this.makeBlockHeader}>H</button>
+                  <Dropzone
+                    style={{}}
+                    minSize={1}
+                    maxSize={4000000}
+                    accept="image/jpeg"
+                    multiple={false}
+                    onDropAccepted={this.insertImage}
+                  >
+                    Image
+                  </Dropzone>
+                </div>
+                <div>
+                  <button
+                    className="control--button__blue"
+                    onClick={this.insertImage}>
+                    save
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     )
