@@ -16,7 +16,7 @@ export default ({
     </Link>
     <div className="zine--nav--button-container">
       {
-        zine.ownerId === user.id &&
+        user && zine.ownerId === user.id &&
         <button
           className="zine--nav--button"
           onClick={toggleModal}
