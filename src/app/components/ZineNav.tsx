@@ -15,10 +15,12 @@ export default ({
       <ZineIcon url={zine ? zine.iconImageURL : ''} />
     </Link>
     <div className="zine--nav--button-container">
-      <button className="zine--nav--button">subscribe</button>
-      <button
-        className="zine--nav--button"
-        onClick={toggleModal}
-      >post</button>
+      {
+        zine.ownerId === user.id &&
+        <button
+          className="zine--nav--button"
+          onClick={toggleModal}
+        >post</button>
+      }
     </div>
   </div>
