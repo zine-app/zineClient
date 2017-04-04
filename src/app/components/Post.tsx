@@ -2,7 +2,6 @@ import * as React from 'react'
 import 'app/styles/post'
 import ProfileImage from 'app/components/ProfileImage'
 import ZineIcon from 'app/components/ZineIcon'
-import PostEditor from 'app/containers/PostEditor'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
 
@@ -25,7 +24,11 @@ moment.locale('en', {
   }
 });
 
-
+const getFirstImageURL = body => {
+  if(body.entityMap.length) {
+    return body.entityMap[0].data.url
+  }
+}
 
 export default ({
   id = '',
@@ -41,11 +44,34 @@ export default ({
     <div className="post--padding">
       <div className="post--container">
         <div className="post--content-container">
-          <Link to={`/${zine.name}/post/${id}`}>
-            <div className="post--content--image">
-              <PostEditor readOnly={true} initialState={body} />
-              </div>
-          </Link>
+            <div
+              className="post--content--image"
+              style={{
+                backgroundColor: '#FFF',
+                display: 'flex',
+                boxSizing: 'border-box',
+                padding: '1rem',
+                textAlign: 'center',
+                justifyContent: 'center',
+                alignItems: 'center',
+                fontFamily: ' Helvetica, Arial, sans-serif',
+                fontSize: '2rem',
+                position: 'relative',
+                backgroundImage:
+                  getFirstImageURL(body) ?
+                    `url('${getFirstImageURL(body)}')` :
+                    'none'
+              }}
+            >
+              <Link
+                style={{
+                  position: 'absolute',
+                  height: '100%',
+                  width: '100%'
+                }}
+                to={`/${zine.name}/post/${id}`}></Link>
+              { getFirstImageURL(body) ? null : title }
+            </div>
             <div className="post--content--details">
               <div className="post--content--details--left-block">
                 <div className="post--details-icon">

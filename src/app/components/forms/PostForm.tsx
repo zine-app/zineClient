@@ -18,12 +18,15 @@ import CameraIcon from 'app/icons/camera'
 import 'draft-js/dist/Draft.css'
 import 'app/styles/postForm'
 import { Map } from 'immutable'
-
+import uploadImage from 'app/webAPI/image'
+import { map, assign } from 'lodash'
 
 interface IProp extends React.Props<any> {
   onChange?: (contentState:any) => void
   readOnly?: boolean
   initialState?: any
+  save?: (post:any) => void
+  handleSubmit?: (form:any) => any
 }
 
 
@@ -37,6 +40,7 @@ export default class PostEditor extends React.Component<IProp, any> {
         EditorState.createEmpty()
     }
 
+    this.save = this.save.bind(this)
     this.focus = this.focus.bind(this)
     this.onChange = this.onChange.bind(this)
     this.makeBlockParagraph = this.makeBlockParagraph.bind(this)
@@ -113,6 +117,37 @@ export default class PostEditor extends React.Component<IProp, any> {
     }
   }
 
+  private save (form) {
+    const rawContentState = convertToRaw(this.state.editorState.getCurrentContent())
+
+    Promise.all(
+      map(rawContentState.entityMap, (entity:any) =>
+        uploadImage(entity.data.image))
+    )
+    .then(responses =>
+      this.props.save({
+        title: form.get('title'),
+        body: assign(
+          rawContentState,
+          {
+            entityMap: map(
+              rawContentState.entityMap,
+              (entity, index) =>
+                assign(
+                  entity,
+                  {
+                    data: {
+                      url: responses[index].body.url
+                    }
+                  }
+                )
+            )
+          }
+        )
+      })
+    )
+  }
+
   render () {
 
     return (
@@ -160,7 +195,8 @@ export default class PostEditor extends React.Component<IProp, any> {
                 <div className="row middle-xs">
                   <button
                     className="control--button__blue"
-                    onClick={this.insertImage}>
+                    onClick={this.props.handleSubmit(this.save)}
+                  >
                     publish
                   </button>
                 </div>

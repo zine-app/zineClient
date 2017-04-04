@@ -5,44 +5,46 @@ import 'app/styles/media'
 
 export default ({ blockProps, contentState, block }) => {
   const entity = contentState.getEntity(block.getEntityAt(0))
-  const { editorState, onChange } = blockProps
-  const selection = editorState.getSelection();
-  const content = editorState.getCurrentContent();
   const { image } = entity.getData()
-  const type = entity.getType()
 
-  const remove = () => {
-    const keyAfter = content.getKeyAfter(block.key);
-    const blockMap = content.getBlockMap().delete(block.key);
-    const withoutAtomicBlock = content.merge({
-      blockMap, selectionAfter: selection
-    })
+  if(!blockProps.readOnly) {
+    const { editorState, onChange } = blockProps
+    const selection = editorState.getSelection();
+    const content = editorState.getCurrentContent();
+    const type = entity.getType()
 
-    const newState = EditorState.push(
-      editorState, withoutAtomicBlock, "remove-range"
-    )
+    const remove = () => {
+      const keyAfter = content.getKeyAfter(block.key);
+      const blockMap = content.getBlockMap().delete(block.key);
+      const withoutAtomicBlock = content.merge({
+        blockMap, selectionAfter: selection
+      })
 
-    const newSelection = new SelectionState({
-      anchorKey: keyAfter,
-      anchorOffset: 0,
-      focusKey: keyAfter,
-      focusOffset: block.getLength()
-    })
+      const newState = EditorState.push(
+        editorState, withoutAtomicBlock, "remove-range"
+      )
 
-    const newEditorState = EditorState.forceSelection(newState, newSelection)
+      const newSelection = new SelectionState({
+        anchorKey: keyAfter,
+        anchorOffset: 0,
+        focusKey: keyAfter,
+        focusOffset: block.getLength()
+      })
 
-    onChange(newEditorState)
-  }
+      const newEditorState = EditorState.forceSelection(newState, newSelection)
+
+      onChange(newEditorState)
+    }
 
 
-  return (
-    <div
+    return (
+      <div
       style={{
         position: 'relative',
         boxSizing: 'border-box',
         padding: '1em 6em',
       }}
-    >
+      >
       <div
         style={{
           position: 'relative',
@@ -52,16 +54,44 @@ export default ({ blockProps, contentState, block }) => {
         }}
       >
         <div
-          style={{
-            paddingTop: '70%'
-          }}
+        style={{
+          paddingTop: '70%'
+        }}
         ></div>
+        </div>
+        <div className="media--toolbar-container">
+          <button onClick={remove}>
+            <TrashIcon size="4rem" color="rgb(90, 150, 210)"/>
+          </button>
+        </div>
       </div>
-      <div className="media--toolbar-container">
-        <button onClick={remove}>
-          <TrashIcon size="4rem" color="rgb(90, 150, 210)"/>
-        </button>
+    )
+  } else {
+
+    return (
+      <div
+      style={{
+        position: 'relative',
+        boxSizing: 'border-box',
+        padding: '1em 6em',
+      }}
+      >
+      <div
+        style={{
+          position: 'relative',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundImage: entity.data.url ? `url('${entity.data.url}')` : 'none'
+        }}
+      >
+        <div
+        style={{
+          paddingTop: '70%'
+        }}
+        ></div>
+        </div>
       </div>
-    </div>
-  )
+    )
+
+  }
 }
