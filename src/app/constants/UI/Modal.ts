@@ -5,7 +5,8 @@ const ModalRecord = Record({
   name: '',
   shouldDisplay: false,
   transition: '',
-  props: null
+  props: null,
+  theme: 'black'
 })
 
 export class Modal extends ModalRecord {
@@ -13,6 +14,7 @@ export class Modal extends ModalRecord {
   shouldDisplay: boolean
   transition: string
   props: any
+  theme: string
 }
 
 interface IModal {
@@ -20,6 +22,7 @@ interface IModal {
   shouldDisplay: boolean
   transition: string
   props: any
+  theme: string
 }
 
 type TCreateModal = (appLoader ?: Partial<IModal>) => Modal

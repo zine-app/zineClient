@@ -5,7 +5,13 @@ const zineHeaderStyle = ({ headerImageURL }) => ({
   backgroundImage: headerImageURL ? `url('${headerImageURL}')` : 'none'
 })
 
-export default ({ zine, user }) =>
+export default ({
+  zine = {
+    name: '',
+    description: '',
+    headerImageURL: ''
+  }
+}) =>
   <div
     className="zine--header"
     style={zineHeaderStyle(zine)}

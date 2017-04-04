@@ -5,10 +5,9 @@ import { createZine } from 'app/constants/Zine'
 const PostRecord = Record({
   id: '',
   title: '',
-  description: '',
   authorId: '',
   zineId: '',
-  contentURL: '',
+  body: null,
   createdAt: ''
 })
 
@@ -16,10 +15,9 @@ const PostRecord = Record({
 export class Post extends PostRecord {
   id: string
   title: string
-  description: string
   authorId: string
   zine: string
-  contentURL: string
+  body: any
   createdAt: string
 }
 
@@ -28,30 +26,27 @@ export const createPost = (post ?: Partial<Constant.IPost>):Post => new Post(pos
 const PopulatedPostRecord = Record({
   id: '',
   title: '',
-  description: '',
   author: createUser(),
   zine: createZine(),
-  contentURL: '',
+  body: null,
   createdAt: ''
 })
 
 export class PopulatedPost extends PopulatedPostRecord {
   id: string
   title: string
-  description: string
   author: string
   zine: string
-  contentURL: string
+  body: any
   createdAt: string
 }
 
 interface IPopulatedPost {
   id: string
   title: string
-  description: string
   author: string
   zine: string
-  contentURL: string
+  body: any
   createdAt: string
 }
 

@@ -8,7 +8,7 @@ export default ({ zines = [] }) =>
   <SidebarGroup>
     {
       zines.map((zine, index) =>
-        <Link to={zine.name} key={index} data-tip={zine.name}>
+        <Link to={`/${zine ? zine.name : ''}`} key={index} data-tip={zine.name}>
           <SidebarGroupItem iconImageURL={zine.get('iconImageURL')} />
         </Link>
       )

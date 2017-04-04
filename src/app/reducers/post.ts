@@ -25,9 +25,8 @@ export const postReducer = handleActions({
               [
                 'id',
                 'type',
-                'description',
                 'title',
-                'contentURL',
+                'body',
                 'zineId',
                 'authorId',
                 'createdAt'
@@ -57,9 +56,8 @@ export const postReducer = handleActions({
           [
             'id',
             'type',
-            'description',
             'title',
-            'contentURL',
+            'body',
             'createdAt',
             'zineId',
             'authorId'

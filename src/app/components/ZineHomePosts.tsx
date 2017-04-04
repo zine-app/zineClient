@@ -6,7 +6,7 @@ export default ({ posts }) =>
   posts.size ?
     <div className="zine-home-posts--container">
       <div className="row">
-        {posts.map((post, index) => <Post {...post.toJS()} key={index} />)}
+        {posts.map(post => <Post {...post.toJS()} key={post.id} />)}
       </div>
     </div> :
     <div className="zine-home-posts--container">
