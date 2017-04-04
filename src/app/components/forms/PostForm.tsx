@@ -23,6 +23,8 @@ import uploadImage from 'app/webAPI/image'
 import { map, assign } from 'lodash'
 
 interface IProp extends React.Props<any> {
+  pristine: boolean
+  invalid: boolean
   onChange?: (contentState:any) => void
   readOnly?: boolean
   initialState?: any
@@ -205,7 +207,12 @@ export default class PostEditor extends React.Component<IProp, any> {
                 </div>
                 <div className="row middle-xs">
                   <button
-                    disabled={this.props.submitting}
+                    disabled={
+                      this.props.submitting ||
+                      this.props.pristine ||
+                      this.props.invalid ||
+                      !this.state.editorState.getCurrentContent().hasText()
+                    }
                     className="control--button__blue"
                     onClick={this.props.handleSubmit(this.save)}
                   >
