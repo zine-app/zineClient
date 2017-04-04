@@ -27,6 +27,7 @@ interface IProp extends React.Props<any> {
   initialState?: any
   save?: (post:any) => void
   handleSubmit?: (form:any) => any
+  submitting?: boolean
 }
 
 
@@ -120,7 +121,7 @@ export default class PostEditor extends React.Component<IProp, any> {
   private save (form) {
     const rawContentState = convertToRaw(this.state.editorState.getCurrentContent())
 
-    Promise.all(
+    return Promise.all(
       map(rawContentState.entityMap, (entity:any) =>
         uploadImage(entity.data.image))
     )
@@ -149,7 +150,6 @@ export default class PostEditor extends React.Component<IProp, any> {
   }
 
   render () {
-
     return (
       <div className="post-form--container">
         <div className="post-form--post-container">
@@ -165,6 +165,7 @@ export default class PostEditor extends React.Component<IProp, any> {
           <div onClick={this.focus} className="post-form--editor-container">
             <Editor
               ref={editor => this.editor = editor}
+              stripPastedStyles={true}
               readOnly={this.props.readOnly || false}
               editorState={this.state.editorState}
               onChange={this.onChange}
@@ -197,7 +198,7 @@ export default class PostEditor extends React.Component<IProp, any> {
                     className="control--button__blue"
                     onClick={this.props.handleSubmit(this.save)}
                   >
-                    publish
+                    {this.props.submitting ? 'publishing' : 'publish'}
                   </button>
                 </div>
               </div>

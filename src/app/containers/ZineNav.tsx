@@ -9,7 +9,7 @@ const mapDispatchToProps = (dispatch, { zine }) => ({
       theme: 'white',
       transition: 'fadein',
       name: 'Post',
-      props: { zineId: zine.id }
+      props: { zine: zine }
     }))
 })
 

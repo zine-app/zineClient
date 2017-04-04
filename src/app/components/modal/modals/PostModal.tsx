@@ -4,7 +4,7 @@ import 'app/styles/PostModal'
 import 'app/styles/grid'
 
 
-export default ({ props: { zineId } }) =>
+export default ({ props: { zine } }) =>
   <div className="post-modal--container">
-    <PostForm zineId={zineId} />
+    <PostForm zine={zine} />
   </div>
