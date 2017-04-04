@@ -10,16 +10,15 @@ import Modal from 'app/containers/Modal/Modal'
 
 interface InAppMasterPageProps {
   children?: any
-  editorTools?: boolean
   zine?: any
   user?: any
 }
 
-export default ({ children, editorTools=false, user, zine }:InAppMasterPageProps) =>
+export default ({ children, user, zine }:InAppMasterPageProps) =>
   <div>
     <Modal />
     <div className='zine-home-page-layout--sidebar'>
-      <Sidebar editorTools={editorTools} user={user} zine={zine} />
+      <Sidebar editorTools={!!(zine && zine.ownerId === user.id)} user={user} zine={zine} />
     </div>
     <div
       className='zine-home-page-layout--main'

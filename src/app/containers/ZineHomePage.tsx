@@ -4,7 +4,6 @@ import ZineHomePage from 'app/components/ZineHomePage'
 import ErrorPage from 'app/components/ErrorPage'
 import AppLoader from 'app/components/AppLoader'
 import fetchZine from 'app/actions/zine/fetchZine'
-import createUI from 'app/containers/UI'
 import getPostsForZine from 'app/selectors/post/getPostsForZine'
 import fetchPosts from 'app/actions/post/fetchPosts'
 

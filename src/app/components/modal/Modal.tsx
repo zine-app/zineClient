@@ -1,10 +1,10 @@
 import * as React from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import 'app/styles/modal'
-import PostAnImage from 'app/components/modal/modals/PostAnImage'
+import Post from 'app/components/modal/modals/PostModal'
 
 const modals = {
-  PostAnImage
+  Post
 }
 
 const getModal = name => modals[name]
@@ -35,7 +35,7 @@ const getTransition = transision =>
   transitions[transision] ? transitions[transision] : transitions['default']
 
 interface ModalProps extends React.Props<any> {
-  color?: string
+  theme?: string
   shouldDisplay?: boolean
   transition?: string
   props?: any
@@ -52,11 +52,12 @@ export default (props:ModalProps) =>
     >
     {
       props.shouldDisplay ?
-        <div className="modal--container__black"
+        <div
+          className={`modal--container__${props.theme}`}
           onClick={props.hide}
         >
           <div onClick={event => event.stopPropagation()}>
-          { renderModal(props.name, {...props, hideModal:props.hide, showModal:props.show}) }
+          {renderModal(props.name, {...props, hideModal:props.hide, showModal:props.show})}
           </div>
         </div> :
         null
