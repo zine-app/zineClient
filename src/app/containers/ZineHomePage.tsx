@@ -37,20 +37,5 @@ const mapStateToProps = (state, { match: { params } }) => ({
   posts: getPostsForZine(state, { zine: state.get('zines').find(zine => zine.name === params.zineName) })
 })
 
-const mapDispatchToProps = (dispatch, { match: { params } }) => ({
-  load: async () => {
-    dispatch(fetchZine({ name: params.zineName, deleted: false }))
-    const fetchPostResponse = await dispatch((dispatch, getState) =>
-      dispatch(fetchPosts({
-        zineId: getState()
-          .get('zines')
-          .find(zine => zine.name === params.zineName).id
-      })))
 
-    const authorIds = uniq(fetchPostResponse.payload.map(post => post.authorId))
-
-    dispatch(fetchUsers({ _id: authorIds.length > 1 ? authorIds : authorIds[0] }))
-  }
-})
-
- export default connect(mapStateToProps, mapDispatchToProps)(ZineHomePageContainer)
+export default connect(mapStateToProps)(ZineHomePage)
