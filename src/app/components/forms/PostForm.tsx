@@ -194,7 +194,7 @@ export default class PostEditor extends React.Component<IProp, any> {
                     style={{}}
                     minSize={1}
                     maxSize={4000000}
-                    accept="image/jpeg"
+                    accept="image/jpeg,image/png"
                     multiple={false}
                     onDropAccepted={this.insertImage}
                   >
