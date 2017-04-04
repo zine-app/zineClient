@@ -7,6 +7,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  align-items: center;
 }
 
 .post-form--post-container {
@@ -24,6 +25,14 @@
 .post-form--editor-container {
   flex: 1 1 auto;
   cursor: text;
+}
+
+.post-form--header--container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100vw;
 }
 
 .post-form--toolbar--container {
@@ -78,4 +87,10 @@
   line-height: 1.4em;
   letter-spacing: 0.01em;
   color: rgb(60,60,60);
+}
+
+@media (min-device-width: 48em) {
+  .post-form--post-container {
+    width: 80vw
+  }
 }

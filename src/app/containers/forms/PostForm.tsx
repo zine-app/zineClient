@@ -13,7 +13,9 @@ const mapDispatchToProps = (dispatch, { zine, history }) => ({
       .then(action =>
         history.push(`/${zine.name}/post/${action.payload.id}`))
       .then(dispatch(hideModal()))
-  }
+  },
+
+  close: () => dispatch(hideModal())
 })
 
 export default withRouter(connect(undefined, mapDispatchToProps)(reduxForm({

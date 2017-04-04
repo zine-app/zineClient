@@ -15,6 +15,7 @@ import TextField from 'app/components/fields/TextField'
 import Dropzone from 'react-dropzone'
 import * as validate from 'app/utils/validate'
 import CameraIcon from 'app/icons/camera'
+import ExitIcon from 'app/icons/cross'
 import 'draft-js/dist/Draft.css'
 import 'app/styles/postForm'
 import { Map } from 'immutable'
@@ -28,6 +29,7 @@ interface IProp extends React.Props<any> {
   save?: (post:any) => void
   handleSubmit?: (form:any) => any
   submitting?: boolean
+  close?: () => void
 }
 
 
@@ -152,6 +154,14 @@ export default class PostEditor extends React.Component<IProp, any> {
   render () {
     return (
       <div className="post-form--container">
+        <div className="post-form--header--container">
+          <button
+            disabled={this.props.submitting}
+            onClick={this.props.close}
+          >
+            <ExitIcon size="4em" />
+          </button>
+        </div>
         <div className="post-form--post-container">
           <TextField
             className="post-form--title"
@@ -195,10 +205,11 @@ export default class PostEditor extends React.Component<IProp, any> {
                 </div>
                 <div className="row middle-xs">
                   <button
+                    disabled={this.props.submitting}
                     className="control--button__blue"
                     onClick={this.props.handleSubmit(this.save)}
                   >
-                    {this.props.submitting ? 'publishing' : 'publish'}
+                  {this.props.submitting ? 'publishing...' : 'publish'}
                   </button>
                 </div>
               </div>
