@@ -37,7 +37,7 @@ export default ({
   createdAt = '',
   author: {
     profileImageURL= ''
-  },
+  } = {},
   zine = null
 }) =>
   <div className="col-xs-12 col-sm-4 col-lg-3">

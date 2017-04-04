@@ -37,9 +37,8 @@ export default ({ loading, user, zine }) =>
             <FetchRoute
               exact path="/:zineName/post/:postId"
               load={async (dispatch, props) => {
-                await dispatch(fetchPost({ _id: props.computedMatch.params.postId }))
-              }
-              }
+                const postResponse = await dispatch(fetchPost({ _id: props.computedMatch.params.postId }))
+              }}
               render={props =>
                 <ZinePostPage user={user} zine={zine} {...props}/>
               }
@@ -49,6 +48,22 @@ export default ({ loading, user, zine }) =>
         :
         <Switch>
           <Route exact path="/" component={SplashPage} />
+          <Route
+            exact path="/:zineName"
+            render={props =>
+              <ZineHomePage user={user} zine={zine} {...props}/>
+            }
+          />
+          <FetchRoute
+            exact path="/:zineName/post/:postId"
+            load={async (dispatch, props) => {
+              await dispatch(fetchPost({ _id: props.computedMatch.params.postId }))
+            }
+            }
+            render={props =>
+              <ZinePostPage user={user} zine={zine} {...props}/>
+            }
+          />
           <Redirect to="/" />
         </Switch>
   }
