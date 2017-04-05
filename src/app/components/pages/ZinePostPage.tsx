@@ -4,12 +4,12 @@ import MasterPage from 'app/components/ZineMasterPage'
 import PostReader from 'app/components/PostReader'
 import 'app/styles/zinePostPage'
 
-export default ({ zine, user, post, postActions, history }) =>
+export default ({ zine, user, post, actions, history }) =>
   <AppTools
     zine={zine}
     user={user}
     post={post}
-    postActions={postActions}
+    actions={actions}
     history={history}
   >
     <MasterPage zine={zine} user={user} >

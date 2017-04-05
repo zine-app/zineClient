@@ -3,11 +3,49 @@ import { EditorState, SelectionState } from 'draft-js'
 import TrashIcon from 'app/icons/trash'
 import 'app/styles/media'
 
+
+const Image = ({ url = '', remove = () => null, readOnly = true }) =>
+  <div
+    style={{
+      position: 'relative',
+      boxSizing: 'border-box',
+      padding: '1em 6em',
+    }}
+  >
+  <div
+    style={{
+      position: 'relative',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundImage: url ? `url('${url}')` : 'none'
+    }}
+  >
+    <div
+    style={{
+      paddingTop: '70%'
+    }}
+    ></div>
+    </div>
+    {
+      !readOnly &&
+        <div className="media--toolbar-container">
+          <button onClick={remove}>
+            <TrashIcon size="4rem" color="rgb(90, 150, 210)"/>
+          </button>
+        </div>
+    }
+  </div>
+
+
 export default ({ blockProps, contentState, block }) => {
   const entity = contentState.getEntity(block.getEntityAt(0))
-  const { image } = entity.getData()
+  const { image, url } = entity.getData()
 
-  if(!blockProps.readOnly) {
+  if(blockProps.readOnly) {
+    if(url) { return <Image url={url} /> }
+    else { return <Image url={image.preview} /> }
+  }
+  else {
     const { editorState, onChange } = blockProps
     const selection = editorState.getSelection();
     const content = editorState.getCurrentContent();
@@ -36,62 +74,12 @@ export default ({ blockProps, contentState, block }) => {
       onChange(newEditorState)
     }
 
-
     return (
-      <div
-      style={{
-        position: 'relative',
-        boxSizing: 'border-box',
-        padding: '1em 6em',
-      }}
-      >
-      <div
-        style={{
-          position: 'relative',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundImage: image.preview ? `url('${image.preview}')` : 'none'
-        }}
-      >
-        <div
-        style={{
-          paddingTop: '70%'
-        }}
-        ></div>
-        </div>
-        <div className="media--toolbar-container">
-          <button onClick={remove}>
-            <TrashIcon size="4rem" color="rgb(90, 150, 210)"/>
-          </button>
-        </div>
-      </div>
+      <Image
+        url={url || image.preview}
+        readOnly={false}
+        remove={remove}
+      />
     )
-  } else {
-
-    return (
-      <div
-      style={{
-        position: 'relative',
-        boxSizing: 'border-box',
-        padding: '1em 6em',
-      }}
-      >
-      <div
-        style={{
-          position: 'relative',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundImage: entity.data.url ? `url('${entity.data.url}')` : 'none'
-        }}
-      >
-        <div
-        style={{
-          paddingTop: '70%'
-        }}
-        ></div>
-        </div>
-      </div>
-    )
-
   }
 }

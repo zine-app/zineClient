@@ -7,6 +7,7 @@ import savePost from 'app/actions/post/savePost'
 import hideModal from 'app/actions/UI/modal/hideModal'
 import { assign } from 'lodash'
 
+
 const mapDispatchToProps = (dispatch, { zine, history }) => ({
   save: post => {
     return dispatch(savePost(assign(post, { zineId: zine.id })))
@@ -18,6 +19,10 @@ const mapDispatchToProps = (dispatch, { zine, history }) => ({
   close: () => dispatch(hideModal())
 })
 
-export default withRouter(connect(undefined, mapDispatchToProps)(reduxForm({
+const mapStateToProps = (state, props) => ({
+  initialValues: props.post
+})
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(reduxForm({
   form: 'postForm'
 })(PostForm)))

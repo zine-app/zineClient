@@ -27,7 +27,7 @@ interface IProp extends React.Props<any> {
   invalid: boolean
   onChange?: (contentState:any) => void
   readOnly?: boolean
-  initialState?: any
+  initialValues?: any
   save?: (post:any) => void
   handleSubmit?: (form:any) => any
   submitting?: boolean
@@ -40,8 +40,8 @@ export default class PostEditor extends React.Component<IProp, any> {
     super(props)
 
     this.state = {
-      editorState: props.initialState ?
-        EditorState.createWithContent(convertFromRaw(props.initialState)):
+      editorState: props.initialValues ?
+        EditorState.createWithContent(convertFromRaw(props.initialValues.get('body').toJS())):
         EditorState.createEmpty()
     }
 
