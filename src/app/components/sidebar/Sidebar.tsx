@@ -17,7 +17,7 @@ export default ({ editorTools, user, zine }:SidebarProps) =>
       <UserProfileButton />
     </div>
     <div className="sidebar--container--main">
-      <HomePageTools />
+      <HomePageTools user={user} zine={zine} />
       { editorTools && <ZineEditorTools zine={zine} /> }
       <OwnZines />
     </div>
