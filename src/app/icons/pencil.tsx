@@ -1,7 +1,7 @@
 import * as React from 'react'
 
-export default ({ color = 'rgb(0,0,0)', opacity = 1, className = "" }) =>
-  <svg opacity={opacity} className={className} viewBox="0 0 40 40" enableBackground="new 0 0 40 40">
+export default ({ size="1em", color = 'rgb(0,0,0)', opacity = 1, className = "" }) =>
+  <svg height={size} width={size} opacity={opacity} className={className} viewBox="0 0 40 40" enableBackground="new 0 0 40 40">
     <g>
     	<g>
     		<g>

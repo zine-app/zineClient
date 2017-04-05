@@ -23,37 +23,39 @@ export default ({ loading, user, zine }) =>
     loading ?
       <AppLoader shouldDisplay={true} /> :
       user && user.name ?
-        <AppTools zine={zine} user={user}>
-          <Switch>
-            <Route
-              exact path="/"
-              render={props =>
+        <Switch>
+          <Route
+            exact path="/"
+            render={props =>
+              <AppTools zine={zine} user={user}>
                 <HomePage user={user} zine={zine} {...props}/>
-              }
-            />
-            <FetchRoute
-              exact path="/:zineName"
-              load={async (dispatch, props) => {
-                const zineResponse = await dispatch(fetchZine({ name: props.computedMatch.params.zineName }))
-                const postResponse = await dispatch(fetchPosts({ zineId: zineResponse.payload.id }))
-                const authorIds = uniq(postResponse.payload.map(post => post.authorId))
-                await dispatch(fetchUsers({ _id: authorIds.length > 1 ? authorIds: authorIds[0] }))
-              }}
-              render={props =>
+              </AppTools>
+            }
+          />
+          <FetchRoute
+            exact path="/:zineName"
+            load={async (dispatch, props) => {
+              const zineResponse = await dispatch(fetchZine({ name: props.computedMatch.params.zineName }))
+              const postResponse = await dispatch(fetchPosts({ zineId: zineResponse.payload.id, deleted: false }))
+              const authorIds = uniq(postResponse.payload.map(post => post.authorId))
+              await dispatch(fetchUsers({ _id: authorIds.length > 1 ? authorIds: authorIds[0] }))
+            }}
+            render={props =>
+              <AppTools zine={zine} user={user}>
                 <ZineHomePage user={user} zine={zine} {...props}/>
-              }
-            />
-            <FetchRoute
-              exact path="/:zineName/post/:postId"
-              load={async (dispatch, props) => {
-                const postResponse = await dispatch(fetchPosts({ _id: props.computedMatch.params.postId }))
-              }}
-              render={props =>
-                <ZinePostPage user={user} zine={zine} {...props}/>
-              }
-            />
-          </Switch>
-        </AppTools>
+              </AppTools>
+            }
+          />
+          <FetchRoute
+            exact path="/:zineName/post/:postId"
+            load={async (dispatch, props) => {
+              const postResponse = await dispatch(fetchPosts({ _id: props.computedMatch.params.postId, deleted: false }))
+            }}
+            render={props =>
+              <ZinePostPage user={user} zine={zine} {...props}/>
+            }
+          />
+        </Switch>
         :
         <Switch>
           <Route exact path="/" component={SplashPage} />
@@ -61,7 +63,7 @@ export default ({ loading, user, zine }) =>
             exact path="/:zineName"
             load={async (dispatch, props) => {
               const zineResponse = await dispatch(fetchZine({ name: props.computedMatch.params.zineName }))
-              const postResponse = await dispatch(fetchPosts({ zineId: zineResponse.payload.id }))
+              const postResponse = await dispatch(fetchPosts({ zineId: zineResponse.payload.id, deleted: false }))
               const authorIds = uniq(postResponse.payload.map(post => post.authorId))
               await dispatch(fetchUsers({ _id: authorIds.length > 1 ? authorIds: authorIds[0] }))
             }}

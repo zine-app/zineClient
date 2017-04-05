@@ -12,13 +12,22 @@ interface InAppMasterPageProps {
   children?: any
   zine?: any
   user?: any
+  post?: any
+  postActions?:any
+  history?: any
 }
 
-export default ({ children, user, zine }:InAppMasterPageProps) =>
+export default ({ children, user, zine, post, postActions, history }:InAppMasterPageProps) =>
   <div>
     <Modal />
     <div className='zine-home-page-layout--sidebar'>
-      <Sidebar editorTools={!!(zine && zine.ownerId === user.id)} user={user} zine={zine} />
+      <Sidebar
+        user={user}
+        zine={zine}
+        post={post}
+        postActions={postActions}
+        history={history}
+      />
     </div>
     <div
       className='zine-home-page-layout--main'
