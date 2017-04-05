@@ -7,7 +7,8 @@ import {
   RichUtils,
   AtomicBlockUtils,
   Entity,
-  DefaultDraftBlockRenderMap
+  DefaultDraftBlockRenderMap,
+  SelectionState
 } from 'draft-js'
 import { debounce } from 'lodash'
 import MediaComponent from 'app/components/MediaComponent'
@@ -48,6 +49,7 @@ export default class PostEditor extends React.Component<IProp, any> {
     this.save = this.save.bind(this)
     this.focus = this.focus.bind(this)
     this.onChange = this.onChange.bind(this)
+    this.removeBlock = this.removeBlock.bind(this)
     this.makeBlockParagraph = this.makeBlockParagraph.bind(this)
     this.makeBlockHeader = this.makeBlockHeader.bind(this)
     this.insertImage = this.insertImage.bind(this)
@@ -92,7 +94,9 @@ export default class PostEditor extends React.Component<IProp, any> {
       .createEntity(
         'IMAGE',
         'IMMUTABLE',
-        { image: files[0] })
+        {
+          image: files[0]
+        })
 
     const newEditorState = EditorState.set(
       this.state.editorState,
@@ -114,12 +118,39 @@ export default class PostEditor extends React.Component<IProp, any> {
         component: MediaComponent,
         editable: false,
         props: {
-          onChange: this.onChange,
-          editorState: this.state.editorState,
-          selection: this.state.editorState.getSelection()
+          remove: this.removeBlock
         }
       }
     }
+  }
+
+  private removeBlock (key) {
+    const content = this.state.editorState.getCurrentContent()
+    const block = content.getBlockForKey(key)
+    const selection = this.state.editorState.getSelection()
+    const keyAfter = content.getKeyAfter(key)
+    const blockMap = content.getBlockMap().delete(key)
+
+    const withoutAtomicBlock = content.merge({
+      blockMap, selectionAfter: selection
+    })
+
+    const newState = EditorState.push(
+      this.state.editorState,
+      withoutAtomicBlock,
+      "remove-range"
+    )
+
+    const newSelection = new SelectionState({
+      anchorKey: keyAfter,
+      anchorOffset: 0,
+      focusKey: keyAfter,
+      focusOffset: block.getLength()
+    })
+
+    const newEditorState = EditorState.forceSelection(newState, newSelection)
+
+    this.onChange(newEditorState)
   }
 
   private save (form) {

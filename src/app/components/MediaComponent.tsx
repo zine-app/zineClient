@@ -41,45 +41,11 @@ export default ({ blockProps, contentState, block }) => {
   const entity = contentState.getEntity(block.getEntityAt(0))
   const { image, url } = entity.getData()
 
-  if(blockProps.readOnly) {
-    if(url) { return <Image url={url} /> }
-    else { return <Image url={image.preview} /> }
-  }
-  else {
-    const { editorState, onChange } = blockProps
-    const selection = editorState.getSelection();
-    const content = editorState.getCurrentContent();
-    const type = entity.getType()
-
-    const remove = () => {
-      const keyAfter = content.getKeyAfter(block.key);
-      const blockMap = content.getBlockMap().delete(block.key);
-      const withoutAtomicBlock = content.merge({
-        blockMap, selectionAfter: selection
-      })
-
-      const newState = EditorState.push(
-        editorState, withoutAtomicBlock, "remove-range"
-      )
-
-      const newSelection = new SelectionState({
-        anchorKey: keyAfter,
-        anchorOffset: 0,
-        focusKey: keyAfter,
-        focusOffset: block.getLength()
-      })
-
-      const newEditorState = EditorState.forceSelection(newState, newSelection)
-
-      onChange(newEditorState)
-    }
-
-    return (
-      <Image
-        url={url || image.preview}
-        readOnly={false}
-        remove={remove}
-      />
-    )
-  }
+  return (
+    <Image
+      url={url || image.preview}
+      readOnly={false}
+      remove={() => blockProps.remove(block.key)}
+    />
+  )
 }
