@@ -8,7 +8,8 @@ const PostRecord = Record({
   authorId: '',
   zineId: '',
   body: null,
-  createdAt: ''
+  createdAt: '',
+  deleted: false
 })
 
 
@@ -19,6 +20,7 @@ export class Post extends PostRecord {
   zine: string
   body: any
   createdAt: string
+  deleted: boolean
 }
 
 export const createPost = (post ?: Partial<Constant.IPost>):Post => new Post(post)
@@ -29,7 +31,8 @@ const PopulatedPostRecord = Record({
   author: createUser(),
   zine: createZine(),
   body: null,
-  createdAt: ''
+  createdAt: '',
+  boolean: false
 })
 
 export class PopulatedPost extends PopulatedPostRecord {
@@ -39,6 +42,7 @@ export class PopulatedPost extends PopulatedPostRecord {
   zine: string
   body: any
   createdAt: string
+  deleted: boolean
 }
 
 interface IPopulatedPost {
@@ -48,6 +52,7 @@ interface IPopulatedPost {
   zine: string
   body: any
   createdAt: string
+  deleted: boolean
 }
 
 export const createPopulatedPost = (post?:Partial<IPopulatedPost>):IPopulatedPost =>
