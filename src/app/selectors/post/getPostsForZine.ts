@@ -12,6 +12,7 @@ export default createSelector(
   (posts, users, zine) =>
     posts
       .filter(post => post.zineId === zine.id)
+      .filter(post => !post.deleted)
       .sort((postA, postB) =>
         new Date(postB.createdAt) > new Date(postA.createdAt))
       .map(post => createPopulatedPost(assign(

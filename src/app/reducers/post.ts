@@ -66,5 +66,17 @@ export const postReducer = handleActions({
     ),
 
     throw: state => state
+  },
+
+  "POST:DELETE:RESPONSE": {
+    next: (state, action) =>
+      state.find(post => post.id === action.payload.id) ?
+        state.update(
+          state.findIndex(zine => zine.id === action.payload.id),
+          post => post.mergeDeep(pick(action.payload, ['deleted']))
+        ):
+        state,
+
+    throw: state => state
   }
 }, initialState)

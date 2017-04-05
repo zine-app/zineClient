@@ -5,6 +5,7 @@ import assign from 'lodash'
 
 interface IProps extends React.Props<any> {
   match: any
+  location: any
   load: () => Promise<any>
   render: (props:any) => any
 }
@@ -15,7 +16,8 @@ class FetchRoute extends React.Component<IProps, any> {
   }
 
   componentWillReceiveProps (props) {
-    this.props.match !== props.match && props.load()
+    this.props.location !==
+    props.location && props.load()
   }
 
   render () {
