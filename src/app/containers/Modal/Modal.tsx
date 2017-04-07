@@ -9,7 +9,7 @@ const mapDispatchToProps = dispatch => ({
   show: options => dispatch(showModal(options))
 })
 
-const mapStateToProps = state => state.getIn(['ui','modal']).toJS()
+const mapStateToProps = state => state.getIn(['ui','modal']).toObject()
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Modal)

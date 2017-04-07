@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import savePost from 'app/actions/post/savePost'
 import hideModal from 'app/actions/UI/modal/hideModal'
 import { assign } from 'lodash'
-
+import { EditorState, convertFromRaw } from 'draft-js'
 
 const mapDispatchToProps = (dispatch, { zine, history }) => ({
   save: post => {
@@ -19,8 +19,9 @@ const mapDispatchToProps = (dispatch, { zine, history }) => ({
   close: () => dispatch(hideModal())
 })
 
+
 const mapStateToProps = (state, props) => ({
-  initialValues: props.post
+  initialValues: props.editorState
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(reduxForm({
