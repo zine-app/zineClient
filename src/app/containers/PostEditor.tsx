@@ -80,6 +80,7 @@ export default class PostEditor extends React.Component<IProp, any> {
     if(contentBlock.getType() === 'atomic') {
       return {
         component: MediaComponent,
+        editable: false,
         props: {
           readOnly: this.props.readOnly || false,
           remove: this.removeBlock
@@ -119,9 +120,7 @@ export default class PostEditor extends React.Component<IProp, any> {
 
   render () {
     return (
-      <div
-        onClick={this.focus}
-      >
+      <div onClick={this.focus}>
         <Editor
           ref={editor => this.editor = editor}
           stripPastedStyles={true}

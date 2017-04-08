@@ -64,7 +64,7 @@
   justify-content: flex-start;
 }
 
-.post-form--title {
+[class^=post-form--title] {
   box-sizing: border-box;
   width: 100%;
   font-family: $zineFontFamily;
