@@ -44,7 +44,7 @@ export default ({ blockProps, contentState, block }) => {
   return (
     <Image
       url={url || image.preview}
-      readOnly={false}
+      readOnly={blockProps.readOnly}
       remove={() => blockProps.remove(block.key)}
     />
   )

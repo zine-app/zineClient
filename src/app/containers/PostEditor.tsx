@@ -80,8 +80,8 @@ export default class PostEditor extends React.Component<IProp, any> {
     if(contentBlock.getType() === 'atomic') {
       return {
         component: MediaComponent,
-        editable: false,
         props: {
+          readOnly: this.props.readOnly || false,
           remove: this.removeBlock
         }
       }

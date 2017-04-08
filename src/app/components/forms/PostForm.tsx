@@ -81,6 +81,7 @@ export default ({ initialValues, submitting, anyTouched, pristine, invalid, clos
             component={({ input: { value, onChange }}) => {
               return (
                 <PostEditor
+                  readOnly={submitting}
                   editorState={value}
                   onChange={editorState =>
                     onChange(editorState)
