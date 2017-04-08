@@ -8,7 +8,6 @@ import CameraIcon from 'app/icons/camera'
 import ExitIcon from 'app/icons/cross'
 import 'app/styles/postForm'
 import { Map } from 'immutable'
-import uploadImage from 'app/webAPI/image'
 import { map, assign, filter, reduce } from 'lodash'
 import {
   convertToRaw,
@@ -31,52 +30,7 @@ interface IProp extends React.Props<any> {
 }
 
 
-
-// private save (form) {
-//   const rawContentState = convertToRaw(this.state.editorState.getCurrentContent())
-//
-//   return Promise.all(
-//     map(rawContentState.entityMap, (entity:any) =>
-//       entity.data.image ?
-//         uploadImage(entity.data.image) :
-//         Promise.resolve(entity.data))
-//   )
-//   // normalize the responses
-//   .then(responses =>
-//     responses.map(response =>
-//       response.body ?
-//         response.body.url :
-//         response.url
-//     )
-//   )
-//   // save post
-//   .then(responses =>
-//     this.props.save({
-//       id: this.props.initialValues && this.props.initialValues.get('id'),
-//       title: form.get('title'),
-//       body: assign(
-//         rawContentState,
-//         {
-//           entityMap: map(
-//             rawContentState.entityMap,
-//             (entity, index) =>
-//               assign(
-//                 entity,
-//                 {
-//                   data: {
-//                     url: responses[index]
-//                   }
-//                 }
-//               )
-//           )
-//         }
-//       )
-//     })
-//   )
-//   .catch(error => console.log(error))
-// }
-//
-export default ({ initialValues, submitting, anyTouched, pristine, invalid, close, handleSubmit, change }) => {
+export default ({ initialValues, submitting, anyTouched, pristine, invalid, close, handleSubmit, change, save }) => {
   const insertImage = (editorState, files) => {
     const contentWithEntity = editorState
       .getCurrentContent()
@@ -100,8 +54,6 @@ export default ({ initialValues, submitting, anyTouched, pristine, invalid, clos
       ' '
     )
   }
-
-  const save = () => {}
 
   return (
     <div className="post-form--container">

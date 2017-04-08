@@ -8,12 +8,11 @@ declare namespace webAPI.Request {
   }
 
   interface ZinePost {
-    type:string
+    id?:string
     title?:string
-    description?:string
     authorId?:string
     zineId:string
-    contentURL:string
+    body:any
   }
 }
 
