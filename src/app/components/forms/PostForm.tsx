@@ -30,7 +30,7 @@ interface IProp extends React.Props<any> {
 }
 
 
-export default ({ initialValues, submitting, anyTouched, pristine, invalid, close, handleSubmit, change, save }) => {
+export default ({ initialValues, submitting, anyTouched, pristine, invalid, error, close, handleSubmit, change, save }) => {
   const insertImage = (editorState, files) => {
     const contentWithEntity = editorState
       .getCurrentContent()
@@ -53,6 +53,13 @@ export default ({ initialValues, submitting, anyTouched, pristine, invalid, clos
     )
   }
 
+  const hasContent = editorState =>
+    (editorState &&
+    editorState.getCurrentContent &&
+    editorState.getCurrentContent().hasText()) ?
+    undefined : 'post is empty'
+
+
   return (
     <div className="post-form--container">
       <div className="post-form--header--container">
@@ -69,13 +76,18 @@ export default ({ initialValues, submitting, anyTouched, pristine, invalid, clos
           placeholder="title"
           name="title"
           validate={[
+            validate.required,
             validate.maxLength(50),
-            validate.minLength(0)
+            validate.minLength(1)
           ]}
         />
         <div className="post-form--editor-container">
           <Field
             name="body"
+            validate={[
+              validate.required,
+              hasContent
+            ]}
             component={({ input: { value, onChange }}) =>
               <PostEditor
                 readOnly={submitting}
@@ -95,6 +107,10 @@ export default ({ initialValues, submitting, anyTouched, pristine, invalid, clos
               <div className="post-form--toolbar--edit-tools">
                 <Field
                   name="body"
+                  validate={[
+                    validate.required,
+                    hasContent
+                  ]}
                   component={({ input: { value, onChange } }) =>
                     <Dropzone
                       style={{}}
