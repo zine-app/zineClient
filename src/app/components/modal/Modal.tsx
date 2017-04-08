@@ -57,7 +57,7 @@ export default (props:ModalProps) =>
           onClick={props.hide}
         >
           <div onClick={event => event.stopPropagation()}>
-          {renderModal(props.name, {...props, hideModal:props.hide, showModal:props.show})}
+          {renderModal(props.name, {...props, props: props.props ? props.props.toObject() : null, hideModal:props.hide, showModal:props.show})}
           </div>
         </div> :
         null

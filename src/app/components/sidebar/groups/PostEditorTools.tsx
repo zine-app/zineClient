@@ -11,19 +11,32 @@ import EditIcon from 'app/icons/pencil'
 interface IProps {
   zine: any
   post: any
-  deletePost: (post:any) => Promise<any>
+  actions: any
   history: any
 }
 
-export default ({ zine, post, deletePost, history }:IProps) =>
+export default ({ zine, post, actions, history }:IProps) =>
   <SidebarGroup>
-    <button data-tip="edit post">
+    <button
+      onClick={() => {
+        actions.modal.toggle({
+          theme: 'white',
+          transition: 'fadein',
+          name: 'Post',
+          props: {
+            zine,
+            post
+          }
+        })
+      }}
+      data-tip="edit post"
+    >
       <EditIcon size="3rem" color="rgb(80,80,80)" />
     </button>
     <div style={{height: '0.3rem'}} />
     <button
       onClick={() => {
-        deletePost(post).then(() => history.replace(`/${zine.name}`))
+        actions.post.delete(post).then(() => history.replace(`/${zine.name}`))
       }}
       data-tip="delete post"
     >

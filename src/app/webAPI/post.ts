@@ -19,7 +19,7 @@ export const requestFetchPosts = (query):Promise<webAPI.Response.ZinePost> =>
 
 export const requestSavePost = (post):Promise<webAPI.Response.ZinePost> =>
   fetch(`${API_URL}/post`, {
-      method: 'POST',
+      method: 'PUT',
       credentials: 'include',
       headers: {
         'Accept': 'application/json',
