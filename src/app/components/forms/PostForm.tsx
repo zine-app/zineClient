@@ -43,9 +43,7 @@ export default ({ initialValues, submitting, anyTouched, pristine, invalid, clos
 
     const newEditorState = EditorState.set(
       editorState,
-      {
-        currentContent: contentWithEntity
-      }
+      { currentContent: contentWithEntity }
     )
 
     return AtomicBlockUtils.insertAtomicBlock(
