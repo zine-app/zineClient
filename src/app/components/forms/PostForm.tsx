@@ -78,17 +78,15 @@ export default ({ initialValues, submitting, anyTouched, pristine, invalid, clos
         <div className="post-form--editor-container">
           <Field
             name="body"
-            component={({ input: { value, onChange }}) => {
-              return (
-                <PostEditor
-                  readOnly={submitting}
-                  editorState={value}
-                  onChange={editorState =>
-                    onChange(editorState)
-                  }
-                />
-              )
-            }}
+            component={({ input: { value, onChange }}) =>
+              <PostEditor
+                readOnly={submitting}
+                editorState={value}
+                onChange={editorState =>
+                  onChange(editorState)
+                }
+              />
+            }
           />
         </div>
       </div>

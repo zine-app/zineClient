@@ -10,7 +10,7 @@ import { EditorState, convertFromRaw, convertToRaw } from 'draft-js'
 import uploadImage from 'app/webAPI/image'
 
 
-const mapDispatchToProps = (dispatch, { zine, history, editorState }) => ({
+const mapDispatchToProps = (dispatch, { zine, history, post }) => ({
   save: form => {
       const rawContentState = convertToRaw(form.get('body').getCurrentContent())
 
@@ -37,7 +37,7 @@ const mapDispatchToProps = (dispatch, { zine, history, editorState }) => ({
       // save post
       .then(entityMap =>
         dispatch(savePost({
-          id: editorState && editorState.get('id'),
+          id: post && post.get('id'),
           zineId: zine.id,
           title: form.get('title'),
           body: assign(rawContentState, { entityMap })
@@ -54,8 +54,8 @@ const mapDispatchToProps = (dispatch, { zine, history, editorState }) => ({
 })
 
 
-const mapStateToProps = (state, { editorState }) => ({
-  initialValues: editorState
+const mapStateToProps = (state, { post }) => ({
+  initialValues: post
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(reduxForm({

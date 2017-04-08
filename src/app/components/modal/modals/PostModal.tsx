@@ -12,15 +12,15 @@ export default ({ props: { zine, post = null } }) =>
   <div className="post-modal--container">
     <PostForm
       zine={zine}
-      editorState={
-        post && post.has('body') ?
+      post={
+        post ?
           post.set(
             'body',
-            EditorState.createWithContent(
-              convertFromRaw(post.get('body').toJS())
-            )
-          ) :
-          EditorState.createEmpty()
+              EditorState.createWithContent(
+                convertFromRaw(post.get('body').toJS())
+              )
+          ):
+          null
       }
     />
   </div>
