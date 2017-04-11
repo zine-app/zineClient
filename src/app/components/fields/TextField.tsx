@@ -20,7 +20,7 @@ const renderComponent = ({
   className='control--field',
   meta: { touched, dirty, invalid, error}
 }) =>
-  <div className={className}>
+  <div>
       { label && <label>{label}</label> }
       <input
         autoFocus={autoFocus}

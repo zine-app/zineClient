@@ -1,4 +1,8 @@
+@import 'colors';
+
 .media--toolbar-container {
+  box-sizing: border-box;
+  padding: 1rem 3rem;
   position: absolute;
   top: 0;
   left: 0;
@@ -12,7 +16,39 @@
   transition: opacity 0.3s ease-in;
 }
 
+[class^="button-set"] {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  flex: 0 0 auto;
+  border-radius: 3rem;
+  box-sizing: border-box;
+  padding: 0 0.6rem;
+}
+
+[class^="button-set"][class*="__blue"] {
+  background-color: $blue
+}
+
 .media--toolbar-container:hover {
   transition: opacity 0.3s ease-out;
   opacity: 1;
+}
+
+[class^="media-component--image"] {
+  width: 100vw
+}
+
+@media (min-device-width: 48em) {
+  [class^="media-component--image"][class*="__small"] {
+    width: 30vw
+  }
+
+  [class^="media-component--image"][class*="__medium"] {
+    width: 60vw
+  }
+
+  [class^="media-component--image"][class*="__large"] {
+    width: 100vw
+  }
 }

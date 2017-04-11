@@ -37,6 +37,7 @@ export default class PostEditor extends React.Component<IProp, any> {
     this.makeBlockHeader = this.makeBlockHeader.bind(this)
     this.blockRenderer = this.blockRenderer.bind(this)
     this.onFinished = debounce(this.onFinished.bind(this), 300)
+    this.editEntity = this.editEntity.bind(this)
   }
 
   componentWillReceiveProps (props) {
@@ -76,6 +77,14 @@ export default class PostEditor extends React.Component<IProp, any> {
     ))
   }
 
+  private editEntity (key, data) {
+    this.state.editorState
+      .getCurrentContent()
+      .mergeEntityData(key, data)
+
+    this.onChange(this.state.editorState)
+  }
+
   private blockRenderer (contentBlock) {
     if(contentBlock.getType() === 'atomic') {
       return {
@@ -83,7 +92,8 @@ export default class PostEditor extends React.Component<IProp, any> {
         editable: false,
         props: {
           readOnly: this.props.readOnly || false,
-          remove: this.removeBlock
+          remove: this.removeBlock,
+          edit: this.editEntity
         }
       }
     }
