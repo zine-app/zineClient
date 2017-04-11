@@ -5,7 +5,7 @@ import HomeIcon from 'app/icons/home'
 
 export default () =>
   <SidebarGroup>
-    <Link data-tip="home" to="/">
+    <Link data-tip="go home" to="/">
       <HomeIcon size="3rem" color="rgb(80,80,80)" />
     </Link>
     <div style={{height: '0.3rem'}} />

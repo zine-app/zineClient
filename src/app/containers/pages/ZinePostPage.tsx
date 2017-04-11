@@ -2,11 +2,16 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import ZinePostPage from 'app/components/pages/ZinePostPage'
 import deletePost from 'app/actions/post/deletePost'
-
+import toggleModal from 'app/actions/ui/Modal/toggleModal'
 
 const mapDispatchToProps = dispatch => ({
-  postActions: {
-    delete: post => dispatch(deletePost(post))
+  actions: {
+    post: {
+      delete: post => dispatch(deletePost(post))
+    },
+    modal: {
+      toggle: props => dispatch(toggleModal(props))
+    }
   }
 })
 

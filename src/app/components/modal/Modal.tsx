@@ -2,9 +2,11 @@ import * as React from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import 'app/styles/modal'
 import Post from 'app/components/modal/modals/PostModal'
+import createNewChannel from 'app/components/modal/modals/CreateNewChannelModal'
 
 const modals = {
-  Post
+  Post,
+  createNewChannel
 }
 
 const getModal = name => modals[name]
@@ -57,7 +59,7 @@ export default (props:ModalProps) =>
           onClick={props.hide}
         >
           <div onClick={event => event.stopPropagation()}>
-          {renderModal(props.name, {...props, hideModal:props.hide, showModal:props.show})}
+          {renderModal(props.name, {...props, props: props.props ? props.props.toObject() : null, hideModal:props.hide, showModal:props.show})}
           </div>
         </div> :
         null

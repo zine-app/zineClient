@@ -13,11 +13,11 @@ interface InAppMasterPageProps {
   zine?: any
   user?: any
   post?: any
-  postActions?:any
+  actions?:any
   history?: any
 }
 
-export default ({ children, user, zine, post, postActions, history }:InAppMasterPageProps) =>
+export default ({ children, user, zine, post, actions, history }:InAppMasterPageProps) =>
   <div>
     <Modal />
     <div className='zine-home-page-layout--sidebar'>
@@ -25,7 +25,7 @@ export default ({ children, user, zine, post, postActions, history }:InAppMaster
         user={user}
         zine={zine}
         post={post}
-        postActions={postActions}
+        actions={actions}
         history={history}
       />
     </div>

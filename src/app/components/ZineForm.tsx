@@ -101,7 +101,6 @@ export default props => {
       <Field
         name="published" component={control} type="toggle" label="published"
       />
-
       <div className="card--list-item">
         <div className="control--field-group">
           <button

@@ -11,11 +11,11 @@ interface SidebarProps {
   user: any
   zine: any
   post?: any
-  postActions?:any
+  actions?:any
   history?:any
 }
 
-export default ({ user, zine, post, postActions, history }:SidebarProps) =>
+export default ({ user, zine, post, actions, history }:SidebarProps) =>
   <div className="sidebar--container">
     <div className="sidebar--container--header">
       <UserProfileButton />
@@ -23,7 +23,14 @@ export default ({ user, zine, post, postActions, history }:SidebarProps) =>
     <div className="sidebar--container--main">
       <HomePageTools/>
       { user && zine && user.id === zine.ownerId && !post && <ZineEditorTools zine={zine} /> }
-      { user && zine && user.id === zine.ownerId && post && <PostEditorTools zine={zine} post={post} deletePost={postActions.delete} history={history} />}
+      { user && zine && user.id === zine.ownerId && post &&
+        <PostEditorTools
+          zine={zine}
+          post={post}
+          actions={actions}
+          history={history}
+        />
+      }
       <OwnZines />
     </div>
     <div className="sidebar--container--footer"></div>
