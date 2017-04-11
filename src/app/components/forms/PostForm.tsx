@@ -59,6 +59,7 @@ export default ({ initialValues, submitting, anyTouched, pristine, invalid, erro
     editorState.getCurrentContent().hasText()) ?
     undefined : 'post is empty'
 
+  let editor = null
 
   return (
     <div className="post-form--container">
@@ -72,6 +73,7 @@ export default ({ initialValues, submitting, anyTouched, pristine, invalid, erro
       </div>
       <div className="post-form--post-container">
         <TextField
+          autoFocus={true}
           className="post-form--title"
           placeholder="title"
           name="title"
@@ -81,7 +83,10 @@ export default ({ initialValues, submitting, anyTouched, pristine, invalid, erro
             validate.minLength(1)
           ]}
         />
-        <div className="post-form--editor-container">
+        <div
+          className="post-form--editor-container"
+          onClick={() => editor && editor.focus()}
+        >
           <Field
             name="body"
             validate={[
@@ -90,6 +95,7 @@ export default ({ initialValues, submitting, anyTouched, pristine, invalid, erro
             ]}
             component={({ input: { value, onChange }}) =>
               <PostEditor
+                ref={component => editor = component}
                 readOnly={submitting}
                 editorState={value}
                 onChange={editorState =>

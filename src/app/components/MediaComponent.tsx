@@ -12,20 +12,7 @@ const Image = ({ url = '', remove = () => null, readOnly = true }) =>
       padding: '1em 6em',
     }}
   >
-  <div
-    style={{
-      position: 'relative',
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      backgroundImage: url ? `url('${url}')` : 'none'
-    }}
-  >
-    <div
-    style={{
-      paddingTop: '70%'
-    }}
-    ></div>
-    </div>
+    <img src={url} width="100%" />
     {
       !readOnly &&
         <div className="media--toolbar-container">

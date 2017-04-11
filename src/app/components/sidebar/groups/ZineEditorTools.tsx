@@ -11,7 +11,7 @@ interface IZineEditorProps {
 export default ({ toggleSettingsCard }:IZineEditorProps) =>
   <SidebarGroup>
     <button
-      data-tip="zine settings"
+      data-tip="edit channel settings"
       className="zine-editor-tools--item"
       onClick={toggleSettingsCard}
     ><GearIcon /></button>

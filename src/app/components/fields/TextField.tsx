@@ -8,18 +8,22 @@ interface ITextFieldProps extends React.Props<any> {
   placeholder?:string
   validate?:Array<any>
   className?:string
+  autoFocus?:boolean
+  onChange?:(value:any) => any
 }
 
 const renderComponent = ({
   input,
   placeholder,
   label,
-  className = 'control--text',
+  autoFocus,
+  className='control--field',
   meta: { touched, dirty, invalid, error}
 }) =>
   <div className={className}>
       { label && <label>{label}</label> }
       <input
+        autoFocus={autoFocus}
         className={`${className}${touched && error ? '__error' : ''}`}
         {...input} type="text"
         placeholder={placeholder}
@@ -32,7 +36,14 @@ const renderComponent = ({
     }
   </div>
 
-export default ({ name, validate, placeholder, label, className }:ITextFieldProps) =>
+export default ({
+  name,
+  validate,
+  placeholder = '',
+  label = '',
+  className = '',
+  autoFocus = false
+}:ITextFieldProps) =>
   <Field
     placeholder={placeholder}
     label={label}
@@ -40,4 +51,5 @@ export default ({ name, validate, placeholder, label, className }:ITextFieldProp
     name={name}
     component={renderComponent}
     className={className}
+    autoFocus={autoFocus}
   />
