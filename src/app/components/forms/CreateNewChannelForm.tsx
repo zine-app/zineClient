@@ -28,7 +28,7 @@ export default props => {
   return (
     <div>
       <label>channel handle</label>
-      <p>your channel handle is used in your web address, must be lowercase and can only contain underscores</p>
+      <p>Your channel handle is used in your web address, must be lowercase and can only contain underscores.</p>
       <TextField
         className="control--field"
         name="name"
@@ -42,7 +42,7 @@ export default props => {
       />
       <div style={{ height: '4rem' }}/>
       <label>channel description</label>
-      <p>give your channel a short description to help viewers know what it's about</p>
+      <p>Give your channel a short description to help viewers know what it's about.</p>
       <TextField
         className="control--field"
         name="description"
@@ -54,7 +54,7 @@ export default props => {
       />
       <div style={{ height: '4rem' }}/>
       <label>categories (comma seperated)</label>
-      <p>help people find your channel by adding it to relevant categories</p>
+      <p>Help people find your channel by adding it to relevant categories.</p>
       <TextField
         className="control--field"
         name="categories"
@@ -63,7 +63,7 @@ export default props => {
       />
       <div style={{ height: '1px', backgroundColor: "rgb(200,200,200)", margin: "8rem 0" }}/>
       <label>icon image</label>
-      <p>make your channel instantly recognizable with an icon image. This will be displayed thorought zine to help viewer discover your channel</p>
+      <p>Make your channel instantly recognizable with an icon image. This will be displayed throughout zine to help viewers discover your channel.</p>
       <ImageField
         name="iconImageURL"
         renderPreview={(url, key) => <IconPreview url={url} key={key} />}
@@ -72,7 +72,7 @@ export default props => {
       />
       <div style={{ height: '4rem' }}/>
       <label>header image</label>
-      <p>personalize your channel with a header image. This will be displayed along the top of your home page, and will help to define your channels brand.</p>
+      <p>Personalize your channel with a header image. This will be displayed along the top of pages.</p>
       <ImageField
         name="headerImageURL"
         validate={[ validate.maxFileSize(4000000) ]}
