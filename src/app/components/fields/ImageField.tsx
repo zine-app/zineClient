@@ -21,10 +21,10 @@ const DefaultPlaceholder = () =>
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      curosor: 'pointer'
+      cursor: 'pointer'
     }}
   >
-    <div style={{ paddingTop: '70%' }}></div>
+    <div style={{ paddingTop: '40%' }}></div>
     <div
       style={{
         position: 'absolute',
@@ -46,7 +46,7 @@ const DefaultPreview = ({ url }) =>
       curosor: 'pointer'
     }}
   >
-    <div style={{ paddingTop: '70%' }}></div>
+    <div style={{ paddingTop: '40%' }}></div>
   </div>
 
 

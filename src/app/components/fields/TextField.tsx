@@ -9,6 +9,7 @@ interface ITextFieldProps extends React.Props<any> {
   validate?:Array<any>
   className?:string
   autoFocus?:boolean
+  onChange?:(value:any) => any
 }
 
 const renderComponent = ({
@@ -16,7 +17,7 @@ const renderComponent = ({
   placeholder,
   label,
   autoFocus,
-  className = 'control--text',
+  className='control--field',
   meta: { touched, dirty, invalid, error}
 }) =>
   <div className={className}>
@@ -35,7 +36,14 @@ const renderComponent = ({
     }
   </div>
 
-export default ({ name, validate, placeholder = '', label = '', className = '', autoFocus = false }:ITextFieldProps) =>
+export default ({
+  name,
+  validate,
+  placeholder = '',
+  label = '',
+  className = '',
+  autoFocus = false
+}:ITextFieldProps) =>
   <Field
     placeholder={placeholder}
     label={label}
