@@ -1,8 +1,15 @@
 import * as React from 'react'
 import 'app/styles/zineHeader'
+import cloudinary from 'app/utils/cloudinary'
 
 const zineHeaderStyle = ({ headerImageURL }) => ({
-  backgroundImage: headerImageURL ? `url('${headerImageURL}')` : 'none'
+  backgroundImage: headerImageURL ?
+    `url('${cloudinary({
+      url: headerImageURL,
+      height: 600,
+      width: "414 1500"
+    })}')` :
+    'none'
 })
 
 export default ({
