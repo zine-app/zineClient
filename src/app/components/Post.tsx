@@ -4,6 +4,7 @@ import ProfileImage from 'app/components/ProfileImage'
 import ZineIcon from 'app/components/ZineIcon'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
+import cloudinary from 'app/utils/cloudinary'
 
 moment.locale('en', {
   relativeTime: {
@@ -59,7 +60,10 @@ export default ({
                 position: 'relative',
                 backgroundImage:
                   getFirstImageURL(body) ?
-                    `url('${getFirstImageURL(body)}')` :
+                    `url('${cloudinary({
+                      url: getFirstImageURL(body),
+                      width: 620
+                    })}')` :
                     'none'
               }}
             >
