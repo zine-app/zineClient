@@ -11,10 +11,19 @@ const logger = createLogger({
   stateTransformer: state => state.toJS()
 })
 
-const middleware = applyMiddleware(
-  promiseMiddleware,
-  reduxThunk,
-  logger
-)
+let middleware;
+
+if (process.env.NODE_ENV === 'production') {
+  middleware  = applyMiddleware(
+    promiseMiddleware,
+    reduxThunk
+  )
+} else {
+  middleware  = applyMiddleware(
+    promiseMiddleware,
+    reduxThunk,
+    logger
+  )
+}
 
 export default createStore(rootReducer, initialState, middleware)
