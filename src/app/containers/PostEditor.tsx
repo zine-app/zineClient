@@ -37,6 +37,8 @@ export default class PostEditor extends React.Component<IProp, any> {
     this.makeBlockHeader = this.makeBlockHeader.bind(this)
     this.blockRenderer = this.blockRenderer.bind(this)
     this.onFinished = debounce(this.onFinished.bind(this), 300)
+    this.editEntity = this.editEntity.bind(this)
+    this.handleKeyCommand = this.handleKeyCommand.bind(this)
   }
 
   componentWillReceiveProps (props) {
@@ -50,6 +52,17 @@ export default class PostEditor extends React.Component<IProp, any> {
   private editor = null
 
   private focus () { this.editor && this.editor.focus() }
+
+  private handleKeyCommand () {
+    const selection = this.state.editorState.getSelection()
+    const content = this.state.editorState.getCurrentContent()
+
+    if(!selection.isCollapsed()) return
+    if(content.getBlockForKey(selection.getStartKey()).getType() === 'atomic') {
+      return 'handled'
+    }
+
+  }
 
   private onFinished () {
     if(this.props.onChange) {
@@ -76,6 +89,14 @@ export default class PostEditor extends React.Component<IProp, any> {
     ))
   }
 
+  private editEntity (key, data) {
+    this.state.editorState
+      .getCurrentContent()
+      .mergeEntityData(key, data)
+
+    this.onChange(this.state.editorState)
+  }
+
   private blockRenderer (contentBlock) {
     if(contentBlock.getType() === 'atomic') {
       return {
@@ -83,7 +104,8 @@ export default class PostEditor extends React.Component<IProp, any> {
         editable: false,
         props: {
           readOnly: this.props.readOnly || false,
-          remove: this.removeBlock
+          remove: this.removeBlock,
+          edit: this.editEntity
         }
       }
     }
@@ -124,12 +146,13 @@ export default class PostEditor extends React.Component<IProp, any> {
         <Editor
           ref={editor => this.editor = editor}
           stripPastedStyles={true}
-          readOnly={this.props.readOnly || false}
+          readOnly={this.props.readOnly || this.state.readOnly}
           editorState={this.state.editorState}
           onChange={this.onChange}
           blockRendererFn={this.blockRenderer}
           textAlignment="left"
           placeholder="share something"
+          handleKeyCommand={this.handleKeyCommand}
         />
       </div>
     )

@@ -1,7 +1,7 @@
 @import 'textStyles';
 .zine--post-page--container {
   box-sizing: border-box;
-  padding: 2rem;
+  padding: 2rem 0;
   background-color: #FFF;
   height: 100%;
 }
@@ -21,4 +21,10 @@
   line-height: 2rem;
   color: rgb(0,0,0);
   font-weight: 200;
+}
+
+@media (min-device-width: 48em) {
+  .zine--post-page--title {
+    padding: 0 20vw;
+  }
 }

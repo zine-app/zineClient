@@ -56,3 +56,6 @@ button:focus,
 input:focus {
 	outline: none
 }
+button>svg {
+	display:block
+}
