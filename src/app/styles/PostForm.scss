@@ -12,8 +12,8 @@
 
 .post-form--post-container {
   box-sizing: border-box;
-  padding: 1em;
   flex: 1 1 auto;
+  overflow: hidden;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
@@ -91,6 +91,12 @@
 
 @media (min-device-width: 48em) {
   .post-form--post-container {
-    width: 80vw
+    width: 100vw
+  }
+
+  [class^="post-form--title"],
+  .public-DraftEditorPlaceholder-root,
+  .public-DraftStyleDefault-block {
+    padding: 0 20vw
   }
 }

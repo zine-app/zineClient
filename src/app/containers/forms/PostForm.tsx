@@ -30,8 +30,8 @@ const mapDispatchToProps = (dispatch, { zine, history, post }) => ({
       )
       // map repsonses to entityMap
       .then(responses =>
-        map(rawContentState.entityMap, (entity, index) =>
-          assign(entity, { data: { url: responses[index] } })
+        map(rawContentState.entityMap, (entity:any, index) =>
+          assign({}, entity, { data: { ...entity.data, url: responses[index] } })
         )
       )
       // save post
