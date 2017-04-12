@@ -36,19 +36,19 @@
 }
 
 [class^="media-component--image"] {
-  width: 100vw
+  width: 100%
 }
 
 @media (min-device-width: 48em) {
   [class^="media-component--image"][class*="__small"] {
-    width: 30vw
+    width: 30%
   }
 
   [class^="media-component--image"][class*="__medium"] {
-    width: 60vw
+    width: 60%
   }
 
   [class^="media-component--image"][class*="__large"] {
-    width: 100vw
+    width: 100%
   }
 }
