@@ -19,6 +19,8 @@ const calculateImageWidth = size => {
   return sizeToWidthMap[size]
 }
 
+const isCloudinaryURL = url => /^http:\/\/res.cloudinary.com\//.test(url)
+
 const Image = ({ url = '', remove = () => null, readOnly = true, edit, size = "medium" }) =>
   <div
     style={{
@@ -31,10 +33,14 @@ const Image = ({ url = '', remove = () => null, readOnly = true, edit, size = "m
     }}
   >
     <img
-      src={cloudinary({
-        url: url,
-        width: `414 ${calculateImageWidth(readOnly ? size : 'large')}`,
-      })}
+      src={
+        isCloudinaryURL(url) ?
+          cloudinary({
+            url: url,
+            width: `414 ${calculateImageWidth(readOnly ? size : 'large')}`,
+          }):
+          url
+      }
       className={`media-component--image__${size}`}
     />
     {
