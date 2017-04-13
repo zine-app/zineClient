@@ -6,7 +6,7 @@ import fetchMe from 'app/actions/user/fetchMe'
 import fetchMyZines from 'app/actions/zine/fetchMyZines'
 import fetchZine from 'app/actions/zine/fetchZine'
 import { load as loadFacebookSDK } from 'app/utils/facebook'
-import ErrorPage from 'app/components/ErrorPage'
+import ErrorPage from 'app/components/pages/ErrorPage'
 import AppLoader from 'app/components/AppLoader'
 import getMyUser from 'app/selectors/me/getMyUser'
 
@@ -63,10 +63,10 @@ const mapDispatchToProps = (dispatch, { match: { params: { zineName } } }) => ({
 })
 
 const mapStateToProps = (state, { match: { params: { zineName } }}) => ({
-    user: getMyUser(state),
-    zine: zineName ?
-      state.get('zines').find(zine => zine.name === zineName) :
-      null
+  user: getMyUser(state),
+  zine: zineName ?
+    state.get('zines').find(zine => zine.name === zineName) :
+    null
 })
 
 
