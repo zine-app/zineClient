@@ -4,9 +4,9 @@ import UserProfile from 'app/containers/UserProfile'
 import LogoutButton from 'app/containers/LogoutButton'
 import AppNavigation from 'app/components/AppNavigation'
 import ArrowIcon from 'app/icons/arrow'
-import AboutPage from 'app/components/AboutPage'
+import AboutPage from 'app/components/pages/AboutPage'
 import { Link as ScrollLink, Element as ScrollElement } from 'react-scroll'
-import '../styles/splashPage.scss'
+import 'app/styles/splashPage.scss'
 
 
 const SplashPage = () =>

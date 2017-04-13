@@ -4,9 +4,9 @@ import 'app/styles/reset'
 import 'app/styles/app'
 import 'app/styles/grid'
 import AppLoader from 'app/components/AppLoader'
-import SplashPage from 'app/components/SplashPage'
-import HomePage from 'app/components/HomePage'
-import ZineHomePage from 'app/containers/ZineHomePage'
+import SplashPage from 'app/components/pages/SplashPage'
+import HomePage from 'app/components/pages/HomePage'
+import ZineHomePage from 'app/containers/pages/ZineHomePage'
 import ZinePostPage from 'app/containers/pages/ZinePostPage'
 import FourOFour from 'app/components/FourOFour'
 import AppTools from 'app/components/AppTools'
@@ -85,7 +85,3 @@ export default ({ loading, user, zine }) =>
         </Switch>
   }
   </main>
-
-
-  // <Route exact path="/:zineName" component={ZineHomePage} />
-  // <Route exact path="/:zineName/post/:postId" component={PostPage} />

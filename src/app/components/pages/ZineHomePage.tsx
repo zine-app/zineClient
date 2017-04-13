@@ -1,5 +1,5 @@
 import * as React from 'react'
-import MasterPage from 'app/components/ZineMasterPage'
+import MasterPage from 'app/components/pages/ZineMasterPage'
 import FourOFour from 'app/components/FourOFour'
 import ZineHomePosts from 'app/components/ZineHomePosts'
 
