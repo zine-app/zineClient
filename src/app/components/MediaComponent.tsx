@@ -7,6 +7,20 @@ import LargeImageIcon from 'app/icons/largeImage'
 import 'app/styles/media'
 
 
+import cloudinary from 'app/utils/cloudinary'
+
+const calculateImageWidth = size => {
+  const sizeToWidthMap = {
+    small: 450,
+    medium: 900,
+    large: 1500
+  }
+
+  return sizeToWidthMap[size]
+}
+
+const isCloudinaryURL = url => /^http:\/\/res.cloudinary.com\//.test(url)
+
 const Image = ({ url = '', remove = () => null, readOnly = true, edit, size = "medium" }) =>
   <div
     style={{
@@ -18,7 +32,17 @@ const Image = ({ url = '', remove = () => null, readOnly = true, edit, size = "m
       alignItems: 'center'
     }}
   >
-    <img src={url} className={`media-component--image__${size}`}/>
+    <img
+      src={
+        isCloudinaryURL(url) ?
+          cloudinary({
+            url: url,
+            width: `414 ${calculateImageWidth(readOnly ? size : 'large')}`,
+          }):
+          url
+      }
+      className={`media-component--image__${size}`}
+    />
     {
       !readOnly &&
         <div className="media--toolbar-container" style={{ zIndex: 1 }}>
