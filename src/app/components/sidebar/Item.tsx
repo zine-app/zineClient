@@ -1,14 +1,8 @@
 import * as React from 'react'
+import ZineIcon from 'app/components/ZineIcon'
 import 'app/styles/sidebarGroupItem'
 
 export default ({ iconImageURL="", onClick, children }:{iconImageURL?:string, onClick?:()=>void, children?:any }) =>
   <button onClick={onClick}>
-    <div
-      className="sidebar--group--item"
-      style={{
-        backgroundImage: iconImageURL ?  `url(${iconImageURL})` : 'none'
-      }}
-    >
-      { children }
-    </div>
+    <ZineIcon url={iconImageURL} />
   </button>
