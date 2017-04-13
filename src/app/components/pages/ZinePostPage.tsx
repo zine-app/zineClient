@@ -4,6 +4,12 @@ import MasterPage from 'app/components/ZineMasterPage'
 import PostReader from 'app/components/PostReader'
 import 'app/styles/zinePostPage'
 
+const getFirstImageURL = body => {
+  if(body.entityMap.length) {
+    return body.entityMap[0].data.url
+  }
+}
+
 export default ({ zine, user, post, actions, history }) =>
   <AppTools
     zine={zine}
@@ -23,5 +29,13 @@ export default ({ zine, user, post, actions, history }) =>
           null
       }
       </div>
+      {
+        post &&
+          <div>
+            <meta property="og:type" content="article" />
+            <meta property="og:title" content={post.title} />
+            <meta property="og:image" content={getFirstImageURL(post.body.toJS())} />
+          </div>
+      }
     </MasterPage>
   </AppTools>
