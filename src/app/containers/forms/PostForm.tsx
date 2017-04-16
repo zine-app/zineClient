@@ -40,6 +40,8 @@ const mapDispatchToProps = (dispatch, { zine, history, post }) => ({
           id: post && post.get('id'),
           zineId: zine.id,
           title: form.get('title'),
+          description: form.get('body').getCurrentContent().getPlainText().trim().substring(0, 150),
+          coverImageUrl: entityMap.length ? entityMap[0].data.url : '',
           body: assign(rawContentState, { entityMap })
         }))
       )
