@@ -11,6 +11,8 @@ declare namespace webAPI.Request {
     id?:string
     title?:string
     authorId?:string
+    description?:string
+    coverImageUrl?:string
     zineId:string
     body:any
   }
