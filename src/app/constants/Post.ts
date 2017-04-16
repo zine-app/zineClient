@@ -9,6 +9,8 @@ const PostRecord = Record({
   zineId: '',
   body: null,
   createdAt: '',
+  description: '',
+  coverImageUrl: '',
   deleted: false
 })
 
@@ -20,6 +22,8 @@ export class Post extends PostRecord {
   zine: string
   body: any
   createdAt: string
+  description: string
+  coverImageUrl: string
   deleted: boolean
 }
 
@@ -32,6 +36,8 @@ const PopulatedPostRecord = Record({
   zine: createZine(),
   body: null,
   createdAt: '',
+  description: '',
+  coverImageUrl: '',
   boolean: false
 })
 
@@ -41,6 +47,8 @@ export class PopulatedPost extends PopulatedPostRecord {
   author: string
   zine: string
   body: any
+  description: string
+  coverImageUrl: string
   createdAt: string
   deleted: boolean
 }
@@ -51,6 +59,7 @@ interface IPopulatedPost {
   author: string
   zine: string
   body: any
+  coverImageUrl: string
   createdAt: string
   deleted: boolean
 }
