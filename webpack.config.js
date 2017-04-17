@@ -96,7 +96,9 @@ module.exports = function (env) {
                 JSON.stringify('826483897470671') :
                 JSON.stringify('1177220292397028'),
 
-              'CLOUDINARY_URL': JSON.stringify("https://api.cloudinary.com/v1_1/quillapp/image/upload")
+              'CLOUDINARY_URL': env.production ?
+                JSON.stringify("https://api.cloudinary.com/v1_1/quillapp/image/upload") :
+                JSON.stringify("https://api.cloudinary.com/v1_1/quillapp/image/upload?folder=dev")
             })
         ]
     }

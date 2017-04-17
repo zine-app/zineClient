@@ -1,13 +1,14 @@
 import fetch from 'isomorphic-fetch'
 import { checkStatus, parseJSON, handleError } from 'app/utils/fetch'
 import toQueryString from 'app/utils/toQueryString'
+import appendQuery from 'append-query'
 
 export default (file?:any, query?:any) => {
   const data = new FormData()
   data.append('upload_preset', 'u18tugcb')
   data.append('file', file)
 
-  return fetch(`${CLOUDINARY_URL}?${toQueryString(query)}`, {
+  return fetch(appendQuery(CLOUDINARY_URL, query, { removeNull: true, encodeComponents: false }), {
     method: 'POST',
     body: data
   })
