@@ -5,7 +5,7 @@ import { reduxForm } from 'redux-form/immutable'
 import { connect } from 'react-redux'
 import savePost from 'app/actions/post/savePost'
 import hideModal from 'app/actions/UI/modal/hideModal'
-import { assign, map } from 'lodash'
+import { assign, map, omit } from 'lodash'
 import { EditorState, convertFromRaw, convertToRaw } from 'draft-js'
 import uploadImage from 'app/webAPI/image'
 
@@ -31,7 +31,7 @@ const mapDispatchToProps = (dispatch, { zine, history, post }) => ({
       // map repsonses to entityMap
       .then(responses =>
         map(rawContentState.entityMap, (entity:any, index) =>
-          assign({}, entity, { data: { ...entity.data, url: responses[index] } })
+          assign({}, entity, { data: { ...omit(entity.data, ['image']), url: responses[index] } })
         )
       )
       // save post
