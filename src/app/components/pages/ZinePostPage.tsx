@@ -11,14 +11,7 @@ const getFirstImageURL = body => {
   }
 }
 
-export default ({ zine, user, post, actions, history }) =>
-  <AppTools
-    zine={zine}
-    user={user}
-    post={post}
-    actions={actions}
-    history={history}
-  >
+export default ({ zine, user, post }) =>
     <MasterPage zine={zine} user={user} >
       <div className="zine--post-page--container">
       { post && <h1 className="zine--post-page--title">{ post.title }</h1> }
@@ -40,4 +33,3 @@ export default ({ zine, user, post, actions, history }) =>
           </Helmet>
       }
     </MasterPage>
-  </AppTools>

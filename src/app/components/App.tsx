@@ -51,8 +51,16 @@ export default ({ loading, user, zine }) =>
             load={async (dispatch, props) => {
               const postResponse = await dispatch(fetchPosts({ _id: props.computedMatch.params.postId, deleted: false }))
             }}
-            render={props =>
-              <ZinePostPage user={user} zine={zine} {...props}/>
+            render={({ actions, history, post, match }) =>
+              <AppTools
+                zine={zine}
+                user={user}
+                post={post}
+                actions={actions}
+                history={history}
+              >
+                <ZinePostPage user={user} zine={zine} post={post} match={match} />
+              </AppTools>
             }
           />
         </Switch>
