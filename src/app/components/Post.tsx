@@ -73,7 +73,7 @@ export default ({
                   height: '100%',
                   width: '100%'
                 }}
-                to={`/${zine.name}/post/${id}`}></Link>
+                to={`/${zine ? zine.name : ''}/post/${id}`}></Link>
               { getFirstImageURL(body) ? null : title }
             </div>
             <div className="post--content--details">
@@ -83,7 +83,7 @@ export default ({
                 </div>
                 <div style={{ width: '0.4em' }} />
                 { title &&
-                  <Link to={`/${zine.name}/post/${id}`}>
+                  <Link to={`/${zine ? zine.name: ''}/post/${id}`}>
                     <h1 className="post--title">{title}</h1>
                   </Link>
                 }

@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch'
 import { checkStatus, parseJSON, handleError } from 'app/utils/fetch'
-import toQueryString from 'app/utils/toQueryString'
+import appendQuery from 'append-query'
 import { pick } from 'lodash'
 
 export const requestPostZine = (zine):Promise<webAPI.Response.PostZine> =>
@@ -23,7 +23,7 @@ export const requestPostZine = (zine):Promise<webAPI.Response.PostZine> =>
     .catch(handleError)
 
 export const requestFetchMyZines = (query = {}) =>
-  fetch(`${API_URL}/my/zines?${toQueryString(query)}`, {
+  fetch(appendQuery(`${API_URL}/my/zines`, query, { removeNull: true, encodeComponents: false }), {
       credentials: 'include'
     })
     .then(checkStatus)
@@ -36,7 +36,7 @@ export const requestFetchMyZines = (query = {}) =>
     .catch(handleError)
 
 export const requestFetchZine = (query) =>
-  fetch(`${API_URL}/zine?${toQueryString(query)}`, {
+  fetch(appendQuery(`${API_URL}/zine`, query, { removeNull: true, encodeComponents: false }), {
     credentials: 'include'
   })
   .then(checkStatus)
@@ -49,7 +49,7 @@ export const requestFetchZine = (query) =>
   .catch(handleError)
 
 export const requestFetchZines = (query) =>
-    fetch(`${API_URL}/zines?${toQueryString(query)}`, {
+    fetch(appendQuery(`${API_URL}/zines`, query, { removeNull: true, encodeComponents: false }), {
       credentials: 'include'
     })
     .then(checkStatus)
@@ -63,7 +63,7 @@ export const requestFetchZines = (query) =>
 
 
 export const requestDeleteZine = zine =>
-    fetch(`${API_URL}/zine?${toQueryString(pick(zine, ['id']))}`, {
+    fetch(appendQuery(`${API_URL}/my/zines`, pick(zine, ['id'])), {
       method: 'DELETE',
       credentials: 'include',
       headers: {
