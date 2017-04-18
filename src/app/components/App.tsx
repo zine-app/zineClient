@@ -18,7 +18,7 @@ import fetchUsers from 'app/actions/user/fetchUsers'
 import { uniq } from 'lodash'
 
 
-export default ({ loading, user, zine }) =>
+export default ({ loading, user, zine, actions }) =>
   <main className="zine-app--main">
   {
     loading ?
@@ -36,7 +36,7 @@ export default ({ loading, user, zine }) =>
             dispatch(fetchZines({ _id: zineIds.length > 1 ? zineIds: zineIds[0] }))
           }}
           render={props =>
-            <AppTools zine={zine} user={user}>
+            <AppTools zine={zine} user={user} actions={actions}>
               <HomePage user={user} zine={zine} {...props} />
             </AppTools>
           }
@@ -50,7 +50,7 @@ export default ({ loading, user, zine }) =>
             await dispatch(fetchUsers({ _id: authorIds.length > 1 ? authorIds: authorIds[0] }))
           }}
           render={props =>
-            <AppTools zine={zine} user={user}>
+            <AppTools zine={zine} user={user} actions={actions}>
               <ZineHomePage user={user} zine={zine} {...props} />
             </AppTools>
           }

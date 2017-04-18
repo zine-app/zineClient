@@ -3,10 +3,12 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import 'app/styles/modal'
 import Post from 'app/components/modal/modals/PostModal'
 import createNewChannel from 'app/components/modal/modals/CreateNewChannelModal'
+import login from 'app/components/modal/modals/LoginModal'
 
 const modals = {
   Post,
-  createNewChannel
+  createNewChannel,
+  login
 }
 
 const getModal = name => modals[name]

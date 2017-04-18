@@ -1,6 +1,6 @@
 import * as React from 'react'
 import 'app/styles/sidebar'
-import UserProfileButton from 'app/containers/UserProfileButton'
+import UserProfileButton from 'app/components/UserProfileButton'
 import HomePageTools from 'app/components/sidebar/groups/HomePageTools'
 import OwnZines from 'app/containers/sidebar/groups/OwnZines'
 import ZineEditorTools from 'app/containers/sidebar/groups/ZineEditorTools'
@@ -18,7 +18,7 @@ interface SidebarProps {
 export default ({ user, zine, post, actions, history }:SidebarProps) =>
   <div className="sidebar--container">
     <div className="sidebar--container--header">
-      <UserProfileButton />
+      <UserProfileButton user={user} actions={actions} />
     </div>
     <div className="sidebar--container--main">
       <HomePageTools/>

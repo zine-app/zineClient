@@ -9,6 +9,8 @@ import { load as loadFacebookSDK } from 'app/utils/facebook'
 import ErrorPage from 'app/components/pages/ErrorPage'
 import AppLoader from 'app/components/AppLoader'
 import getMyUser from 'app/selectors/me/getMyUser'
+import deletePost from 'app/actions/post/deletePost'
+import toggleModal from 'app/actions/ui/Modal/toggleModal'
 
 
 interface IProps extends React.Props<any> {
@@ -16,6 +18,7 @@ interface IProps extends React.Props<any> {
   zine: any
   load: () => Promise<void>
   match: any
+  actions: any
 }
 
 class AppContainer extends React.Component<IProps, any> {
@@ -58,6 +61,15 @@ const mapDispatchToProps = (dispatch, { match: { params: { zineName } } }) => ({
     // Fetch zine
     if(zineName) {
       await dispatch(fetchZine({ deleted: false, name: zineName }))
+    }
+  },
+
+  actions: {
+    post: {
+      delete: post => dispatch(deletePost(post))
+    },
+    modal: {
+      toggle: props => dispatch(toggleModal(props))
     }
   }
 })

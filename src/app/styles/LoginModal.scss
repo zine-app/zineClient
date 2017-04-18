@@ -1,0 +1,64 @@
+@import 'textStyles';
+
+.login-modal--container {
+  box-sizing: border-box;
+  padding: 2em;
+  border-radius: 1em;
+  background-color: #FFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  width: 95vw;
+  max-width: 540px;
+}
+
+.login-modal--header {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.login-explainer {
+  font-family: $zineFontFamily;
+  font-size: 1.4em;
+  color: rgb(60,60,60);
+  margin: 1em 0em;
+}
+
+@mixin login-button {
+  padding: 2em;
+  font-family: $zineFontFamily;
+  font-size: 1.4em;
+  margin: 0.5em 0em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  font-weight: 200;
+}
+
+.login-button--icon {
+  margin-right: 1em
+}
+
+.login-facebook-button {
+  @include login-button;
+  color: white;
+  background-color: rgb(60,90,150);
+}
+
+.login-twitter-button {
+  @include login-button;
+  color: white;
+  background-color: rgb(82,171,228);
+}
+
+.login-email-button {
+  @include login-button;
+  color: white;
+  background-color: #FFF;
+  color: rgb(140,140,140);
+  border: 1px solid rgb(180,180,180)
+}
