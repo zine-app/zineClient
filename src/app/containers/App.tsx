@@ -11,7 +11,8 @@ import AppLoader from 'app/components/AppLoader'
 import getMyUser from 'app/selectors/me/getMyUser'
 import deletePost from 'app/actions/post/deletePost'
 import toggleModal from 'app/actions/ui/Modal/toggleModal'
-
+import hideModal from 'app/actions/ui/Modal/hideModal'
+import login from 'app/actions/auth/login'
 
 interface IProps extends React.Props<any> {
   user: any
@@ -69,7 +70,13 @@ const mapDispatchToProps = (dispatch, { match: { params: { zineName } } }) => ({
       delete: post => dispatch(deletePost(post))
     },
     modal: {
+      hide: () => dispatch(hideModal()),
       toggle: props => dispatch(toggleModal(props))
+    },
+    auth: {
+      login: ({ vendor }) => dispatch(login({ vendor })),
+      logout: () => {},
+      signup: ({ vendor }) => {}
     }
   }
 })

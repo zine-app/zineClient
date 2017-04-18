@@ -19,7 +19,7 @@ interface InAppMasterPageProps {
 
 export default ({ children, user, zine, post, actions, history }:InAppMasterPageProps) =>
   <div>
-    <Modal />
+    <Modal actions={actions} />
     <div className='zine-home-page-layout--sidebar'>
       <Sidebar
         user={user}

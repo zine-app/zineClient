@@ -3,7 +3,6 @@ import AppTools from 'app/components/AppTools'
 import MasterPage from 'app/components/pages/ZineMasterPage'
 import PostReader from 'app/components/PostReader'
 import 'app/styles/zinePostPage'
-import { Helmet } from "react-helmet"
 
 const getFirstImageURL = body => {
   if(body.entityMap.length) {
@@ -23,13 +22,4 @@ export default ({ zine, user, post }) =>
           null
       }
       </div>
-      {
-        post &&
-          <Helmet>
-            <meta property="og:url" content={location.href} />
-            <meta property="og:type" content="article" />
-            <meta property="og:title" content={post.title} />
-            <meta property="og:image" content={getFirstImageURL(post.body.toJS())} />
-          </Helmet>
-      }
     </MasterPage>
