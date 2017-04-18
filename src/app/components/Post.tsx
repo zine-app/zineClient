@@ -79,7 +79,9 @@ export default ({
             <div className="post--content--details">
               <div className="post--content--details--left-block">
                 <div className="post--details-icon">
-                  <ZineIcon url={zine ? zine.iconImageURL : ''} size="small" />
+                  <Link to={`/${zine ? zine.name : ''}`}>
+                    <ZineIcon url={zine ? zine.iconImageURL : ''} size="small" />
+                  </Link>
                 </div>
                 <div style={{ width: '0.4em' }} />
                 { title &&
