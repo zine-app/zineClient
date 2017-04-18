@@ -62,3 +62,23 @@ export const requestZineLogout:TrequestZineLogout = () =>
     body: body
   }))
   .catch(handleError)
+
+type TrequestSignIn = (params:any) => Promise<webAPI.Response.ZineAuth>
+export const requestSignIn:TrequestSignIn = params =>
+  fetch(`${API_URL}/auth/signIn`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(params)
+  })
+  .then(checkStatus)
+  .then(parseJSON)
+  .then((body:any):webAPI.Response.ZineAuth => ({
+    error: false,
+    status: 200,
+    body: body
+  }))
+  .catch(handleError)

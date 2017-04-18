@@ -1,5 +1,6 @@
 import * as React from 'react'
-import FacebookLoginButton from 'app/containers/facebookLoginButton'
+import SignInWithFacebookButton from 'app/containers/SignInWithFacebookButton'
+import FacebookLoginButton from 'app/containers/FacebookLoginButton'
 import UserProfile from 'app/containers/UserProfile'
 import LogoutButton from 'app/containers/LogoutButton'
 import AppNavigation from 'app/components/AppNavigation'
@@ -38,6 +39,9 @@ const SplashPage = () =>
           </div>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <FacebookLoginButton theme="air" />
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1em' }}>
+            <SignInWithFacebookButton />
           </div>
         </div>
       </div>
