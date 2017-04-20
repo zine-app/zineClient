@@ -12,7 +12,7 @@ export default ({ actions }) =>
       </div>
       <div className="login-explainer">sign in to zine</div>
       <button
-        onClick={() => actions.auth.login({ vendor: 'facebook' })}
+        onClick={() => actions.auth.login({ vendor: 'facebook' }).then(actions.modal.hide)}
         className="login-facebook-button"
       >
         <FacebookIcon size="2rem" color="#FFF" className="login-button--icon" />

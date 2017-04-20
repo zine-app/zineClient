@@ -13,6 +13,10 @@ import deletePost from 'app/actions/post/deletePost'
 import toggleModal from 'app/actions/ui/Modal/toggleModal'
 import hideModal from 'app/actions/ui/Modal/hideModal'
 import login from 'app/actions/auth/login'
+import logout from 'app/actions/auth/logout'
+import closeSlideout from 'app/actions/ui/slideout/closeSlideout'
+import openSlideout from 'app/actions/ui/slideout/openSlideout'
+import toggleSlideout from 'app/actions/ui/slideout/toggleSlideout'
 
 interface IProps extends React.Props<any> {
   user: any
@@ -73,9 +77,14 @@ const mapDispatchToProps = (dispatch, { match: { params: { zineName } } }) => ({
       hide: () => dispatch(hideModal()),
       toggle: props => dispatch(toggleModal(props))
     },
+    slideout: {
+      toggle: ({ name }) => dispatch(toggleSlideout({ withCard: name })),
+      open: ({ name }) => dispatch(openSlideout({ withCard: name })),
+      close: () => dispatch(closeSlideout())
+    },
     auth: {
       login: ({ vendor }) => dispatch(login({ vendor })),
-      logout: () => {},
+      logout: () => dispatch(logout()),
       signup: ({ vendor }) => {}
     }
   }

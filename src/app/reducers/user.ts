@@ -79,7 +79,7 @@ export const userReducer = handleActions({
   },
 
 
-  "AUTH:ZINE:SIGNUP:RESPONSE": {
+  "AUTH:ZINE:LOGIN:RESPONSE": {
     next: (state, action) =>
       state.update(
         state.find(user => user.id === action.payload.id) ?
@@ -100,13 +100,6 @@ export const userReducer = handleActions({
 
     throw: (state, action) => state
   },
-
-
-  "AUTH:LOGOUT:RESPONSE": {
-    next: (state, action) => state.clear(),
-    throw: (state, action) => state
-  },
-
 
   "AUTH:ME:RESPONSE": {
     next: (state, action) => state.update(

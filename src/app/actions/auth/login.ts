@@ -12,7 +12,7 @@ export default ({ vendor }) => dispatch =>
       const facebookUserId = facebookLoginResponse.payload.authResponse.userID
       const facebookUserAccessToken = facebookLoginResponse.payload.authResponse.accessToken
 
-      await dispatch(createFetchAction('AUTH:ZINE:LOGIN', requestSignIn, {
+      return await dispatch(createFetchAction('AUTH:ZINE:LOGIN', requestSignIn, {
         vendor: 'facebook',
         facebookUserAccessToken,
         facebookUserId

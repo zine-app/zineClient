@@ -60,7 +60,7 @@ export default ({ loading, user, zine, actions }) =>
           load={async (dispatch, props) => {
             const postResponse = await dispatch(fetchPosts({ _id: props.computedMatch.params.postId, deleted: false }))
           }}
-          render={({ actions, history, post, match }) =>
+          render={({ history, post, match }) =>
             <AppTools
               zine={zine}
               user={user}

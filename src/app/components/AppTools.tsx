@@ -34,6 +34,6 @@ export default ({ children, user, zine, post, actions, history }:InAppMasterPage
     >
       { children }
     </div>
-    <Slideout zine={zine} />
+    <Slideout zine={zine} actions={actions} />
     <ReactTooltip type="dark" effect="solid" delayShow={1000} className="tooltip"/>
   </div>

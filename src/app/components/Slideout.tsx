@@ -24,7 +24,7 @@ const renderCard = (cardName, props) => {
   return <Card {...props} />
 }
 
-export default ({ cardName, isOpen=false, zine, closeSlideout }) =>
+export default ({ cardName, isOpen=false, zine, closeSlideout, actions }) =>
   <div
     className="slideout--container"
     style={{ pointerEvents: isOpen ? 'auto' : 'none' }}
@@ -43,7 +43,7 @@ export default ({ cardName, isOpen=false, zine, closeSlideout }) =>
               event.stopPropagation()
             }}
           >
-            { renderCard(cardName, { zine }) }
+            { renderCard(cardName, { zine, actions }) }
           </div> :
           null
       }

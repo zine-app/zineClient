@@ -31,7 +31,7 @@ export default ({ user, zine, post, actions, history }:SidebarProps) =>
           history={history}
         />
       }
-      <OwnZines />
+      { user && <OwnZines />}
     </div>
     <div className="sidebar--container--footer"></div>
   </div>

@@ -10,6 +10,11 @@ export const meReducer = handleActions({
     throw: (state, action) => state
   },
 
+  "AUTH:ZINE:LOGIN:RESPONSE": {
+    next: (state, action) => state.set('userId', action.payload.id),
+    throw: (state, action) => state
+  },
+
   "AUTH:LOGOUT:RESPONSE": {
     next: (state, action) => state.set('userId', ''),
     throw: (state, action) => state
