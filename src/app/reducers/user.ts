@@ -22,9 +22,7 @@ export const userReducer = handleActions({
             'id',
             'name',
             'email',
-            'profileImageURL',
-            'facebookUserId',
-            'facebookUserAccessToken'
+            'profileImageURL'
           ]))
         )
       }, state)
@@ -46,9 +44,7 @@ export const userReducer = handleActions({
           'id',
           'name',
           'email',
-          'profileImageURL',
-          'facebookUserId',
-          'facebookUserAccessToken'
+          'profileImageURL'
         ]))
       ),
 
@@ -69,9 +65,7 @@ export const userReducer = handleActions({
           'id',
           'name',
           'email',
-          'profileImageURL',
-          'facebookUserId',
-          'facebookUserAccessToken'
+          'profileImageURL'
         ]))
       ),
 
@@ -79,7 +73,7 @@ export const userReducer = handleActions({
   },
 
 
-  "AUTH:ZINE:LOGIN:RESPONSE": {
+  "AUTH:SIGNUP:RESPONSE": {
     next: (state, action) =>
       state.update(
         state.find(user => user.id === action.payload.id) ?
@@ -92,9 +86,7 @@ export const userReducer = handleActions({
           'id',
           'name',
           'email',
-          'profileImageURL',
-          'facebookUserId',
-          'facebookUserAccessToken'
+          'profileImageURL'
         ]))
       ),
 
@@ -113,9 +105,7 @@ export const userReducer = handleActions({
           'id',
           'name',
           'email',
-          'profileImageURL',
-          'facebookUserId',
-          'facebookUserAccessToken'
+          'profileImageURL'
         ]))
     ),
 

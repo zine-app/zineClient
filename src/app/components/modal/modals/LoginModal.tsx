@@ -12,21 +12,21 @@ export default ({ actions }) =>
       </div>
       <div className="login-explainer">sign in to zine</div>
       <button
-        onClick={() => actions.auth.login({ vendor: 'facebook' }).then(actions.modal.hide)}
+        onClick={() => actions.auth.facebook.signUp().then(actions.modal.hide)}
         className="login-facebook-button"
       >
         <FacebookIcon size="2rem" color="#FFF" className="login-button--icon" />
         login with facebook
       </button>
       <button
-        onClick={() => actions.auth.login({ vendor: 'twitter' })}
+        onClick={() => actions.auth.twitter.signUp().then(actions.modal.hide)}
         className="login-twitter-button"
       >
         <TwitterIcon size="2rem" color="#FFF" className="login-button--icon" />
         login with twitter
       </button>
       <button
-        onClick={() => actions.auth.login({ vendor: 'twitter' })}
+        onClick={() => actions.auth.email.signUp()}
         className="login-email-button"
       >sign in with email</button>
     </div>

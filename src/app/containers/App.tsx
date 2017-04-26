@@ -12,8 +12,7 @@ import getMyUser from 'app/selectors/me/getMyUser'
 import deletePost from 'app/actions/post/deletePost'
 import toggleModal from 'app/actions/ui/Modal/toggleModal'
 import hideModal from 'app/actions/ui/Modal/hideModal'
-import login from 'app/actions/auth/login'
-import logout from 'app/actions/auth/logout'
+import authActions from 'app/actions/auth'
 import closeSlideout from 'app/actions/ui/slideout/closeSlideout'
 import openSlideout from 'app/actions/ui/slideout/openSlideout'
 import toggleSlideout from 'app/actions/ui/slideout/toggleSlideout'
@@ -83,9 +82,16 @@ const mapDispatchToProps = (dispatch, { match: { params: { zineName } } }) => ({
       close: () => dispatch(closeSlideout())
     },
     auth: {
-      login: ({ vendor }) => dispatch(login({ vendor })),
-      logout: () => dispatch(logout()),
-      signup: ({ vendor }) => {}
+      facebook: {
+        signUp: () => dispatch(authActions.facebook.signUp())
+      },
+      twitter: {
+        signUp: () => dispatch(authActions.twitter.signUp())
+      },
+      email: {
+        signUp: () => dispatch(authActions.email.signUp())
+      },
+      logout: () => dispatch(authActions.logout())
     }
   }
 })

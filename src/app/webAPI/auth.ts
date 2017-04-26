@@ -2,6 +2,43 @@ import fetch from 'isomorphic-fetch'
 import { checkStatus, parseJSON, handleError } from 'app/utils/fetch'
 import { pick } from 'lodash'
 
+export const requestSignUpWithFacebook = params =>
+  fetch(`${API_URL}/auth/signup/facebook`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(params)
+  })
+  .then(checkStatus)
+  .then(parseJSON)
+  .then(body => ({
+    error: false,
+    status: 200,
+    body: body
+  }))
+  .catch(handleError)
+
+  export const requestSignUpWithTwitter = () =>
+    fetch(`${API_URL}/auth/signup/twitter`, {
+      method: 'POST',
+      credentials: 'include'
+    })
+    .then(checkStatus)
+    .then(parseJSON)
+    .then(body => ({
+      error: false,
+      status: 200,
+      body: body
+    }))
+    .catch(handleError)
+
+
+
+
+
 
 type TrequestZineSignUp = (params:webAPI.Request.ZineAuth) => Promise<webAPI.Response.ZineAuth>
 export const requestZineSignUp:TrequestZineSignUp = (params) =>
@@ -22,7 +59,6 @@ export const requestZineSignUp:TrequestZineSignUp = (params) =>
     body: body
   }))
   .catch(handleError)
-
 
 type TrequestZineLogin = (params:webAPI.Request.ZineAuth) => Promise<webAPI.Response.ZineAuth>
 export const requestZineLogin:TrequestZineLogin = (params) =>
