@@ -12,7 +12,8 @@
   box-sizing: border-box;
 }
 
-.control--field-group > label {
+.control--field-group > label,
+[class^="control--label"] {
   font-family: Hevetica, Arial, sans-serif;
   font-size: 1.2rem;
   color: rgb(80,80,80);
@@ -20,7 +21,19 @@
   margin-bottom: 0.6rem;
 }
 
-input[type="text"][class^="control--field"] {
+[class^="control--label"][class*="__large"] {
+  font-size: 1.4rem;
+  margin-bottom: 0.8rem;
+}
+
+input[type="text"][class^="control--field"][class*="__large"],
+input[type="password"][class^="control--field"][class*="__large"] {
+  padding: 2rem;
+  font-size: 1.4rem;
+}
+
+input[type="text"][class^="control--field"],
+input[type="password"][class^="control--field"] {
   box-sizing: border-box;
   padding: 0.8rem 1.2rem;
   color: rgb(100,100,100);
@@ -30,18 +43,20 @@ input[type="text"][class^="control--field"] {
   width: 100%;
 }
 
-input[type="text"][class^="control--field"][class*="__error"] {
+input[type="text"][class^="control--field"][class*="__error"],
+input[type="password"][class^="control--field"][class*="__error"] {
   border: 1px solid $red;
 }
 
-input[type="text"][class^="control--field"]:focus {
+input[type="text"][class^="control--field"]:focus,
+input[type="password"][class^="control--field"]:focus {
   color: rgb(40,40,40);
   border-color: rgb(140,140,140);
 }
 
 button[class^="control--button"] {
   cursor: pointer;
-  font-family: Hevetica, Arial, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   font-size: 1.2rem;
   background-color: #FFF;
   box-sizing: border-box;
@@ -74,7 +89,7 @@ button[class^="control--button"]:disabled {
 button[class^="control--button"][class*="__large"] {
   font-weight: 200;
   font-size: 1.6rem;
-  padding: 1.4rem 4rem;
+  padding: 2rem;
 }
 
 .control--error {

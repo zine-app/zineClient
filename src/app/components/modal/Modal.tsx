@@ -4,11 +4,13 @@ import 'app/styles/modal'
 import Post from 'app/components/modal/modals/PostModal'
 import createNewChannel from 'app/components/modal/modals/CreateNewChannelModal'
 import login from 'app/components/modal/modals/LoginModal'
+import emailLogin from 'app/components/modal/modals/EmailLoginModal'
 
 const modals = {
   Post,
   createNewChannel,
-  login
+  login,
+  emailLogin
 }
 
 const getModal = name => modals[name]

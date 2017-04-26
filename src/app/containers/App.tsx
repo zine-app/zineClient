@@ -11,6 +11,7 @@ import AppLoader from 'app/components/AppLoader'
 import getMyUser from 'app/selectors/me/getMyUser'
 import deletePost from 'app/actions/post/deletePost'
 import toggleModal from 'app/actions/ui/Modal/toggleModal'
+import showModal from 'app/actions/ui/Modal/showModal'
 import hideModal from 'app/actions/ui/Modal/hideModal'
 import authActions from 'app/actions/auth'
 import closeSlideout from 'app/actions/ui/slideout/closeSlideout'
@@ -74,6 +75,7 @@ const mapDispatchToProps = (dispatch, { match: { params: { zineName } } }) => ({
     },
     modal: {
       hide: () => dispatch(hideModal()),
+      show: props => dispatch(showModal(props)),
       toggle: props => dispatch(toggleModal(props))
     },
     slideout: {
@@ -89,7 +91,7 @@ const mapDispatchToProps = (dispatch, { match: { params: { zineName } } }) => ({
         signUp: () => dispatch(authActions.twitter.signUp())
       },
       email: {
-        signUp: () => dispatch(authActions.email.signUp())
+        signUp: (email, password) => dispatch(authActions.email.signUp(email, password))
       },
       logout: () => dispatch(authActions.logout())
     }

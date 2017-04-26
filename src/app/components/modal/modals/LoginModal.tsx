@@ -26,7 +26,7 @@ export default ({ actions }) =>
         login with twitter
       </button>
       <button
-        onClick={() => actions.auth.email.signUp()}
+        onClick={() => actions.modal.show({ name: 'emailLogin' })}
         className="login-email-button"
       >sign in with email</button>
     </div>
