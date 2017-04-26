@@ -1,0 +1,55 @@
+import React from 'react'
+import { Field } from 'redux-form/immutable'
+import 'app/styles/control'
+
+interface IPasswordFieldProps extends React.Props<any> {
+  name:string
+  label?:string
+  placeholder?:string
+  validate?:Array<any>
+  className?:string
+  autoFocus?:boolean
+  onChange?:(value:any) => any
+}
+
+const renderComponent = ({
+  input,
+  placeholder,
+  label,
+  autoFocus,
+  className='control--field',
+  meta: { touched, dirty, invalid, error}
+}) =>
+  <div>
+      { label && <label>{label}</label> }
+      <input
+        autoFocus={autoFocus}
+        className={`${className}${touched && error ? '__error' : ''}`}
+        {...input} type="password"
+        placeholder={placeholder}
+      />
+    {
+      dirty && invalid &&
+        <div className="control--error">
+        { error }
+        </div>
+    }
+  </div>
+
+export default ({
+  name,
+  validate,
+  placeholder = '',
+  label = '',
+  className = '',
+  autoFocus = false
+}:IPasswordFieldProps) =>
+  <Field
+    placeholder={placeholder}
+    label={label}
+    validate={validate}
+    name={name}
+    component={renderComponent}
+    className={className}
+    autoFocus={autoFocus}
+  />
