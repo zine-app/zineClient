@@ -8,5 +8,5 @@ export default ({ actions }) =>
     <div style={{ display:'flex', flexDirection:'column', alignItems: 'flex-end' }}>
       <button onClick={actions.modal.hide}><ExitIcon size="3rem" /></button>
     </div>
-    <EmailSignInForm />
+    <EmailSignInForm signUp={actions.auth.email.signUp} />
   </div>

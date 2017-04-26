@@ -5,7 +5,7 @@ import PasswordField from 'app/components/fields/PasswordField'
 import 'app/styles/control'
 import * as validate from 'app/utils/validate'
 
-export default ({ save, handleSubmit }) =>
+export default ({ signUp, handleSubmit }) =>
   <div style={{ display: 'flex', flexDirection: 'column' }}>
     <div>signin/signup with email</div>
     <Divider height="3rem" />
@@ -36,5 +36,5 @@ export default ({ save, handleSubmit }) =>
     <Divider height="3rem" />
     <p style={{ color: 'rgb(120,120,120)' }}>signin to your account</p>
     <Divider height="0.8rem" />
-    <button onClick={handleSubmit(save)} className="control--button__blue__large">signin/signup</button>
+    <button onClick={handleSubmit(signUp)} className="control--button__blue__large">signin/signup</button>
   </div>
